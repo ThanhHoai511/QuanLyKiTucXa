@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('user.layouts.app');
+    return view('admin.layouts.home');
 });
