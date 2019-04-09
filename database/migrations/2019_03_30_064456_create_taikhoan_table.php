@@ -23,6 +23,7 @@ class CreateTaikhoanTable extends Migration
                 ->references('id')->on('nhanvien')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

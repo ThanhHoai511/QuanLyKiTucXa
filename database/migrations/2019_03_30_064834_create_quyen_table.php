@@ -18,6 +18,7 @@ class CreateQuyenTable extends Migration
             $table->string('ten')->unique();
             $table->text('mo_ta')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCosovatchatTable extends Migration
+class AddStatusToTintucTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateCosovatchatTable extends Migration
      */
     public function up()
     {
-        Schema::create('cosovatchat', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('ten');
-            $table->double('gia');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('tintuc', function (Blueprint $table) {
+            $table->tinyInteger('trang_thai');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateCosovatchatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cosovatchat');
+        Schema::table('tintuc', function (Blueprint $table) {
+            $table->dropColumn('trang_thai');
+        });
     }
 }

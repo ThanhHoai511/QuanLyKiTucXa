@@ -21,6 +21,7 @@ class CreatePhanhoiTable extends Migration
                 ->references('id')->on('sinhvienutc')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

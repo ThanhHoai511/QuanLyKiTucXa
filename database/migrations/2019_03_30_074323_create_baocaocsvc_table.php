@@ -25,6 +25,7 @@ class CreateBaocaocsvcTable extends Migration
                 ->onDelete('cascade');
             $table->tinyInteger('tinh_trang');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

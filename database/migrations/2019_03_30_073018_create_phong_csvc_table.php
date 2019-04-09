@@ -25,6 +25,7 @@ class CreatePhongCsvcTable extends Migration
                 ->references('id')->on('cosovatchat')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

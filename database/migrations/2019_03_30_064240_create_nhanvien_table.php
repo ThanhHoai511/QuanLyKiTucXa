@@ -22,6 +22,7 @@ class CreateNhanvienTable extends Migration
             $table->text('mo_ta');
             $table->text('hinh_anh');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
