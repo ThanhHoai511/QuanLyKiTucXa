@@ -25,6 +25,7 @@ class CreateHopdonghuyTable extends Migration
                 ->onDelete('cascade');
             $table->date('ngay_ket_thuc');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

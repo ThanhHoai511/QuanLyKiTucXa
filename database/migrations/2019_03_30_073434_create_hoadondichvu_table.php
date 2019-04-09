@@ -29,6 +29,7 @@ class CreateHoadondichvuTable extends Migration
                 ->references('id')->on('dichvu')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

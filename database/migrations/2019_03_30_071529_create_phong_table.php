@@ -26,6 +26,7 @@ class CreatePhongTable extends Migration
                 ->references('id')->on('loaiphong')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

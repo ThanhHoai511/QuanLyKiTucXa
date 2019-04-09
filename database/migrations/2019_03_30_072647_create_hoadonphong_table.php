@@ -21,6 +21,7 @@ class CreateHoadonphongTable extends Migration
                 ->references('id')->on('hopdong')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

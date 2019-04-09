@@ -24,6 +24,7 @@ class CreateQuyenTaikhoanTable extends Migration
                 ->references('id')->on('taikhoan')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
