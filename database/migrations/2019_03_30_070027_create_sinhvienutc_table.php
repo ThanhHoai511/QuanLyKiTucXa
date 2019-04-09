@@ -34,6 +34,7 @@ class CreateSinhvienutcTable extends Migration
             $table->string('mat_khau');
             $table->tinyInteger('doi_tuong');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

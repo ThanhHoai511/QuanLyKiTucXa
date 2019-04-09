@@ -19,6 +19,7 @@ class CreateTintucTable extends Migration
             $table->text('noi_dung');
             $table->tinyInteger('loai');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

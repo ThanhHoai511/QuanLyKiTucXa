@@ -21,6 +21,7 @@ class CreateLoaiphongTable extends Migration
             $table->integer('so_luong_sv_toi_da');
             $table->string('dien_tich');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

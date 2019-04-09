@@ -19,6 +19,7 @@ class CreateDichvuTable extends Migration
             $table->text('mo_ta');
             $table->double('gia');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

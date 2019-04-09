@@ -19,6 +19,7 @@ class CreateKhunhaTable extends Migration
             $table->text('mo_ta')->nullable();
             $table->tinyInteger('doi_tuong');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
