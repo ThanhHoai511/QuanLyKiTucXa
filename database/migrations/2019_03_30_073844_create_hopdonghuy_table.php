@@ -24,6 +24,10 @@ class CreateHopdonghuyTable extends Migration
                 ->references('id')->on('sinhvienutc')
                 ->onDelete('cascade');
             $table->date('ngay_ket_thuc');
+            $table->unsignedBigInteger('ma_tai_khoan');
+            $table->foreign('ma_tai_khoan')
+                ->references('id')->on('taikhoan')
+                ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
