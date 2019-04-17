@@ -16,7 +16,7 @@ class CreateDichvuTable extends Migration
         Schema::create('dichvu', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ten');
-            $table->text('mo_ta');
+            $table->text('mo_ta')->nullable();
             $table->double('gia');
             $table->timestamps();
             $table->softDeletes();

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\KhuNhaRequest;
+use App\Http\Requests\SuaKhuNhaRequest;
+use App\Http\Requests\ThemKhuNhaRequest;
 use App\Services\KhuNhaServices;
 use App\Http\Controllers\Controller;
 
@@ -41,11 +42,11 @@ class KhuNhaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KhuNhaRequest $request)
+    public function store(ThemKhuNhaRequest $request)
     {
         $this->khuNhaService->store($request);
 
-        return redirect()->route('danhSachKhuNha');
+        return redirect()->route('danhSachKhuNha')->with('success', 'Thêm khu nhà thành công!');
     }
 
     /**
@@ -79,11 +80,11 @@ class KhuNhaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(KhuNhaRequest $request, $id)
+    public function update(SuaKhuNhaRequest $request, $id)
     {
         $this->khuNhaService->update($request, $id);
 
-        return redirect()->route('danhSachKhuNha');
+        return redirect()->route('danhSachKhuNha')->with('success', 'Sửa khu nhà thành công!');
 
     }
 
@@ -96,6 +97,6 @@ class KhuNhaController extends Controller
     public function destroy($id)
     {
         $this->khuNhaService->destroy($id);
-        return redirect()->route('danhSachKhuNha');
+        return redirect()->route('danhSachKhuNha')->with('success', 'Xóa khu nhà thành công!');
     }
 }

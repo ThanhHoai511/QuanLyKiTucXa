@@ -20,13 +20,17 @@ class CreateHoadondichvuTable extends Migration
             $table->integer('tinh_trang');
             $table->double('gia');
             $table->text('chu_thich');
-            $table->unsignedBigInteger('ma_hop_dong');
+            $table->unsignedBigInteger('ma_phong');
             $table->unsignedBigInteger('ma_dich_vu');
-            $table->foreign('ma_hop_dong')
-                ->references('id')->on('hopdong')
+            $table->foreign('ma_phong')
+                ->references('id')->on('phong')
                 ->onDelete('cascade');
             $table->foreign('ma_dich_vu')
                 ->references('id')->on('dichvu')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('ma_tai_khoan');
+            $table->foreign('ma_tai_khoan')
+                ->references('id')->on('taikhoan')
                 ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

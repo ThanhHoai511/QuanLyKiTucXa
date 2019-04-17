@@ -1,17 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <style>
-        .error {
-            color:red;
-        }
-    </style>
-    <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{ asset('admin/dist/js/loaiphong.js') }}"></script>
+    <script src="{{ asset('backend/dist/js/loaiphong.js') }}"></script>
     <div class="box box-info">
         <div class="box-header">
             <h3 style="text-align: center; tab-size: 25px;">Cập nhật loại phòng</h3>
         </div>
+        @include('admin.layouts.flash-msg')
         <div class="box-body">
             <form method="post" role="form" id="form">
                 {{ csrf_field() }}
@@ -22,12 +17,12 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <label for="gia_phong">Giá phòng <span class="error">*</span>: </label>
+                        <label for="gia_phong">Giá phòng(1 SV / 1 học kỳ) <span class="error">*</span>: </label>
                         <input type="text" class="form-control" id="gia_phong" name="gia_phong" onkeyup="format_gia_phong()" placeholder="Nhập giá phòng" value="{{ isset($loaiPhongUpdate) ? number_format($loaiPhongUpdate->gia_phong) : old('gia_phong') }}">
                         <span id="errorGiaPhong" class="error"></span>
                     </div>
                     <div class="col-md-6">
-                        <label for="tien_cuoc_tai_san">Tiền cược tài sản <span class="error">*</span>: </label>
+                        <label for="tien_cuoc_tai_san">Tiền cược tài sản(1 SV) <span class="error">*</span>: </label>
                         <input type="text" class="form-control" id="tien_cuoc_tai_san" onkeyup="format_tien_cuoc()"  name="tien_cuoc_tai_san" placeholder="Nhập tiền cược tài sản" value="{{ isset($loaiPhongUpdate) ? number_format($loaiPhongUpdate->tien_cuoc_tai_san) : old('tien_cuoc_tai_san') }}">
                         <span id="errorTc" class="error"></span>
                     </div>
