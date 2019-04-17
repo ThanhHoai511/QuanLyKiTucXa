@@ -46,7 +46,7 @@ class LoaiPhongController extends Controller
     {
         $this->loaiPhongService->store($request);
 
-        return redirect()->route('danhSachLoaiPhong');
+        return redirect()->route('danhSachLoaiPhong')->with('success', 'Thêm loại phòng thành công!');
     }
 
     /**
@@ -83,7 +83,7 @@ class LoaiPhongController extends Controller
     {
         $this->loaiPhongService->update($request, $id);
 
-        return redirect()->route('danhSachLoaiPhong');
+        return redirect()->route('danhSachLoaiPhong')->with('success', 'Sửa loại phòng thành công!');
     }
 
     /**
@@ -96,6 +96,6 @@ class LoaiPhongController extends Controller
     {
         $this->loaiPhongService->destroy($id);
 
-        return redirect()->route('danhSachLoaiPhong');
+        return redirect()->route('danhSachLoaiPhong')->with('success', 'Xóa loại phòng thành công!');
     }
 }

@@ -3,12 +3,10 @@
 namespace App\Services;
 
 use App\Models\TinTuc;
+use Illuminate\Support\Facades\Config;
 
 class TinTucService
 {
-    const AN_TIN = 0;
-    const DANG_TIN = 1;
-    const TIN_TUC = 1;
     protected $tinTuc;
 
     public function __construct(TinTuc $tinTuc)
@@ -16,17 +14,21 @@ class TinTucService
         $this->tinTuc = $tinTuc;
     }
 
-    public function getAllWithPaginate()
+    public function getTinTuc($loai)
     {
-        return $this->tinTuc->paginate(20);
+        return $this->tinTuc->where('loai', $loai)->orderBy('updated_at')->paginate(20);
     }
 
     public function store($params)
     {
         $this->tinTuc->tieu_de = $params['tieu_de'];
         $this->tinTuc->noi_dung = $params['noi_dung'];
-        $this->tinTuc->loai = self::TIN_TUC;
-        $this->tinTuc->tinh_trang = self::AN_TIN;
+        $this->tinTuc->loai = $params['loai'];
+        $tinh_trang = 0;
+        if ($params['tinh_trang'] == "on") {
+            $tinh_trang = 1;
+        }
+        $this->tinTuc->trang_thai = $tinh_trang;
         $this->tinTuc->save();
     }
 
@@ -43,9 +45,9 @@ class TinTucService
         $tinTucHandle = $this->getById($id);
 
         if ($option == "approve") {
-            $tinTucHandle->tinh_trang = self::DANG_TIN;
+            $tinTucHandle->tinh_trang =  config('constants.DANG_TIN');
         } else {
-            $tinTucHandle->tinh_trang = self::AN_TIN;
+            $tinTucHandle->tinh_trang =  config('constants.AN_TIN');
         }
 
         $tinTucHandle->save();

@@ -3,7 +3,7 @@
 <!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>HarrisonHighSchool</title>
+    <title>Quản lý kí túc xá</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link rel="stylesheet" media="all" href="user/css/style.css">
     <!--[if lt IE 9]>
@@ -14,18 +14,18 @@
 
 <header id="header">
     <div class="container">
-        <a href="index.html" id="logo" title="HarrisonHighSchool">HarrisonHighSchool</a>
+        <a href="index.html" id="logo" title="Kí túc xá trường đại học giao thông vận tải">Kí túc xá trường đại học giao thông vận tải</a>
         <div class="menu-trigger"></div>
         <nav id="menu">
             <ul>
-                <li><a href="events.html">Courses</a></li>
-                <li><a href="gallery.html">Students</a></li>
-                <li><a href="events.html">Events</a></li>
+                <li><a href="events.html">Trang chủ</a></li>
+                <li><a href="gallery.html">Nội quy</a></li>
+                <li><a href="events.html">Giới thiệu</a></li>
             </ul>
             <ul>
-                <li><a href="gallery.html">Teachers</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#fancy" class="get-contact">Contact</a></li>
+                <li><a href="gallery.html">Đăng ký</a></li>
+                <li><a href="gallery.html">Liên hệ</a></li>
+                <li><a href="#fancy" class="get-contact">ABC</a></li>
             </ul>
         </nav>
         <!-- / navigation -->
@@ -40,7 +40,7 @@
         <li>
             <div class="container">
                 <div class="info">
-                    <h2>It’s Time to <br><span>Get back to school</span></h2>
+                    <h2>UTC</h2>
                     <a href="#">Check out our new programs</a>
                 </div>
             </div>

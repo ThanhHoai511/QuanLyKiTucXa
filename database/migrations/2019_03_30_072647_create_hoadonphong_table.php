@@ -20,6 +20,10 @@ class CreateHoadonphongTable extends Migration
             $table->foreign('ma_hop_dong')
                 ->references('id')->on('hopdong')
                 ->onDelete('cascade');
+            $table->unsignedBigInteger('ma_tai_khoan');
+            $table->foreign('ma_tai_khoan')
+                ->references('id')->on('taikhoan')
+                ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
