@@ -17,6 +17,7 @@ class CreateCosovatchatTable extends Migration
             $table->bigIncrements('id');
             $table->string('ten');
             $table->double('gia');
+            $table->double('tien_cong');
             $table->timestamps();
             $table->softDeletes();
         });

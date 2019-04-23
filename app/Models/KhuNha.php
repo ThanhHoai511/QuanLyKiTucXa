@@ -11,5 +11,8 @@ class KhuNha extends Model
 
     protected $table = 'khunha';
 
-    protected $fillable = ['ten', 'mo_ta', 'doi_tuong'];
+    public function phong()
+    {
+        return $this->hasMany('App\Models\Phong', 'ma_khu', 'id');
+    }
 }
