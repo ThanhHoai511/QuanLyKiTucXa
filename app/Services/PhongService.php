@@ -15,9 +15,17 @@ class PhongService
         $this->phong = $phong;
     }
 
-    public function getAllWithPaginate()
+    public function getAllWithPaginate($name = "", $khuNha = "")
     {
-        return $this->phong->paginate(20);
+        $phong = $this->phong->query();
+        if ($name != "") {
+            $phong = $phong->where('ten', 'like', '%' . $name . '%');
+        }
+        if ($khuNha != "") {
+            $phong = $phong->where('ma_khu', $khuNha);
+        }
+
+        return $phong->paginate(20);
     }
 
     public function store($params)
@@ -50,34 +58,29 @@ class PhongService
 
     public function storeFromExcel($request)
     {
-        dd($request->file_excel);
-        if (!(Input::hasFile('file_excel'))) {
+        if (!$request->file_excel) {
             return false;
         }
-        $phong = Excel::load(Input::file('file_excel'), function ($reader) {
+        $phong = Excel::load($request->file_excel, function () {
         })->get()->toArray();
         if (!empty($phong)) {
             $insert = [];
             foreach ($phong as $phong) {
-                if ($phong['Tên'] == null) {
+                if (trim($phong['ten'])== '') {
                     break;
                 }
-                if (Phong::where('ten', $phong['Tên'])->exists()) {
+                if (Phong::where('ten', $phong['ten'])->where('ma_khu', $request->khu_nha)->exists()) {
                     continue;
                 }
-                $insert[] = ['ten' => $phong['tên'],
-                    'ma_khu' => $phong['Mã khu'],
-                    'ma_loai_phong' => $phong['Mã loại phòng']];
+                $insert[] = ['ten' => $phong['ten'],
+                    'ma_khu' => $request->khu_nha,
+                    'so_luong_sv_hien_tai' => 0,
+                    'ma_loai_phong' => (int)$phong['ma_loai_phong']];
             }
-            try {
-                $this->phong->insert($insert);
-                Log::info("Insert successful!");
-                return true;
-            } catch (QueryException $e) {
-                Log::error('Cannot insert to database ' + $e->getMessage());
-                return false;
-            }
+            Phong::insert($insert);
+            return true;
         }
+
     }
 }
 
