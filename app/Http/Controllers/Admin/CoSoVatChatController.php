@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CoSoVatChatRequest;
 use App\Services\CoSoVatChatService;
+use App\Services\KhuNhaServices;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,9 +22,9 @@ class CoSoVatChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $csvc = $this->csvcService->getAll();
+        $csvc = $this->csvcService->getAllWithPaginate($request->ten);
 
         return view('admin.cosovatchat.danh-sach', ['csvc' => $csvc]);
     }
@@ -51,15 +52,18 @@ class CoSoVatChatController extends Controller
         return redirect()->route('danhSachCSVC')->with('success', 'Thêm cơ sở vật chất thành công!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function importExcel()
     {
-        //
+        return view('admin.cosovatchat.excel');
+    }
+
+    public function storeExcel(Request $request)
+    {
+        $result = $this->csvcService->storeFromExcel($request);
+        if ($result) {
+            return redirect()->route('danhSachCSVC')->with('success', 'Thêm cơ sở vật chất từ file excel thành công!');
+        }
+        return redirect()->route('danhSachCSVC')->with('warning', 'Không có cơ sở vật chất nào được thêm mới!');
     }
 
     /**

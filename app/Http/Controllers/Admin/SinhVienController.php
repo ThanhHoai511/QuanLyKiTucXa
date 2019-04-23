@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Services\TinTucService;
+use App\Services\SinhVienService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TinTucController extends Controller
+class SinhVienController extends Controller
 {
-    protected $tinTucService;
+    protected $sinhVienService;
 
-    public function __construct(TinTucService $tinTucService)
+    public function __construct(SinhVienService $sinhVienService)
     {
-        $this->tinTucService = $tinTucService;
+        $this->sinhVienService = $sinhVienService;
     }
 
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        $tinTuc = $this->tinTucService->getTinTuc(config('constants.TIN_TUC'));
+        $sinhVien = $this->sinhVienService->getAllWithPaginate($request->search);
 
-        return view('admin.tintuc.danh-sach', ['tinTuc' => $tinTuc]);
+        return view('admin.sinhvien.danh-sach', ['sinhVien' => $sinhVien]);
     }
 
     /**
@@ -29,7 +34,7 @@ class TinTucController extends Controller
      */
     public function create()
     {
-        return view('admin.tintuc.cap-nhat');
+        return view('admin.sinhvien.excel');
     }
 
     /**
@@ -40,14 +45,9 @@ class TinTucController extends Controller
      */
     public function store(Request $request)
     {
-        $this->tinTucService->store($request);
+        $this->sinhVienService->store($request);
 
-        return redirect()->route('danhSachTinTuc');
-    }
-
-    public function handle($id)
-    {
-        $this->tinTucService->handle("approve", $id);
+        return redirect()->route('danhSachSinhVien');
     }
 
     /**
@@ -69,7 +69,9 @@ class TinTucController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sinhVienUpdate = $this->sinhVienService->getById($id);
+
+        return view('admin.sinhvien.sua', ['sinhVienUpdate' => $sinhVienUpdate]);
     }
 
     /**

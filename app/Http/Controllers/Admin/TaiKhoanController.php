@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Services\TinTucService;
+use App\Services\TaiKhoanService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TinTucController extends Controller
+class TaiKhoanController extends Controller
 {
-    protected $tinTucService;
+    protected $taiKhoanService;
 
-    public function __construct(TinTucService $tinTucService)
+    public function __construct(TaiKhoanService $taiKhoanService)
     {
-        $this->tinTucService = $tinTucService;
+        $this->taiKhoanService = $taiKhoanService;
     }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $tinTuc = $this->tinTucService->getTinTuc(config('constants.TIN_TUC'));
+        $taiKhoan = $this->taiKhoanService->getAllWithPaginate();
 
-        return view('admin.tintuc.danh-sach', ['tinTuc' => $tinTuc]);
+        return view('admin.taikhoan.danh-sach', ['taiKhoan' => $taiKhoan]);
     }
 
     /**
@@ -29,7 +33,7 @@ class TinTucController extends Controller
      */
     public function create()
     {
-        return view('admin.tintuc.cap-nhat');
+        //
     }
 
     /**
@@ -40,14 +44,7 @@ class TinTucController extends Controller
      */
     public function store(Request $request)
     {
-        $this->tinTucService->store($request);
-
-        return redirect()->route('danhSachTinTuc');
-    }
-
-    public function handle($id)
-    {
-        $this->tinTucService->handle("approve", $id);
+        //
     }
 
     /**

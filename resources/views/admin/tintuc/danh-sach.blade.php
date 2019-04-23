@@ -25,12 +25,26 @@
                 <tr class="{{ $key % 2 == 1 ? "success" : "info" }}">
                     <td>{!! $tt->id !!}</td>
                     <td>{!! $tt->tieu_de !!}</td>
+                    <td>
+                        @if($tt->anh == "")
+                            {{}}
+                        @else
+                            {{}}
+                        @endif
+                    </td>
                     <td>{!! $tt->noi_dung !!}</td>
                     <td>
                         @if($tt->trang_thai == 1)
                             Đang hiển thị
                         @else
                             Đang ẩn
+                        @endif
+                    </td>
+                    <td>
+                        @if($tt->noi_bat == 1)
+                            Tin nổi bật
+                        @else
+                            Tin thường
                         @endif
                     </td>
                     <td data-tin-tuc-id="{{ $tt->id }}">
@@ -42,7 +56,6 @@
                     </td>
                     <td>
                         <a href="{{ route('suaTinTuc', [$tt->id]) }}"> <span class="fa fa-edit">Sửa</span> </a> |
-                        <a href="{{ route('xoaTinTuc', [$tt->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"> <span class="fa fa-trash"></span>Xóa </a>
                     </td>
                 </tr>
             @endforeach
