@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Services\TinTucService;
+use App\Services\NhanVienService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TinTucController extends Controller
+class NhanVienController extends Controller
 {
-    protected $tinTucService;
+    protected $nhanVienService;
 
-    public function __construct(TinTucService $tinTucService)
+    public function __construct(NhanVienService $nhanVienService)
     {
-        $this->tinTucService = $tinTucService;
+        $this->nhanVienService = $nhanVienService;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $tinTuc = $this->tinTucService->getTinTuc(config('constants.TIN_TUC'));
+        $nhanVien = $this->nhanVienService->getAll();
 
-        return view('admin.tintuc.danh-sach', ['tinTuc' => $tinTuc]);
+        return view('admin.nhanvien.danh-sach', ['nhanVien' => $nhanVien]);
     }
 
     /**
@@ -29,7 +34,7 @@ class TinTucController extends Controller
      */
     public function create()
     {
-        return view('admin.tintuc.cap-nhat');
+        return view('admin.nhanvien.cap-nhat');
     }
 
     /**
@@ -40,14 +45,9 @@ class TinTucController extends Controller
      */
     public function store(Request $request)
     {
-        $this->tinTucService->store($request);
+        $this->nhanVienService->create($request);
 
-        return redirect()->route('danhSachTinTuc');
-    }
-
-    public function handle($id)
-    {
-        $this->tinTucService->handle("approve", $id);
+        return redirect()->route('danhSachNhanVien')->with('success', 'Thêm nhân viên thành công!');
     }
 
     /**
@@ -69,7 +69,9 @@ class TinTucController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nhanVienUpdate = $this->nhanVienService->getById($id);
+
+        return view('admin.nhanvien.cap-nhat', ['nhanVienUpdate' => $nhanVienUpdate]);
     }
 
     /**
@@ -81,7 +83,9 @@ class TinTucController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->nhanVienService->edit($request, $id);
+
+        return redirect()->route('danhSachNhanVien')->with('success', 'Sửa nhân viên thành công!');
     }
 
     /**
@@ -92,6 +96,8 @@ class TinTucController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->nhanVienService->destroy($id);
+
+        return redirect()->route('danhSachNhanVien')->with('success', 'Xóa nhân viên thành công!');
     }
 }

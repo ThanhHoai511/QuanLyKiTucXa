@@ -24,11 +24,13 @@ class TinTucService
         $this->tinTuc->tieu_de = $params['tieu_de'];
         $this->tinTuc->noi_dung = $params['noi_dung'];
         $this->tinTuc->loai = $params['loai'];
-        $tinh_trang = 0;
-        if ($params['tinh_trang'] == "on") {
-            $tinh_trang = 1;
+        $this->tinTuc->trang_thai = $params['trang_thai'];
+        $this->tinTuc->noi_bat = $params['noi_bat'];
+        if($params['anh'] != "") {
+            $imageName = time().'.'.$params['anh']->getClientOriginalExtension();
+            $params['anh']->move(public_path('images'), $imageName);
         }
-        $this->tinTuc->trang_thai = $tinh_trang;
+
         $this->tinTuc->save();
     }
 

@@ -4,19 +4,23 @@
     <script src="{{ asset('backend/dist/js/phong.js') }}"></script>
     <div class="box box-info">
         <div class="box-header">
-            <h3 style="text-align: center; tab-size: 25px;">Cập nhật phòng</h3>
+            @if(isset($phongUpdate))
+                <h3 style="text-align: center; tab-size: 25px;">Sửa phòng</h3>
+            @else
+                <h3 style="text-align: center; tab-size: 25px;">Thêm phòng</h3>
+            @endif
         </div>
         @include('admin.layouts.flash-msg')
 
         <div class="box-body">
+            <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
+                @if(isset($phongUpdate))
+                    <a href="{{ route('xoaPhong', [$phongUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                @endif
+            </div>
             <form method="post" role="form" id="form">
                 {{ csrf_field() }}
-                <div class="form-group col-md-12 row">
-                    <label for="ten">Tên: <span class="error">*</span></label>
-                    <input type="text" class="form-control" id="ten" name="ten" placeholder="Nhập tên phòng" value="{{ isset($phongUpdate) ? $phongUpdate->ten : old('ten') }}">
-                    <span id="errorTen" class="error"></span>
-                </div>
-                <div class="form-group row">
+                <div class="form-group row col-md-12">
                     <div class="col-md-6">
                         <label for="ma_khu">Khu nhà <span class="error">*</span>: </label>
                         <select name="ma_khu" id="ma_khu" class="form-control">
@@ -38,9 +42,14 @@
                         <span id="errLoaiPhong" class="error"></span>
                     </div>
                 </div>
+                <div class="form-group col-md-12 row" style="margin: 10px 10px 10px 0px;">
+                    <label for="ten">Tên: <span class="error">*</span></label>
+                    <input type="text" class="form-control" id="ten" name="ten" placeholder="Nhập tên phòng" value="{{ isset($phongUpdate) ? $phongUpdate->ten : old('ten') }}">
+                    <span id="errorTen" class="error"></span>
+                </div>
                 <div class="box-footer clearfix" style="margin:10px 300px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
-                    <button type="reset" class="btn btn-dropbox">Làm mới</button>
+                    <a href="{{ route('danhSachPhong') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>
         </div>

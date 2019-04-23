@@ -25,7 +25,8 @@ class CoSoVatChatRequest extends FormRequest
     {
         return [
             'ten' => 'required|string',
-            'gia' => 'required|numeric'
+            'gia' => 'required|numeric',
+            'tien_cong' => 'required|numeric'
         ];
     }
 
@@ -34,7 +35,18 @@ class CoSoVatChatRequest extends FormRequest
         return [
             'ten.required' => 'Bạn phải nhập tên cơ sở vật chất!',
             'gia.required' => 'Bạn phải nhập giá cơ sở vật chất!',
-            'gia.numeric' => 'Bạn chỉ được nhập số vào giá!'
+            'gia.numeric' => 'Bạn chỉ được nhập số vào giá!',
+            'tien_cong.required' => 'Bạn phải nhập tiền công sửa chữa cơ sở vật chất!',
+            'tien_cong.numeric' => 'Bạn chỉ được nhập số vào tiền công!'
         ];
     }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'gia' => str_replace(',', '', $this->get('gia')),
+            'tien_cong' => str_replace(',', '', $this->get('tien_cong'))
+        ]);
+    }
+
 }
