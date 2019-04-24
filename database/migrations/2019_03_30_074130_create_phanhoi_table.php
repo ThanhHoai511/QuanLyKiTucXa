@@ -16,10 +16,7 @@ class CreatePhanhoiTable extends Migration
         Schema::create('phanhoi', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('noi_dung');
-            $table->unsignedBigInteger('ma_sv_utc');
-            $table->foreign('ma_sv_utc')
-                ->references('id')->on('sinhvienutc')
-                ->onDelete('cascade');
+            $table->bigInteger('phan_hoi_cha');
             $table->timestamps();
             $table->softDeletes();
         });

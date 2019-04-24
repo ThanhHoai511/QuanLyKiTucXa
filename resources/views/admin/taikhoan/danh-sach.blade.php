@@ -9,10 +9,8 @@
         <tr>
             <th>ID</th>
             <th>Tên đăng nhập</th>
-            <th>Mật khẩu</th>
             <th>Tên nhân viên</th>
             <th>Tình trạng</th>
-            <th>Hành động</th>
         </tr>
         </thead>
         <tbody>
@@ -20,11 +18,13 @@
             <tr class="{{ $key % 2 == 1 ? 'success' : 'info' }}">
                 <td>{{ $p->id }}</td>
                 <td>{{ $p->ten_dang_nhap }}</td>
-                <td>{{ $p->mat_khau }}</td>
-                <td>{{ $p->tinh_trang }}</td>
                 <td>{{ $p->nhanvien->ho_ten }}</td>
                 <td>
-                    <a href="{{ route('suaPhong', [$p->id]) }}"><button class="btn btn-primary">Sửa</button></a>
+                    @if($p->tinh_trang == 1)
+                        Hoạt động
+                    @else
+                        Bị khóa
+                    @endif
                 </td>
             </tr>
         @endforeach

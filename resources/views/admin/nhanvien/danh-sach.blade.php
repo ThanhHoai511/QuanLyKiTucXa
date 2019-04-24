@@ -26,7 +26,9 @@
                 <td>{!! $nv->email !!}</td>
                 <td>{!! $nv->sdt !!}</td>
                 <td>{!! $nv->mo_ta !!}</td>
-                <td>{!! $nv->hinh_anh !!}</td>
+                <td>
+                    <img src="{{ asset('images/nhanvien/' . $nv->hinh_anh) }}" alt="" style="width:70px;height:70px;">
+                </td>
                 <td>
                     <a href="{{ route('suaNhanVien', [$nv->id]) }}"><button class="btn btn-primary">Sửa</button></a>
                 </td>
