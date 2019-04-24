@@ -9,7 +9,12 @@
         @include('admin.layouts.flash-msg')
 
         <div class="box-body">
-            <form method="post" role="form" id="form">
+            <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
+                @if(isset($tinTucUpdate))
+                    <a href="{{ route('xoaTinTuc', [$tinTucUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                @endif
+            </div>
+            <form method="post" role="form" id="form" enctype="multipart/form-data" >
                 {{ csrf_field() }}
                 <div class="form-group col-md-12 row">
                     <label for="tieu_de">Tiêu đề: <span class="error">*</span></label>
@@ -49,7 +54,7 @@
 
                 <div class="box-footer clearfix" style="margin:10px 300px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
-                    <button type="reset" class="btn btn-dropbox">Làm mới</button>
+                    <a href="{{ route('danhSachTinTuc') }}"><button type="button" class="btn btn-danger">Hủy</button></a>
                 </div>
             </form>
         </div>

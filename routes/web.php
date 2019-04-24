@@ -63,6 +63,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('', 'Admin\CoSoVatChatController@index')->name('danhSachCSVC');
         Route::get('them', 'Admin\CoSoVatChatController@create')->name('themCSVC');
         Route::post('them', 'Admin\CoSoVatChatController@store');
+        Route::get('them-excel', 'Admin\CoSoVatChatController@importExcel')->name('themCSVCExcel');
+        Route::post('them-excel', 'Admin\CoSoVatChatController@storeExcel');
         Route::get('sua/{id}', 'Admin\CoSoVatChatController@edit')->name('suaCSVC');
         Route::post('sua/{id}', 'Admin\CoSoVatChatController@update');
         Route::get('xoa/{id}', 'Admin\CoSoVatChatController@destroy')->name('xoaCSVC');
@@ -75,5 +77,25 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('sua/{id}', 'Admin\DichVuController@edit')->name('suaDichVu');
         Route::post('sua/{id}', 'Admin\DichVuController@update');
         Route::get('xoa/{id}', 'Admin\DichVuController@destroy')->name('xoaDichVu');
+    });
+
+    Route::group(['prefix' => 'nhan-vien'], function () {
+        Route::get('', 'Admin\NhanVienController@index')->name('danhSachNhanVien');
+        Route::get('them', 'Admin\NhanVienController@create')->name('themNhanVien');
+        Route::post('them', 'Admin\NhanVienController@store');
+        Route::get('sua/{id}', 'Admin\NhanVienController@edit')->name('suaNhanVien');
+        Route::post('sua/{id}', 'Admin\NhanVienController@update');
+        Route::get('xoa/{id}', 'Admin\NhanVienController@destroy')->name('xoaNhanVien');
+    });
+
+    Route::group(['prefix' => 'tai-khoan'], function () {
+        Route::get('', 'Admin\TaiKhoanController@index')->name('danhSachTaiKhoan');
+    });
+
+    Route::group(['prefix' => 'sinh-vien'], function () {
+        Route::get('', 'Admin\SinhVienController@index')->name('danhSachSinhVien');
+        Route::get('them-excel', 'Admin\SinhVienController@create')->name('themExcel');
+        Route::post('them-excel', 'Admin\SinhVienController@store');
+        Route::get('sua/{id}', 'Admin\SinhVienController@edit')->name('suaSinhVien');
     });
 });

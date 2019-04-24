@@ -30,11 +30,12 @@ class PhongController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $phong = $this->phongService->getAllWithPaginate();
+        $phong = $this->phongService->getAllWithPaginate($request->ten, $request->khu_nha);
+        $khuNha = $this->khuNhaService->getAll();
 
-        return view('admin.phong.danh-sach', ['phong' => $phong]);
+        return view('admin.phong.danh-sach', ['phong' => $phong, 'khuNha' => $khuNha, 'params' => $request]);
     }
     /**
      * Show the form for creating a new resource.
@@ -64,7 +65,8 @@ class PhongController extends Controller
 
     public function importExcel()
     {
-        return view('admin.phong.excel');
+        $khuNha = $this->khuNhaService->getAll();
+        return view('admin.phong.excel', ['khuNha' => $khuNha]);
     }
 
     public function storeExcel(Request $request)
@@ -75,6 +77,7 @@ class PhongController extends Controller
         }
         return redirect()->route('danhSachPhong')->with('warning', 'Thêm phòng từ file excel không thành công!');
     }
+
     /**
      * Show the form for editing the specified resource.
      *
