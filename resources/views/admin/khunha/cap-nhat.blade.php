@@ -1,18 +1,18 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <style>
-        .error {
-            color:red;
-        }
-    </style>
-    <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{ asset('admin/dist/js/khunha.js') }}"></script>
+    <script src="{{ asset('backend/dist/js/khunha.js') }}"></script>
     <div class="box box-info">
         <div class="box-header">
             <h3 style="text-align: center; tab-size: 25px;">Cập nhật khu nhà</h3>
         </div>
+        @include('admin.layouts.flash-msg')
         <div class="box-body">
+            <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
+                @if(isset($khuNhaUpdate))
+                    <a href="{{ route('xoaKhuNha', [$khuNhaUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                @endif
+            </div>
             <form method="post" role="form" id="form">
                 {{ csrf_field() }}
                 <div class="form-group">

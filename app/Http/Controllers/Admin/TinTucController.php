@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\TinTucService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class TinTucController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $tinTucService;
+
+    public function __construct(TinTucService $tinTucService)
     {
-        //
+        $this->tinTucService = $tinTucService;
+    }
+
+    public function index(Request $request)
+    {
+        $tinTuc = $this->tinTucService->getTinTuc($request->loai, $request->tieu_de);
+
+        return view('admin.tintuc.danh-sach', ['tinTuc' => $tinTuc, 'params' => $request]);
     }
 
     /**
@@ -24,7 +29,7 @@ class TinTucController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tintuc.cap-nhat');
     }
 
     /**
@@ -35,7 +40,14 @@ class TinTucController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->tinTucService->store($request);
+
+        return redirect()->route('danhSachTinTuc');
+    }
+
+    public function handle($id)
+    {
+        $this->tinTucService->handle("approve", $id);
     }
 
     /**

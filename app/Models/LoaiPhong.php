@@ -11,5 +11,8 @@ class LoaiPhong extends Model
 
     protected $table = 'loaiphong';
 
-    protected $fillable = ['ten', 'gia_phong', 'tien_cuoc_tai_san', 'so_luong_sv_toi_da', 'dien_tich'];
+    public function phong()
+    {
+        return $this->hasMany('App\Models\Phong');
+    }
 }
