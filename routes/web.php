@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
    Route::get('/', function () {
-      return view('admin.layouts.home');
+      return view('admin.layouts.home'); 
    })->name('admin.home');
 
    Route::group(['prefix' => 'khu-nha'], function () {
