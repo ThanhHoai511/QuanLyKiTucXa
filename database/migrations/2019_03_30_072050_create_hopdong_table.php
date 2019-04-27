@@ -16,7 +16,7 @@ class CreateHopdongTable extends Migration
         Schema::create('hopdong', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('ki_hoc');
-            $table->string('name_hoc');
+            $table->string('nam_hoc');
             $table->date('ngay_bat_dau');
             $table->date('ngay_ket_thuc');
             $table->text('chu_thich')->nullable();

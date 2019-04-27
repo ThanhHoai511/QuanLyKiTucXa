@@ -47,7 +47,6 @@
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachPhong') }}"><i class="fa fa-circle-o"></i>Danh sách phòng</a></li>
         <li><a href="{{ route('themPhong') }}"><i class="fa fa-circle-o"></i> Thêm phòng</a></li>
-        <li><a href="{{ route('themPhongExcel') }}"><i class="fa fa-circle-o"></i> Thêm phòng từ file excel</a></li>
     </ul>
 </li>
 <li class="treeview">
@@ -72,7 +71,6 @@
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachCSVC') }}"><i class="fa fa-circle-o"></i> Danh sách cơ sở vật chất</a></li>
         <li><a href="{{ route('themCSVC') }}"><i class="fa fa-circle-o"></i> Thêm cơ sở vật chất</a></li>
-        <li><a href="{{ route('themCSVCExcel') }}"><i class="fa fa-circle-o"></i> Thêm cơ sở vật chất từ file excel</a></li>
     </ul>
 </li>
 
@@ -99,6 +97,19 @@
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachTaiKhoan') }}"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
         <li><a href="{{ route('themExcel') }}"><i class="fa fa-circle-o"></i> Thêm tài khoản từ file </a></li>
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-user"></i> <span>Sinh viên</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachSinhVien') }}"><i class="fa fa-circle-o"></i> Danh sách sinh viên</a></li>
+        <li><a href="{{ route('themExcel') }}"><i class="fa fa-circle-o"></i> Thêm sinh viên từ file </a></li>
     </ul>
 </li>
 {{--<li>--}}

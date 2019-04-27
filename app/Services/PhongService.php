@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Phong;
-use Illuminate\Support\Facades\Input;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PhongService

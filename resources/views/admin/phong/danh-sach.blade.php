@@ -24,35 +24,51 @@
             </div>
         </form>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Monthly Recap Report</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Số lượng sinh viên hiện tại</th>
+                            <th>Khu nhà</th>
+                            <th>Loại phòng</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($phong as $key => $p)
+                            <tr class="">
+                                <td>{{ $p->id }}</td>
+                                <td>{{ $p->ten }}</td>
+                                <td>{{ $p->so_luong_sv_hien_tai }}</td>
+                                <td>{{ $p->khunha->ten }}</td>
+                                <td>{{ $p->loaiphong->ten }}</td>
+                                <td>
+                                    <a href="{{ route('suaPhong', [$p->id]) }}">
+                                        <button class="btn btn-primary">Sửa</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        {{ $phong->appends(request()->all())->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tên</th>
-                <th>Số lượng sinh viên hiện tại</th>
-                <th>Khu nhà</th>
-                <th>Loại phòng</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($phong as $key => $p)
-                <tr class="{{ $key % 2 == 1 ? 'success' : 'info' }}">
-                    <td>{{ $p->id }}</td>
-                    <td>{{ $p->ten }}</td>
-                    <td>{{ $p->so_luong_sv_hien_tai }}</td>
-                    <td>{{ $p->khunha->ten }}</td>
-                    <td>{{ $p->loaiphong->ten }}</td>
-                    <td>
-                        <a href="{{ route('suaPhong', [$p->id]) }}"><button class="btn btn-primary">Sửa</button></a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
     <script>
-        $('#khu_nha select').change(function() {
+        $('#khu_nha select').change(function () {
             document.getElementById('form').submit();
         });
     </script>
