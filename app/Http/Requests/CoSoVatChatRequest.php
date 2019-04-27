@@ -48,5 +48,4 @@ class CoSoVatChatRequest extends FormRequest
             'tien_cong' => str_replace(',', '', $this->get('tien_cong'))
         ]);
     }
-
 }

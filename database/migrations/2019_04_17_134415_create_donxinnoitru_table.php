@@ -15,22 +15,19 @@ class CreateDonxinnoitruTable extends Migration
     {
         Schema::create('donxinnoitru', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('ma_sinh_vien');
             $table->string('ten');
             $table->tinyInteger('gioi_tinh');
             $table->date('ngay_sinh');
             $table->string('noi_sinh');
-            $table->string('lop');
-            $table->string('khoa');
-            $table->string('ma_sinh_vien');
             $table->string('cmnd');
-            $table->date('ngay_cap');
-            $table->string('ho_khau_thuong_tru');
             $table->string('sdt');
             $table->string('email');
-            $table->string('dia_chi_nguoi_than');
-            $table->string('sdt_nguoi_than');
-            $table->string('email_nguoi_than')->nullable();
-            $table->string('loai_phong');
+            $table->unsignedBigInteger('ma_loai_phong');
+            $table->foreign('ma_loai_phong')
+                ->references('id')->on('loaiphong')
+                ->onDelete('cascade');
+            $table->text('chu_thich')->nullable();
             $table->text('anh');
             $table->timestamps();
         });

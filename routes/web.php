@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('user.layouts.app');
-});
+Route::get('', 'User\HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function () {
    Route::get('/', function () {

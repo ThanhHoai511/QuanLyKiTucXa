@@ -20,7 +20,7 @@ class CreateTintucTable extends Migration
             $table->tinyInteger('loai');
             $table->tinyInteger('trang_thai');
             $table->tinyInteger('noi_bat');
-            $table->text('anh');
+            $table->text('anh')->nullable();
             $table->unsignedBigInteger('ma_tai_khoan');
             $table->foreign('ma_tai_khoan')
                 ->references('id')->on('taikhoan')
