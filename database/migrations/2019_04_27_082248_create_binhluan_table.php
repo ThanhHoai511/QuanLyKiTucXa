@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhanhoiTable extends Migration
+class CreateBinhluanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreatePhanhoiTable extends Migration
      */
     public function up()
     {
-        Schema::create('phanhoi', function (Blueprint $table) {
+        Schema::create('binhluan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('noi_dung');
             $table->unsignedBigInteger('ma_tai_khoan');
             $table->foreign('ma_tai_khoan')
                 ->references('id')->on('taikhoan')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('ma_phan_hoi');
+            $table->foreign('ma_phan_hoi')
+                ->references('id')->on('phanhoi')
                 ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
@@ -32,6 +36,6 @@ class CreatePhanhoiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phanhoi');
+        Schema::dropIfExists('binhluan');
     }
 }
