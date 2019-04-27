@@ -14,14 +14,6 @@ class TinTucService
         $this->tinTuc = $tinTuc;
     }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    public function getTinTuc($loai)
-    {
-        return $this->tinTuc->where('loai', $loai)->orderBy('updated_at')->paginate(20);
-=======
->>>>>>> c7016d92e3453861587ab1d821f24ee38f1e159d
     public function getTinTuc($loai = "", $tieuDe = "")
     {
         $tinTucs = $this->tinTuc->query();
@@ -37,10 +29,6 @@ class TinTucService
     public function getHotNews()
     {
         return $this->tinTuc->where('noi_bat', 1)->paginate(3);
-<<<<<<< HEAD
-=======
->>>>>>> 22ea7168de7a5fd7a6fb74e677e498ce01bd9f9b
->>>>>>> c7016d92e3453861587ab1d821f24ee38f1e159d
     }
 
     public function store($params)
@@ -50,22 +38,10 @@ class TinTucService
         $this->tinTuc->loai = $params['loai'];
         $this->tinTuc->trang_thai = $params['trang_thai'];
         $this->tinTuc->noi_bat = $params['noi_bat'];
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        if($params['anh'] != "") {
-            $imageName = time().'.'.$params['anh']->getClientOriginalExtension();
-            $params['anh']->move(public_path('images'), $imageName);
-=======
->>>>>>> c7016d92e3453861587ab1d821f24ee38f1e159d
         $this->tinTuc->ma_tai_khoan = 8;
         if($params['anh'] != "") {
             $imageName = time().'.'.$params['anh']->getClientOriginalExtension();
             $params['anh']->move(public_path('images/tintuc'), $imageName);
-<<<<<<< HEAD
-=======
->>>>>>> 22ea7168de7a5fd7a6fb74e677e498ce01bd9f9b
->>>>>>> c7016d92e3453861587ab1d821f24ee38f1e159d
         }
 
         $this->tinTuc->save();

@@ -30,6 +30,7 @@ class CreateDonxinnoitruTable extends Migration
             $table->text('chu_thich')->nullable();
             $table->text('anh');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
