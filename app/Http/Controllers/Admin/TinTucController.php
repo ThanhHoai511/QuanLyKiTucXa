@@ -15,11 +15,25 @@ class TinTucController extends Controller
         $this->tinTucService = $tinTucService;
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    public function index()
+    {
+        $tinTuc = $this->tinTucService->getTinTuc(config('constants.TIN_TUC'));
+
+        return view('admin.tintuc.danh-sach', ['tinTuc' => $tinTuc]);
+=======
+>>>>>>> c7016d92e3453861587ab1d821f24ee38f1e159d
     public function index(Request $request)
     {
         $tinTuc = $this->tinTucService->getTinTuc($request->loai, $request->tieu_de);
 
         return view('admin.tintuc.danh-sach', ['tinTuc' => $tinTuc, 'params' => $request]);
+<<<<<<< HEAD
+=======
+>>>>>>> 22ea7168de7a5fd7a6fb74e677e498ce01bd9f9b
+>>>>>>> c7016d92e3453861587ab1d821f24ee38f1e159d
     }
 
     /**

@@ -24,7 +24,15 @@ class PhongService
             $phong = $phong->where('ma_khu', $khuNha);
         }
 
+<<<<<<< HEAD
         return $phong->paginate(20);
+=======
+<<<<<<< HEAD
+        return $phong->paginate(20);
+=======
+        return $phong->paginate(4);
+>>>>>>> 22ea7168de7a5fd7a6fb74e677e498ce01bd9f9b
+>>>>>>> c7016d92e3453861587ab1d821f24ee38f1e159d
     }
 
     public function store($params)
