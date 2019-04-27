@@ -14,9 +14,27 @@ class TinTucService
         $this->tinTuc = $tinTuc;
     }
 
+<<<<<<< HEAD
     public function getTinTuc($loai)
     {
         return $this->tinTuc->where('loai', $loai)->orderBy('updated_at')->paginate(20);
+=======
+    public function getTinTuc($loai = "", $tieuDe = "")
+    {
+        $tinTucs = $this->tinTuc->query();
+        if ($loai != "") {
+            $tinTucs = $tinTucs->where('loai', $loai);
+        }
+        if ($tieuDe != "") {
+            $tinTucs = $tinTucs->where('tieu_de', 'like', '%' . $tieuDe . '%');
+        }
+        return $tinTucs->orderBy('updated_at')->paginate(20);
+    }
+
+    public function getHotNews()
+    {
+        return $this->tinTuc->where('noi_bat', 1)->paginate(3);
+>>>>>>> 22ea7168de7a5fd7a6fb74e677e498ce01bd9f9b
     }
 
     public function store($params)
@@ -26,9 +44,16 @@ class TinTucService
         $this->tinTuc->loai = $params['loai'];
         $this->tinTuc->trang_thai = $params['trang_thai'];
         $this->tinTuc->noi_bat = $params['noi_bat'];
+<<<<<<< HEAD
         if($params['anh'] != "") {
             $imageName = time().'.'.$params['anh']->getClientOriginalExtension();
             $params['anh']->move(public_path('images'), $imageName);
+=======
+        $this->tinTuc->ma_tai_khoan = 8;
+        if($params['anh'] != "") {
+            $imageName = time().'.'.$params['anh']->getClientOriginalExtension();
+            $params['anh']->move(public_path('images/tintuc'), $imageName);
+>>>>>>> 22ea7168de7a5fd7a6fb74e677e498ce01bd9f9b
         }
 
         $this->tinTuc->save();

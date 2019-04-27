@@ -8,16 +8,14 @@
                 <h3 style="text-align: center; tab-size: 25px;">Sửa phòng</h3>
             @else
                 <h3 style="text-align: center; tab-size: 25px;">Thêm phòng</h3>
+                <div class="col-md-4">
+                    <a href="{{ route('themPhongExcel') }}"><button class="btn btn-instagram" style="margin-bottom: 20px;">Thêm từ file</button></a>
+                </div>
             @endif
         </div>
         @include('admin.layouts.flash-msg')
 
         <div class="box-body">
-            <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
-                @if(isset($phongUpdate))
-                    <a href="{{ route('xoaPhong', [$phongUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
-                @endif
-            </div>
             <form method="post" role="form" id="form">
                 {{ csrf_field() }}
                 <div class="form-group row col-md-12">
@@ -48,7 +46,16 @@
                     <span id="errorTen" class="error"></span>
                 </div>
                 <div class="box-footer clearfix" style="margin:10px 300px;">
-                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
+                    <button type="submit" class="btn btn-success" style="margin-left:50px;">
+                        @if(isset($phongUpdate))
+                            Sửa phòng
+                        @else
+                            Thêm phòng
+                        @endif
+                    </button>
+                    @if(isset($phongUpdate))
+                        <a href="{{ route('xoaPhong', [$phongUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa phòng</button></a>
+                    @endif
                     <a href="{{ route('danhSachPhong') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>

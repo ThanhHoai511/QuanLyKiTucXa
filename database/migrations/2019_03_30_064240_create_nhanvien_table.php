@@ -21,6 +21,10 @@ class CreateNhanvienTable extends Migration
             $table->string('sdt')->unique();
             $table->text('mo_ta');
             $table->text('hinh_anh');
+            $table->unsignedBigInteger('ma_tai_khoan');
+            $table->foreign('ma_tai_khoan')
+                ->references('id')->on('taikhoan')
+                ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
