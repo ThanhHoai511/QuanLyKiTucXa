@@ -71,4 +71,19 @@ class SinhVienService{
     {
         return $this->sinhVien->findOrFail($id);
     }
+
+    public function getByMaSVCollect()
+    {
+        $sinhVienCollect = collect();
+
+        $sinhVien = $this->sinhVien->all();
+
+        foreach ($sinhVien as $sv) {
+            $sinhVienCollect = $sinhVienCollect->push(['ma_sinh_vien' => $sv->ma_sinh_vien, 'sinh_vien' => $sv]);
+        }
+        return $sinhVienCollect->mapWithKeys(function ($item) {
+            return [$item['ma_sinh_vien'] => $item['sinh_vien']];
+        });
+
+    }
 }

@@ -13,6 +13,11 @@ class TaiKhoan extends Model
 
     public function nhanvien()
     {
-        return $this->belongsTo('App\Models\NhanVien', 'ma_nhan_vien', 'id');
+        return $this->belongsTo('App\Models\NhanVien');
+    }
+
+    public function sinhvien()
+    {
+        return $this->belongsTo('App\Models\SinhVienUTC');
     }
 }

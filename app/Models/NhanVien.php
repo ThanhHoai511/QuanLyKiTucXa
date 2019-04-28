@@ -10,4 +10,9 @@ class NhanVien extends Model
     use SoftDeletes;
 
     protected $table = 'nhanvien';
+
+    public function taikhoan()
+    {
+        return $this->hasOne('App\Models\TaiKhoan');
+    }
 }

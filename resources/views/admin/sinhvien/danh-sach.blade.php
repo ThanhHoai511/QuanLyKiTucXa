@@ -26,7 +26,6 @@
             <th>Tỉnh</th>
             <th>Huyện</th>
             <th>Xã</th>
-            <th>Tên đăng nhập</th>
             <th>Email</th>
             <th>Đối tượng</th>
             <th>Hành động</th>
@@ -50,7 +49,6 @@
                 <td>{!! $sv->tinh !!}</td>
                 <td>{!! $sv->huyen !!}</td>
                 <td>{!! $sv->xa !!}</td>
-                <td>{!! $sv->ten_dang_nhap !!}</td>
                 <td>{!! $sv->email !!}</td>
                 <td>{!! $sv->doi_tuong !!}</td>
                 <td>

@@ -74,7 +74,7 @@ class PhongService
                 $insert[] = ['ten' => $phong['ten'],
                     'ma_khu' => $request->khu_nha,
                     'so_luong_sv_hien_tai' => 0,
-                    'ma_loai_phong' => (int)$phong['ma_loai_phong']];
+                    'ma_loai_phong' => $request->loai_phong];
             }
             Phong::insert($insert);
             return true;
