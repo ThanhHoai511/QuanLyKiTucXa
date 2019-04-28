@@ -10,4 +10,9 @@ class SinhVienUTC extends Model
     use SoftDeletes;
 
     protected $table = 'sinhvienutc';
+
+    public function taikhoan()
+    {
+        return $this->hasOne('App\Models\TaiKhoan');
+    }
 }

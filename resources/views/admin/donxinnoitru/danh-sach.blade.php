@@ -30,24 +30,59 @@
                 <td>{!! $nv->ma_sinh_vien !!}</td>
                 <td>{!! $nv->ten !!}</td>
                 <td>{!! $nv->email !!}</td>
-                <td>{!! $nv->gioi_tinh !!}</td>
+                <td>
+                    @if($nv->gioi_tinh == 1)
+                        Nữ
+                    @else
+                        Nam
+                    @endif
+                </td>
                 <td>{!! $nv->ngay_sinh !!}</td>
                 <td>{!! $nv->noi_sinh !!}</td>
-                <td>{!! $nv->cmn !!}</td>ối
+                <td>{!! $nv->cmnd !!}</td>
                 <td>{!! $nv->sdt !!}</td>
-                <td>{!! $nv->loaiphong->ten !!}</td>
+                <td>{!! $nv->ma_loai_phong !!}</td>
                 <td>{!! $nv->chu_thich !!}</td>
                 <td>
                     <img src="{{ asset('images/sinhvien/' . $nv->anh) }}" alt="" style="width:70px;height:70px;">
                 </td>
                 <td>
-                    <button>Kiểm tra</button>
+                    <a href="#detail_review{{ $nv->ma_sinh_vien }}" data-toggle="modal"><button class="btn btn-default">Kiểm tra</button></a>
                 </td>
                 <td>
                     <button>Phê duyệt</button>
-                    <button>Từ ch</button>
+                    <button>Từ chối</button>
                 </td>
             </tr>
+            <div id="detail_review{{ $nv->ma_sinh_vien }}" class="modal" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" id="test">
+                    @php $sv = $nv->sinh_vien; @endphp
+                    @if ($sv == null)
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Không tìm thấy sinh viên này</h5>
+                            </div>
+                        </div>
+                    @else
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chi tiết sinh viên</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>Họ và tên: {!! $sv->ho_ten !!}</p>
+                            <p>Ngày sinh: {!! $sv->ngay_sinh !!}</p>
+                            <p>Nơi sinh: {!! $sv->noi_sinh !!}</p>
+                            <p>Lớp: {!! $sv->lop !!}</p>
+                            <p>Khóa: {!! $sv->khoa !!}</p>
+                            <p>Cmnd: {!! $sv->cmnd !!}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                        @endif
+                </div>
+            </div>
         @endforeach
         </tbody>
     </table>

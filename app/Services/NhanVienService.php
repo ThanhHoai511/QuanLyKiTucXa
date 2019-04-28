@@ -25,18 +25,12 @@ class NhanVienService
     public function create($request)
     {
         return DB::transaction(function () use ($request) {
-           $nhanVien = $this->store($request);
-           if (!$this->taiKhoanService->getByMaNV($nhanVien->id)) {
-               $params = [
-                   'email' => $nhanVien->email,
-                   'ma_nhan_vien' => $nhanVien->id
-               ];
-               $this->taiKhoanService->store($params);
-           }
+            $taiKhoan = $this->taiKhoanService->store($request->email);
+            $this->store($request, $taiKhoan->id);
         });
     }
 
-    protected function store($request)
+    protected function store($request, $maTaiKhoan)
     {
         $this->nhanVien->ho_ten = $request->ho_ten;
         $this->nhanVien->chuc_vu = $request->chuc_vu;
@@ -46,6 +40,7 @@ class NhanVienService
         $filename = time() . '.' . $request->file('hinh_anh')->getClientOriginalExtension();
         $request->file('hinh_anh')->move(public_path('/images/nhanvien'), $filename);
         $this->nhanVien->hinh_anh = $filename;
+        $this->nhanVien->ma_tai_khoan = $maTaiKhoan;
         $this->nhanVien->save();
         return $this->nhanVien;
     }

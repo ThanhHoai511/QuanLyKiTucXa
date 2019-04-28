@@ -66,7 +66,8 @@ class PhongController extends Controller
     public function importExcel()
     {
         $khuNha = $this->khuNhaService->getAll();
-        return view('admin.phong.excel', ['khuNha' => $khuNha]);
+        $loaiPhong = $this->loaiPhongService->getAll();
+        return view('admin.phong.excel', ['khuNha' => $khuNha, 'loaiPhong' => $loaiPhong]);
     }
 
     public function storeExcel(Request $request)

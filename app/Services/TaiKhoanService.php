@@ -19,13 +19,13 @@ class TaiKhoanService
         return $this->taiKhoan->paginate(15);
     }
 
-    public function store($params)
+    public function store($email)
     {
-        $this->taiKhoan->ten_dang_nhap = $params['email'];
+        $this->taiKhoan->ten_dang_nhap = $email;
         $this->taiKhoan->mat_khau = Hash::make('12345');
         $this->taiKhoan->tinh_trang = config('constants.HOAT_DONG');
-        $this->taiKhoan->ma_nhan_vien = $params['ma_nhan_vien'];
         $this->taiKhoan->save();
+        return $this->taiKhoan;
     }
 
     public function update($params)

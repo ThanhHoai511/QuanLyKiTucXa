@@ -21,9 +21,9 @@ class CreateTintucTable extends Migration
             $table->tinyInteger('trang_thai');
             $table->tinyInteger('noi_bat');
             $table->text('anh')->nullable();
-            $table->unsignedBigInteger('ma_tai_khoan');
-            $table->foreign('ma_tai_khoan')
-                ->references('id')->on('taikhoan')
+            $table->unsignedBigInteger('nhan_vien_tao');
+            $table->foreign('nhan_vien_tao')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

@@ -104,3 +104,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('', 'Admin\DonXinNoiTruController@index')->name('danhSachDonDangKy');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
