@@ -12,11 +12,6 @@
         </div>
         @include('admin.layouts.flash-msg')
         <div class="box-body">
-            <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
-                @if(isset($nhanVienUpdate))
-                    <a href="{{ route('xoaNhanVien', [$nhanVienUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
-                @endif
-            </div>
             <form method="post" role="form" id="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group col-md-12 row">
@@ -56,6 +51,9 @@
                 </div>
                 <div class="box-footer clearfix" style="margin:10px 300px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">@if(isset($nhanVienUpdate)) Sửa @else Thêm @endif</button>
+                    @if(isset($nhanVienUpdate))
+                        <a href="{{ route('xoaNhanVien', [$nhanVienUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                    @endif
                     <a href="{{ route('danhSachNhanVien') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>

@@ -48,4 +48,10 @@ class LoaiPhongService
     {
         return $this->loaiPhong->findOrFail($id);
     }
+
+    public function getSVToiDa($id)
+    {
+        $lp =  $this->loaiPhong->findOrFail($id);
+        return $lp['so_luong_sv_toi_da'];
+    }
 }

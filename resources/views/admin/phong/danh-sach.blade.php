@@ -27,9 +27,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Monthly Recap Report</h3>
-                </div>
                 <div class="box-body">
                     <table class="table table-bordered table-striped table-hover">
                         <thead>

@@ -96,7 +96,6 @@
     </a>
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachTaiKhoan') }}"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
-        <li><a href="{{ route('themExcel') }}"><i class="fa fa-circle-o"></i> Thêm tài khoản từ file </a></li>
     </ul>
 </li>
 

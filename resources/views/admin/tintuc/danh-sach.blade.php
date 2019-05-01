@@ -2,7 +2,6 @@
 
 @section('content')
     @include('admin.layouts.flash-msg')
-
     <div class="row col-md-12 form-group" style="margin-top: 10px;">
         <div class="col-md-4">
             <a href="{{ route('themTinTuc') }}"><button class="btn btn-primary" style="margin-bottom: 20px;">Thêm</button></a>
@@ -65,11 +64,11 @@
                         @endif
                     </td>
                     <td data-tin-tuc-id="{{ $tt->id }}">
-                        <form>
-                            {{ csrf_field() }}
-                            <button style="@if($tt->trang_thai == 1) display: none @endif" class="btn btn-success col-md-6" name="approve" id='approve-btn-{{ $tt->id  }}'>Phê duyệt</button>
-                            <button style="@if($tt->trang_thai == 0) display: none @endif" class="btn btn-primary col-md-6" name="decline" id='decline-btn-{{ $tt->id  }}'>Từ chối</button>
-                        </form>
+{{--                        <form>--}}
+{{--                            {{ csrf_field() }}--}}
+{{--                            <button style="@if($tt->trang_thai == 1) display: none @endif" class="btn btn-success col-md-6" name="approve" id='approve-btn-{{ $tt->id  }}'>Phê duyệt</button>--}}
+{{--                            <button style="@if($tt->trang_thai == 0) display: none @endif" class="btn btn-primary col-md-6" name="decline" id='decline-btn-{{ $tt->id  }}'>Từ chối</button>--}}
+{{--                        </form>--}}
                     </td>
                     <td>
                     </td>
