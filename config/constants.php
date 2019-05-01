@@ -8,4 +8,8 @@
         'NHAN_SU' => 3,
         'HOAT_DONG' => 1,
         'KHONG_HOAT_DONG' => 0,
+        'NAM' => 0,
+        'NU' => 1,
+        'CHUA_THANH_TOAN' => 0,
+        'DA_THANH_TOAN' => 1
     ];

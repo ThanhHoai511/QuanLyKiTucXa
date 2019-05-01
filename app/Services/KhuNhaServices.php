@@ -44,4 +44,9 @@ class KhuNhaServices
     {
         return $this->khuNha->findOrFail($id);
     }
+
+    public function getKhuNhaByDoiTuong($doiTuong)
+    {
+        return $this->khuNha->where('doi_tuong', $doiTuong)->get();
+    }
 }

@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <label for="">Tải file mẫu dưới đây sau đó thêm các phòng bạn muốn tạo theo khu nhà và loại phòng bạn đã chọn sau đó chọn lại file bạn đã sửa!</label>
                 <br>
-                <a href="{{ asset('Cơ-sở-vật-chất.xlsx') }}"><button class="btn btn-f">Tải file mẫu</button></a>
+                <a href="{{ asset('Phòng.xlsx') }}"><button class="btn btn-f">Tải file mẫu</button></a>
             </div>
             <form method="POST" enctype="multipart/form-data" id="form">
                 {{ csrf_field() }}

@@ -16,7 +16,7 @@ Route::get('', 'User\HomeController@index')->name('home');
 Route::get('don-dang-ky', 'User\HomeController@donDangKy')->name('don-dang-ky');
 Route::post('don-dang-ky', 'User\HomeController@guiDonDangKy');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function () {
    Route::get('/', function () {
       return view('admin.layouts.home'); 
    })->name('admin.home');
@@ -98,10 +98,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('them-excel', 'Admin\SinhVienController@create')->name('themExcel');
         Route::post('them-excel', 'Admin\SinhVienController@store');
         Route::get('sua/{id}', 'Admin\SinhVienController@edit')->name('suaSinhVien');
+        Route::post('sua/{id}', 'Admin\SinhVienController@update');
+        Route::get('xoa/{id}', 'Admin\NhanVienController@destroy')->name('xoaSinhVien');
     });
 
     Route::group(['prefix' => 'don-dang-ky'], function () {
         Route::get('', 'Admin\DonXinNoiTruController@index')->name('danhSachDonDangKy');
+        Route::get('chon-phong/{id}', 'Admin\DonXinNoiTruController@showPhong')->name('danhSachPhongChon');
     });
 });
 

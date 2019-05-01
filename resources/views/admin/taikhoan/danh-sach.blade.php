@@ -16,9 +16,9 @@
         @foreach($taiKhoan as $key => $p)
             <tr class="{{ $key % 2 == 1 ? 'success' : 'info' }}">
                 <td>{{ $p->id }}</td>
-                <td>{{ $p->ten_dang_nhap }}</td>
+                <td>{{ $p->email }}</td>
                 <td>
-                    @if($p->tinh_trang == 1)
+                    @if($p->status == 1)
                         Hoạt động
                     @else
                         Bị khóa

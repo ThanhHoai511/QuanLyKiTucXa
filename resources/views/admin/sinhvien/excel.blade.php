@@ -6,6 +6,11 @@
             <h3 style="text-align: center; tab-size: 25px;">Thêm sinh viên từ file excel</h3>
         </div>
         <div class="box-body">
+            <div class="col-md-12">
+                <label for="">Tải file mẫu dưới đây sau đó thêm sinh viên vào file!</label>
+                <br>
+                <a href="{{ asset('Sinh-viên-UTC.xlsx') }}"><button class="btn btn-f">Tải file mẫu</button></a>
+            </div>
             <form method="POST" enctype="multipart/form-data" id="form">
                 {{ csrf_field() }}
                 <div class="col-md-12 row" style="margin-bottom:20px;">

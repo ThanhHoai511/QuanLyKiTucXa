@@ -38,4 +38,9 @@ class DonDangKyService
         $this->donDangKy->ma_loai_phong = $request->ma_loai_phong;
         $this->donDangKy->save();
     }
+
+    public function getById($id)
+    {
+        return $this->donDangKy->findOrFail($id);
+    }
 }

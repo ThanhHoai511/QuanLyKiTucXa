@@ -8,10 +8,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class PhongService
 {
     protected $phong;
-
-    public function __construct(Phong $phong)
+    protected $khuNhaService;
+    protected $loaiPhongService;
+    public function __construct(Phong $phong, KhuNhaServices $khuNhaService, LoaiPhongService $loaiPhongService)
     {
         $this->phong = $phong;
+        $this->khuNhaService = $khuNhaService;
+        $this->loaiPhongService = $loaiPhongService;
     }
 
     public function getAllWithPaginate($name = "", $khuNha = "")
@@ -57,28 +60,37 @@ class PhongService
 
     public function storeFromExcel($request)
     {
-        if (!$request->file_excel) {
-            return false;
-        }
         $phong = Excel::load($request->file_excel, function () {
         })->get()->toArray();
-        if (!empty($phong)) {
-            $insert = [];
-            foreach ($phong as $phong) {
-                if (trim($phong['ten'])== '') {
-                    break;
-                }
-                if (Phong::where('ten', $phong['ten'])->where('ma_khu', $request->khu_nha)->exists()) {
-                    continue;
-                }
-                $insert[] = ['ten' => $phong['ten'],
-                    'ma_khu' => $request->khu_nha,
-                    'so_luong_sv_hien_tai' => 0,
-                    'ma_loai_phong' => $request->loai_phong];
-            }
-            Phong::insert($insert);
-            return true;
+        if (empty($phong)) {
+            return false;
         }
+        $insert = [];
+        foreach ($phong as $phong) {
+            if (trim($phong['ten'])== '') {
+                break;
+            }
+            if (Phong::where('ten', $phong['ten'])->where('ma_khu', $request->khu_nha)->exists()) {
+                continue;
+            }
+            $insert[] = ['ten' => $phong['ten'],
+                'ma_khu' => $request->khu_nha,
+                'so_luong_sv_hien_tai' => 0,
+                'ma_loai_phong' => $request->loai_phong];
+        }
+        Phong::insert($insert);
+        return true;
+    }
 
+    public function getPhongByCondition($doiTuong, $maLP)
+    {
+        $khuNha = $this->khuNhaService->getKhuNhaByDoiTuong($doiTuong);
+        $soSVToiDa = $this->loaiPhongService->getSVToiDa($maLP);
+        foreach($khuNha as $kn) {
+            $phong = $this->phong->where('ma_loai_phong', $maLP)->where('ma_khu', $kn->id)
+                ->where('so_luong_sv_hien_tai', '<', $soSVToiDa)->get();
+            $kn->phong = $phong;
+        }
+        return $khuNha;
     }
 }
