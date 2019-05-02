@@ -22,7 +22,8 @@ class TaiKhoanService
     public function store($email)
     {
         $this->taiKhoan->email = $email;
-        $this->taiKhoan->password = Hash::make('12345');
+        $password = explode('@', $email)[0] . "123";
+        $this->taiKhoan->password = Hash::make($password);
         $this->taiKhoan->status = config('constants.HOAT_DONG');
         $this->taiKhoan->save();
         return $this->taiKhoan;

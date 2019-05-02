@@ -52,8 +52,10 @@
                                     <a href="#detail_review{{ $nv->ma_sinh_vien }}" data-toggle="modal"><button class="btn btn-default">Kiểm tra</button></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('danhSachPhongChon', $nv->id) }}"><button class="btn btn-primary">Phê duyệt</button></a>
-                                    <button class="btn btn-danger" style="margin-top: 3px;">Từ chối</button>
+                                    @if($nv->tinh_trang == 0)
+                                        <a href="{{ route('danhSachPhongChon', $nv->id) }}"><button class="btn btn-primary">Phê duyệt</button></a>
+                                        <button class="btn btn-danger" style="margin-top: 3px;">Từ chối</button>
+                                    @endif
                                 </td>
                             </tr>
                             <div id="detail_review{{ $nv->ma_sinh_vien }}" class="modal" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">

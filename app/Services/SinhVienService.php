@@ -99,6 +99,11 @@ class SinhVienService{
         return $this->sinhVien->findOrFail($id);
     }
 
+    public function getByMSV($mSV)
+    {
+        return $this->sinhVien->where('ma_sinh_vien', $mSV)->first();
+    }
+
     public function getByMaSVCollect()
     {
         $sinhVienCollect = collect();
