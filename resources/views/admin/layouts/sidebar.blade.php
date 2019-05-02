@@ -123,3 +123,14 @@
         <li><a href="{{ route('danhSachDonDangKy') }}"><i class="fa fa-circle-o"></i> Danh sách đơn đăng ký</a></li>
     </ul>
 </li>
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-amazon"></i> <span>Hợp đồng</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachHopDong') }}"><i class="fa fa-circle-o"></i> Danh sách hợp đồng</a></li>
+    </ul>
+</li>

@@ -39,6 +39,13 @@ class DonDangKyService
         $this->donDangKy->save();
     }
 
+    public function updateStatus($id)
+    {
+        $ddkUpdate = $this->getById($id);
+        $ddkUpdate->tinh_trang = 1;
+        $ddkUpdate->save();
+    }
+
     public function getById($id)
     {
         return $this->donDangKy->findOrFail($id);

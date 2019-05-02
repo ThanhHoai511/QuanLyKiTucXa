@@ -38,6 +38,7 @@ class DonXinNoiTruController extends Controller
     {
         $ddk = $this->donDangKyService->getById($id);
         $khuNha = $this->phongService->getPhongByCondition($ddk->gioi_tinh, $ddk->ma_loai_phong);
-        return view('admin/donxinnoitru/danh-sach-phong', ['khuNha' => $khuNha]);
+
+        return view('admin/donxinnoitru/danh-sach-phong', ['khuNha' => $khuNha, 'maDon' => $id]);
     }
 }
