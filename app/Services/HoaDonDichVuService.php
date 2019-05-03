@@ -14,6 +14,11 @@ class HoaDonDichVuService
         $this->hoaDonDichVu = $hoaDonDichVu;
     }
 
+    public function index()
+    {
+        return $this->hoaDonDichVu->paginate(20);
+    }
+
     public function store($request)
     {
         $this->hoaDonDichVu->ngay_bat_dau = $request->ngay_bat_dau;

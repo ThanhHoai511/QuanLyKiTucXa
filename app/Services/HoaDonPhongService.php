@@ -14,6 +14,11 @@ class HoaDonPhongService
         $this->hoaDonPhong = $hoaDonPhong;
     }
 
+    public function index()
+    {
+        return $this->hoaDonPhong->paginate(20);
+    }
+
     public function store($request)
     {
         $this->hoaDonPhong->ma_hop_dong = $request->ma_hop_dong;

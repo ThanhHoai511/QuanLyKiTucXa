@@ -134,3 +134,15 @@
         <li><a href="{{ route('danhSachHopDong') }}"><i class="fa fa-circle-o"></i> Danh sách hợp đồng</a></li>
     </ul>
 </li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-address-book"></i> <span>Hóa đơn dịch vụ</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachHDDV') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn dịch vụ</a></li>
+    </ul>
+</li>
