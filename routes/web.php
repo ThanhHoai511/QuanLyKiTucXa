@@ -112,6 +112,14 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function () {
         Route::get('don-dang-ky={id}&phong={idPhong}', 'Admin\HopDongController@create')->name('taoHopDong');
         Route::post('don-dang-ky={id}&phong={idPhong}', 'Admin\HopDongController@store');
     });
+
+    Route::group(['prefix' => 'hoa-don-phong'], function () {
+        Route::get('', 'Admin\HoaDonPhongController@index')->name('danhSachHDP');
+    });
+
+    Route::group(['prefix' => 'hoa-don-dich-vu'], function () {
+        Route::get('', 'Admin\HoaDonDichVuController@index')->name('danhSachHDDV');
+    });
 });
 
 Auth::routes();
