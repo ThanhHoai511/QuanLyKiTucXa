@@ -39,6 +39,18 @@
 </li>
 <li class="treeview">
     <a href="#">
+        <i class="fa fa-calendar"></i> <span>Cơ sở vật chất</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachCSVC') }}"><i class="fa fa-circle-o"></i> Danh sách cơ sở vật chất</a></li>
+        <li><a href="{{ route('themCSVC') }}"><i class="fa fa-circle-o"></i> Thêm cơ sở vật chất</a></li>
+    </ul>
+</li>
+<li class="treeview">
+    <a href="#">
         <i class="fa fa-edit"></i> <span>Phòng</span>
         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -59,18 +71,6 @@
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachDichVu') }}"><i class="fa fa-circle-o"></i> Danh sách dịch vụ</a></li>
         <li><a href="{{ route('themDichVu') }}"><i class="fa fa-circle-o"></i> Thêm dịch vụ</a></li>
-    </ul>
-</li>
-<li class="treeview">
-    <a href="#">
-        <i class="fa fa-calendar"></i> <span>Cơ sở vật chất</span>
-        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-    </a>
-    <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachCSVC') }}"><i class="fa fa-circle-o"></i> Danh sách cơ sở vật chất</a></li>
-        <li><a href="{{ route('themCSVC') }}"><i class="fa fa-circle-o"></i> Thêm cơ sở vật chất</a></li>
     </ul>
 </li>
 

@@ -9,5 +9,5 @@ class PhongCSVC extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'phongcsvc';
+    protected $table = 'phong_csvc';
 }

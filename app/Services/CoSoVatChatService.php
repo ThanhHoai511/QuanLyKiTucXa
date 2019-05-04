@@ -14,6 +14,16 @@ class CoSoVatChatService
         $this->csvc = $coSoVatChat;
     }
 
+    public function getAllID()
+    {
+        $csvcAll = $this->csvc->all();
+        $ids = [];
+        foreach ($csvcAll as $csvc) {
+            $ids[] = $csvc->id;
+        }
+        return $ids;
+    }
+
     public function getAllWithPaginate($name)
     {
         $csvc = $this->csvc->query();
