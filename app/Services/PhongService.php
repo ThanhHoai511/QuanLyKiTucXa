@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Phong;
+use App\Models\PhongCSVC;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PhongService
@@ -10,11 +12,13 @@ class PhongService
     protected $phong;
     protected $khuNhaService;
     protected $loaiPhongService;
-    public function __construct(Phong $phong, KhuNhaServices $khuNhaService, LoaiPhongService $loaiPhongService)
+    protected $csvcService;
+    public function __construct(Phong $phong, KhuNhaServices $khuNhaService, LoaiPhongService $loaiPhongService, CoSoVatChatService $csvcService)
     {
         $this->phong = $phong;
         $this->khuNhaService = $khuNhaService;
         $this->loaiPhongService = $loaiPhongService;
+        $this->csvcService = $csvcService;
     }
 
     public function getAllWithPaginate($name = "", $khuNha = "")
@@ -30,6 +34,14 @@ class PhongService
         return $phong->paginate(20);
     }
 
+    public function createPhong($params)
+    {
+        return DB::transaction(function () use ($params) {
+            $phong = $this->store($params);
+            $this->createPhongCSVC($phong->id);
+        });
+    }
+
     public function store($params)
     {
         $this->phong->ten = $params->ten;
@@ -37,6 +49,21 @@ class PhongService
         $this->phong->ma_khu = $params->ma_khu;
         $this->phong->ma_loai_phong = $params->ma_loai_phong;
         $this->phong->save();
+        return $this->phong;
+    }
+
+    public function createPhongCSVC($maPhong)
+    {
+        $arrayIdCSVC = $this->csvcService->getAllID();
+        $arrayInsert = [];
+        foreach ($arrayIdCSVC as $id) {
+            $arrayInsert[] = [
+                'ma_phong' => $maPhong,
+                'ma_csvc' => $id,
+                'so_luong' => 1
+            ];
+        }
+        PhongCSVC::insert($arrayInsert);
     }
 
     public function update($params, $id)

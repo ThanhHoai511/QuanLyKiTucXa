@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('', 'User\HomeController@index')->name('home');
+Route::get('', 'User\HomeController@index')->name('trang-chu');
 
 Route::get('don-dang-ky', 'User\HomeController@donDangKy')->name('don-dang-ky');
 Route::post('don-dang-ky', 'User\HomeController@guiDonDangKy');
 
-Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function () {
+Route::group(['prefix' => 'admin'], function () {
    Route::get('/', function () {
       return view('admin.layouts.home'); 
    })->name('admin.home');

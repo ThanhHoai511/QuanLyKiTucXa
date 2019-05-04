@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\NhanVien;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class NhanVienService
 {
@@ -26,7 +27,10 @@ class NhanVienService
     {
         return DB::transaction(function () use ($request) {
             $taiKhoan = $this->taiKhoanService->store($request->email);
-            $this->store($request, $taiKhoan->id);
+            $nhanVien = $this->store($request, $taiKhoan->id);
+            Mail::send('account', array('name'=> $nhanVien->ho_ten,'email'=>$taiKhoan->email), function($message){
+                $message->to('hoaintt@hblab.vn', 'Nhân viên')->subject('Tài khoản nhân viên');
+            });
         });
     }
 
@@ -56,12 +60,12 @@ class NhanVienService
                     'email' => $nhanVienUpdate->email,
                     'tai_khoan' => $taiKhoan
                 ];
-                $taiKhoan = $this->taiKhoanService->update($params);
+                $this->taiKhoanService->update($params);
             } else {
                 $params = [
                     'email' => $nhanVienUpdate->email,
                 ];
-                $taiKhoan = $this->taiKhoanService->store($params->email);
+                $this->taiKhoanService->store($params->email);
             }
             $this->update($request, $id);
         });
