@@ -1,9 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h3 style="text-align:center;">Danh sách tin tức</h3>
     @include('admin.layouts.flash-msg')
-
     <div class="row col-md-12 form-group" style="margin-top: 10px;">
         <div class="col-md-4">
             <a href="{{ route('themTinTuc') }}"><button class="btn btn-primary" style="margin-bottom: 20px;">Thêm</button></a>
@@ -66,11 +64,13 @@
                         @endif
                     </td>
                     <td data-tin-tuc-id="{{ $tt->id }}">
-                        <form>
-                            {{ csrf_field() }}
-                            <button style="@if($tt->trang_thai == 1) display: none @endif" class="btn btn-success col-md-6" name="approve" id='approve-btn-{{ $tt->id  }}'>Phê duyệt</button>
-                            <button style="@if($tt->trang_thai == 0) display: none @endif" class="btn btn-danger col-md-6" name="decline" id='decline-btn-{{ $tt->id  }}'>Từ chối</button>
-                        </form>
+{{--                        <form>--}}
+{{--                            {{ csrf_field() }}--}}
+{{--                            <button style="@if($tt->trang_thai == 1) display: none @endif" class="btn btn-success col-md-6" name="approve" id='approve-btn-{{ $tt->id  }}'>Phê duyệt</button>--}}
+{{--                            <button style="@if($tt->trang_thai == 0) display: none @endif" class="btn btn-primary col-md-6" name="decline" id='decline-btn-{{ $tt->id  }}'>Từ chối</button>--}}
+{{--                        </form>--}}
+                    </td>
+                    <td>
                     </td>
                     <td>
                         <a href="{{ route('suaTinTuc', [$tt->id]) }}"><button class="btn btn-primary">Sửa</button></a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\PhongService;
 use App\Services\TinTucService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,15 +11,16 @@ class TinTucController extends Controller
 {
     protected $tinTucService;
 
-    public function __construct(TinTucService $tinTucService)
+    protected $phongService;
+    public function __construct(TinTucService $tinTucService, PhongService $phongService)
     {
         $this->tinTucService = $tinTucService;
+        $this->phongService = $phongService;
     }
 
     public function index(Request $request)
     {
         $tinTuc = $this->tinTucService->getTinTuc($request->loai, $request->tieu_de);
-
         return view('admin.tintuc.danh-sach', ['tinTuc' => $tinTuc, 'params' => $request]);
     }
 

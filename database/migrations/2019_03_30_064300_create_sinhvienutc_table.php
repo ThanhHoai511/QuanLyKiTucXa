@@ -32,9 +32,9 @@ class CreateSinhvienutcTable extends Migration
             $table->string('email')->unique();
             $table->tinyInteger('doi_tuong')->nullable();
             $table->text('anh')->nullable();
-            $table->unsignedBigInteger('ma_tai_khoan');
-            $table->foreign('ma_tai_khoan')
-                ->references('id')->on('taikhoan')
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

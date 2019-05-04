@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\TaiKhoan;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class TaiKhoanService
 {
     protected $taiKhoan;
 
-    public function __construct(TaiKhoan $taiKhoan)
+    public function __construct(User $taiKhoan)
     {
         $this->taiKhoan = $taiKhoan;
     }
@@ -19,19 +19,21 @@ class TaiKhoanService
         return $this->taiKhoan->paginate(15);
     }
 
-    public function store($params)
+    public function store($email)
     {
-        $this->taiKhoan->ten_dang_nhap = $params['email'];
-        $this->taiKhoan->mat_khau = Hash::make('12345');
-        $this->taiKhoan->tinh_trang = config('constants.HOAT_DONG');
-        $this->taiKhoan->ma_nhan_vien = $params['ma_nhan_vien'];
+        $this->taiKhoan->email = $email;
+        $password = explode('@', $email)[0] . "123";
+        $this->taiKhoan->password = Hash::make($password);
+        $this->taiKhoan->status = config('constants.HOAT_DONG');
         $this->taiKhoan->save();
+        return $this->taiKhoan;
     }
 
     public function update($params)
     {
-        $params['tai_khoan']->ten_dang_nhap = $params['email'];
+        $params['tai_khoan']->email = $params['email'];
         $params['tai_khoan']->save();
+        return $params['tai_khoan'];
     }
 
     public function destroy($id)
@@ -39,8 +41,8 @@ class TaiKhoanService
         return $this->taiKhoan->destroy($id);
     }
 
-    public function getByMaNV($maNV)
+    public function getById($id)
     {
-        return $this->taiKhoan->where('ma_nhan_vien', $maNV)->first();
+        return $this->taiKhoan->findOrFail($id);
     }
 }

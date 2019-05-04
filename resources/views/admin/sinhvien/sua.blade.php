@@ -88,6 +88,7 @@
                 </div>
                 <div class="box-footer clearfix" style="margin:10px 300px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
+                    <a href="{{ route('xoaSinhVien', [$sinhVienUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
                     <a href="{{ route('danhSachPhong') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>

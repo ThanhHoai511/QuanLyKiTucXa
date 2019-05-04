@@ -22,15 +22,15 @@ class CreateHopdongTable extends Migration
             $table->text('chu_thich')->nullable();
             $table->double('tien_phong');
             $table->double('tien_cuoc');
-            $table->unsignedBigInteger('ma_tai_khoan');
-            $table->foreign('ma_tai_khoan')
-                ->references('id')->on('taikhoan')
+            $table->unsignedBigInteger('nhan_vien_tao');
+            $table->foreign('nhan_vien_tao')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->unsignedBigInteger('ma_sv_utc');
-            $table->unsignedBigInteger('ma_phong');
             $table->foreign('ma_sv_utc')
                 ->references('id')->on('sinhvienutc')
                 ->onDelete('cascade');
+            $table->unsignedBigInteger('ma_phong');
             $table->foreign('ma_phong')
                 ->references('id')->on('phong')
                 ->onDelete('cascade');

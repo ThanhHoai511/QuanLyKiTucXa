@@ -25,18 +25,12 @@ class NhanVienService
     public function create($request)
     {
         return DB::transaction(function () use ($request) {
-           $nhanVien = $this->store($request);
-           if (!$this->taiKhoanService->getByMaNV($nhanVien->id)) {
-               $params = [
-                   'email' => $nhanVien->email,
-                   'ma_nhan_vien' => $nhanVien->id
-               ];
-               $this->taiKhoanService->store($params);
-           }
+            $taiKhoan = $this->taiKhoanService->store($request->email);
+            $this->store($request, $taiKhoan->id);
         });
     }
 
-    protected function store($request)
+    protected function store($request, $maTaiKhoan)
     {
         $this->nhanVien->ho_ten = $request->ho_ten;
         $this->nhanVien->chuc_vu = $request->chuc_vu;
@@ -46,6 +40,7 @@ class NhanVienService
         $filename = time() . '.' . $request->file('hinh_anh')->getClientOriginalExtension();
         $request->file('hinh_anh')->move(public_path('/images/nhanvien'), $filename);
         $this->nhanVien->hinh_anh = $filename;
+        $this->nhanVien->user_id = $maTaiKhoan;
         $this->nhanVien->save();
         return $this->nhanVien;
     }
@@ -53,21 +48,22 @@ class NhanVienService
     public function edit($request, $id)
     {
         return DB::transaction(function () use ($request, $id) {
-            $nhanVienUpdate = $this->update($request, $id);
-            $taiKhoan = $this->taiKhoanService->getByMaNV($nhanVienUpdate->id);
+            $nhanVienUpdate = $this->getById($id);
+            $userId = $nhanVienUpdate->user_id;
+            $taiKhoan = $this->taiKhoanService->getById($userId);
             if ($taiKhoan) {
                 $params = [
                     'email' => $nhanVienUpdate->email,
                     'tai_khoan' => $taiKhoan
                 ];
-                $this->taiKhoanService->update($params);
+                $taiKhoan = $this->taiKhoanService->update($params);
             } else {
                 $params = [
                     'email' => $nhanVienUpdate->email,
-                    'ma_nhan_vien' => $nhanVienUpdate->id
                 ];
-                $this->taiKhoanService->store($params);
+                $taiKhoan = $this->taiKhoanService->store($params->email);
             }
+            $this->update($request, $id);
         });
     }
 
@@ -111,5 +107,10 @@ class NhanVienService
     public function getById($id)
     {
         return $this->nhanVien->findOrFail($id);
+    }
+
+    public function getByUserId($userId)
+    {
+        return $this->nhanVien->where("user_id", $userId)->first();
     }
 }

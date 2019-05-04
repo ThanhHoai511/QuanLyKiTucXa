@@ -6,6 +6,11 @@
             <h3 style="text-align: center; tab-size: 25px;">Thêm cơ sở vật chất từ file excel</h3>
         </div>
         <div class="box-body">
+            <div class="col-md-12">
+                <label for="">Tải file mẫu dưới đây sau đó thêm các cơ sở vật chất!</label>
+                <br>
+                <a href="{{ asset('Cơ-sở-vật-chất.xlsx') }}"><button class="btn btn-f">Tải file mẫu</button></a>
+            </div>
             <form method="POST" enctype="multipart/form-data" id="form">
                 {{ csrf_field() }}
                 <div class="col-md-12 row" style="margin-bottom:20px;">

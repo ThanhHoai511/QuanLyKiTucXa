@@ -14,27 +14,29 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid main-menu" id="main-menu" style="padding-left: 50px;">
-        <div class="row align-items-center justify-content-between container">
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">Bộ máy quản lý</a></li>
-                    <li><a href="#">Đăng ký ở ký túc</a></li>
-                    <li><a href="#">Liên hệ</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-            <div class="navbar-right">
-                <form class="Search">
-                    <input type="text" class="form-control Search-box" name="Search-box" id="Search-box" placeholder="Search">
-                    <label for="Search-box" class="Search-box-label">
-                        <span class="lnr lnr-magnifier"></span>
-                    </label>
-                    <span class="Search-close">
+    <div class="container-fluid" style="background-color: #04091e">
+        <div class="container main-menu" id="main-menu" style="padding-left: 50px;">
+            <div class="row align-items-center justify-content-between container">
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="{{ route('home') }}">Trang chủ</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Bộ máy quản lý</a></li>
+                        <li><a href="{{ route('don-dang-ky') }}">Đăng ký nội trú</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+                <div class="navbar-right">
+                    <form class="Search">
+                        <input type="text" class="form-control Search-box" name="Search-box" id="Search-box" placeholder="Search">
+                        <label for="Search-box" class="Search-box-label">
+                            <span class="lnr lnr-magnifier"></span>
+                        </label>
+                        <span class="Search-close">
                         <span class="lnr lnr-cross"></span>
                     </span>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

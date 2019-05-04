@@ -8,11 +8,6 @@
         </div>
         @include('admin.layouts.flash-msg')
         <div class="box-body">
-            <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
-                @if(isset($khuNhaUpdate))
-                    <a href="{{ route('xoaKhuNha', [$khuNhaUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
-                @endif
-            </div>
             <form method="post" role="form" id="form">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -32,8 +27,17 @@
                     </select>
                 </div>
                 <div class="box-footer clearfix" style="margin:0 300px;">
-                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
-                    <button type="reset" class="btn btn-dropbox">Làm mới</button>
+                    <button type="submit" class="btn btn-success" style="margin-left:50px;">
+                        @if(isset($khuNhaUpdate))
+                            Sửa
+                        @else
+                            Thêm
+                        @endif
+                    </button>
+                    @if(isset($khuNhaUpdate))
+                        <a href="{{ route('xoaKhuNha', [$khuNhaUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                    @endif
+                    <a href="{{ route('danhSachKhuNha') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>
         </div>

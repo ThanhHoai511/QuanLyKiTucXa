@@ -83,7 +83,9 @@ class SinhVienController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->sinhVienService->update($request, $id);
+
+        return redirect()->route('danhSachSinhVien')->with('success', 'Sửa sinh viên thành công');
     }
 
     /**
@@ -94,6 +96,7 @@ class SinhVienController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->sinhVienService->destroy($id);
+        return redirect()->back()->with('success', 'Xóa sinh viên thành công!');
     }
 }
