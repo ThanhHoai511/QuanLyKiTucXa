@@ -38,7 +38,7 @@ class TinTucService
         $this->tinTuc->loai = $params['loai'];
         $this->tinTuc->trang_thai = $params['trang_thai'];
         $this->tinTuc->noi_bat = $params['noi_bat'];
-        $this->tinTuc->ma_tai_khoan = 8;
+        $this->tinTuc->nhan_vien_tao = 1;
         if($params['anh'] != "") {
             $imageName = time().'.'.$params['anh']->getClientOriginalExtension();
             $params['anh']->move(public_path('images/tintuc'), $imageName);

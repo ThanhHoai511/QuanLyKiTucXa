@@ -71,7 +71,7 @@ class TinTucController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

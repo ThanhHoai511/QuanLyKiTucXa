@@ -80,6 +80,14 @@ class PhongService
         $this->phong->destroy($id);
     }
 
+
+    public function incrementSLSinhVien($maPhong)
+    {
+        $phongUpdate = $this->getById($maPhong);
+        $phongUpdate->so_luong_sv_hien_tai = $phongUpdate->so_luong_sv_hien_tai + 1;
+        $phongUpdate->save();
+    }
+
     public function getById($id)
     {
         return $this->phong->findOrFail($id);
@@ -87,6 +95,7 @@ class PhongService
 
     public function storeFromExcel($request)
     {
+        dd($request->file_excel);
         $phong = Excel::load($request->file_excel, function () {
         })->get()->toArray();
         if (empty($phong)) {

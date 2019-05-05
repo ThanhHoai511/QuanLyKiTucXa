@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'status'
+        'email', 'password', 'status', 'is_access'
     ];
 
     /**
@@ -28,6 +28,11 @@ class User extends Authenticatable
     public function nhanvien()
     {
         return $this->belongsTo('App\Models\NhanVien');
+    }
+
+    public function roles()
+    {
+        return $this->hasMany('App\Models\UserRole');
     }
 }
 

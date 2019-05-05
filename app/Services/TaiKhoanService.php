@@ -26,7 +26,7 @@ class TaiKhoanService
         $this->taiKhoan->password = Hash::make($password);
         $this->taiKhoan->status = config('constants.HOAT_DONG');
         $this->taiKhoan->save();
-        return $this->taiKhoan;
+        return $password;
     }
 
     public function update($params)
@@ -44,5 +44,10 @@ class TaiKhoanService
     public function getById($id)
     {
         return $this->taiKhoan->findOrFail($id);
+    }
+
+    public function findByEmail($email)
+    {
+        return $this->taiKhoan->where('email', $email)->first();
     }
 }
