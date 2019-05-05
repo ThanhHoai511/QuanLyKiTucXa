@@ -123,6 +123,7 @@
         <li><a href="{{ route('danhSachDonDangKy') }}"><i class="fa fa-circle-o"></i> Danh sách đơn đăng ký</a></li>
     </ul>
 </li>
+@can('managing_agreement', Auth::user())
 <li class="treeview">
     <a href="#">
         <i class="fa fa-amazon"></i> <span>Hợp đồng</span>
@@ -134,7 +135,7 @@
         <li><a href="{{ route('danhSachHopDong') }}"><i class="fa fa-circle-o"></i> Danh sách hợp đồng</a></li>
     </ul>
 </li>
-
+@endcan
 <li class="treeview">
     <a href="#">
         <i class="fa fa-address-book"></i> <span>Hóa đơn dịch vụ</span>
@@ -144,5 +145,6 @@
     </a>
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachHDDV') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn dịch vụ</a></li>
+        <li><a href="{{ route('themHDDV') }}"><i class="fa fa-circle-o"></i> Thêm hóa đơn dịch vụ</a></li>
     </ul>
 </li>

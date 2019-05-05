@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\DichVuService;
 use App\Services\HoaDonDichVuService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,10 +10,12 @@ use App\Http\Controllers\Controller;
 class HoaDonDichVuController extends Controller
 {
     protected $hoaDonDichVuService;
+    protected $dichVuService;
 
-    public function __construct(HoaDonDichVuService $hoaDonDichVuService)
+    public function __construct(HoaDonDichVuService $hoaDonDichVuService, DichVuService $dichVuService)
     {
         $this->hoaDonDichVuService = $hoaDonDichVuService;
+        $this->dichVuService = $dichVuService;
     }
     /**
      * Display a listing of the resource.
@@ -33,7 +36,9 @@ class HoaDonDichVuController extends Controller
      */
     public function create()
     {
-        //
+        $dichVu = $this->dichVuService->getAll();
+
+        return view('admin.hoadondichvu.cap-nhat', ['dichVu' => $dichVu]);
     }
 
     /**

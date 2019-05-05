@@ -9,7 +9,9 @@ use App\Services\SinhVienService;
 use App\Services\TaiKhoanService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Mail;
+use App\Mail\MailSuccess;
+use DB;
 class HopDongController extends Controller
 {
     protected $hopDongService;
@@ -65,11 +67,31 @@ class HopDongController extends Controller
      */
     public function store(Request $request)
     {
-        $hopDong = $this->hopDongService->store($request);
-        $sinhVien = $this->sinhVienService->getById($hopDong->ma_sv_utc);
-        $this->taiKhoanService->store($sinhVien->email);
-        $this->donDangKiService->updateStatus($request->don_dang_ky);
-        return redirect()->route('danhSachHopDong')->with('success', 'Tạo hợp đồng thành công');
+        return DB::transaction(function () use ($request) {
+            $hopDong = $this->hopDongService->store($request);
+            $sinhVien = $this->sinhVienService->getById($hopDong->ma_sv_utc);
+            $password = "";
+            if (!$this->taiKhoanService->findByEmail($sinhVien->email)) {
+                $password = $this->taiKhoanService->store($sinhVien->email);
+                Mail::send('admin.mails.user_success', 
+                array('name'=> $sinhVien->ho_ten, 'username' => $sinhVien->email, 'password'=> $password), function($message)
+                {
+                    $message->to($username)->subject('Ki tuc xa Dai hoc Giao thong van tai');
+                });
+            } else {
+                Mail::send('admin.mails.dang-ki-success', 
+                array('name'=> $sinhVien->ho_ten), function($message)
+                {
+                    $message->to($username)->subject('Ki tuc xa Dai hoc Giao thong van tai');
+                });
+            }
+            
+            
+            $this->donDangKiService->updateStatus($request->don_dang_ky);
+            $this->phongService->incrementSLSinhVien($hopDong->ma_phong);
+            
+            return redirect()->route('danhSachHopDong')->with('success', 'Tạo hợp đồng thành công');
+        });
     }
 
     /**

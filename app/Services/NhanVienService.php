@@ -28,9 +28,11 @@ class NhanVienService
         return DB::transaction(function () use ($request) {
             $taiKhoan = $this->taiKhoanService->store($request->email);
             $nhanVien = $this->store($request, $taiKhoan->id);
-            Mail::send('account', array('name'=> $nhanVien->ho_ten,'email'=>$taiKhoan->email), function($message){
-                $message->to('hoaintt@hblab.vn', 'Nhân viên')->subject('Tài khoản nhân viên');
-            });
+            Mail::send('admin.mails.user_success', 
+                array('name'=> $nhanvien->ho_ten, 'username' => $nhanvien->email, 'password'=> $password), function($message)
+                {
+                    $message->to($username)->subject('Ki tuc xa Dai hoc Giao thong van tai');
+                });
         });
     }
 

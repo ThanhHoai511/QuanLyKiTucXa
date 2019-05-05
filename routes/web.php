@@ -16,7 +16,7 @@ Route::get('', 'User\HomeController@index')->name('trang-chu');
 Route::get('don-dang-ky', 'User\HomeController@donDangKy')->name('don-dang-ky');
 Route::post('don-dang-ky', 'User\HomeController@guiDonDangKy');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' => 'admin'], function () {
    Route::get('/', function () {
       return view('admin.layouts.home'); 
    })->name('admin.home');
@@ -119,6 +119,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'hoa-don-dich-vu'], function () {
         Route::get('', 'Admin\HoaDonDichVuController@index')->name('danhSachHDDV');
+        Route::get('them', 'Admin\HoaDonDichVuController@create')->name('themHDDV');
     });
 });
 
