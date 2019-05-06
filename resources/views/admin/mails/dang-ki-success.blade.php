@@ -1,3 +1,4 @@
-<h1>Xin chao {!! $name !!}</h1>
-<p>Don xin noi tru cua ban da duoc dong y!</p>
-<p>Xin cam on</p>
+<h1>Xin chào {!! $name !!}!</h1>
+<p>Bạn đã gia hạn thành công hợp đồng nội trú tại Kí túc xá trường Đại học Giao thông vận tải!</p>
+<p>Bạn tiếp tục đăng nhập bằng tài khoản {!! $username!!}!</p>
+<p>Xin cảm ơn!</p>

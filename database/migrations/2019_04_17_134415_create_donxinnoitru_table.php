@@ -29,6 +29,7 @@ class CreateDonxinnoitruTable extends Migration
                 ->onDelete('cascade');
             $table->text('chu_thich')->nullable();
             $table->text('anh');
+            $table->tinyInteger('tinh_trang')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

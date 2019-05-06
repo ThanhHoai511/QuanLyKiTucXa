@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHopdonghuyTable extends Migration
+class CreateDonxinchamduthopdongTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHopdonghuyTable extends Migration
      */
     public function up()
     {
-        Schema::create('hopdonghuy', function (Blueprint $table) {
+        Schema::create('donxinchamduthopdong', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('ma_phong');
             $table->unsignedBigInteger('ma_sv_utc');
@@ -23,7 +23,7 @@ class CreateHopdonghuyTable extends Migration
             $table->foreign('ma_sv_utc')
                 ->references('id')->on('sinhvienutc')
                 ->onDelete('cascade');
-            $table->date('ngay_ket_thuc');
+            $table->date('ngay_ket_thuc')->nullable();
             $table->unsignedBigInteger('nhan_vien_tao');
             $table->foreign('nhan_vien_tao')
                 ->references('id')->on('users')
@@ -40,6 +40,6 @@ class CreateHopdonghuyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hopdonghuy');
+        Schema::dropIfExists('donxinchamduthopdong');
     }
 }

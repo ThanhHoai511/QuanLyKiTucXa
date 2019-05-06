@@ -129,4 +129,9 @@ class PhongService
         }
         return $khuNha;
     }
+
+    public function getPhongByKhuNha($maKhu)
+    {
+        return $this->phong->where('ma_khu', $maKhu)->get();
+    }
 }
