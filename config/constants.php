@@ -11,5 +11,9 @@
         'NAM' => 0,
         'NU' => 1,
         'CHUA_THANH_TOAN' => 0,
-        'DA_THANH_TOAN' => 1
+        'DA_THANH_TOAN' => 1,
+        'DUOC_TRUY_CAP' => 1,
+        'KHONG_DUOC_TRUY_CAP' => 0,
+        'CHAP_NHAN_HUY' => 1,
+        'DANG_CHO_HUY' => 0
     ];

@@ -19,7 +19,7 @@ class CreateNhanvienTable extends Migration
             $table->string('chuc_vu');
             $table->string('email')->unique();
             $table->string('sdt')->unique();
-            $table->text('mo_ta');
+            $table->text('mo_ta')->nullable();
             $table->text('hinh_anh');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
