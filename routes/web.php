@@ -134,7 +134,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'hoa-don-dich-vu'], function () {
         Route::get('', 'Admin\HoaDonDichVuController@index')->name('danhSachHDDV');
-        Route::get('them', 'Admin\HoaDonDichVuController@create')->name('themHDDV');
+        Route::get('chon-thoi-gian', 'Admin\HoaDonDichVuController@chonThoiGian')->name('chonThoiGian');
+        Route::get('chon-khu', 'Admin\HoaDonDichVuController@chonKhu')->name('chonKhu');
     });
 });
 
