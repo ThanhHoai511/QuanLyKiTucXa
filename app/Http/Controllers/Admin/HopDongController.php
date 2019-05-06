@@ -70,22 +70,21 @@ class HopDongController extends Controller
         return DB::transaction(function () use ($request) {
             $hopDong = $this->hopDongService->store($request);
             $sinhVien = $this->sinhVienService->getById($hopDong->ma_sv_utc);
-            $password = "";
+            $email = $sinhVien->email;
             if (!$this->taiKhoanService->findByEmail($sinhVien->email)) {
-                $password = $this->taiKhoanService->store($sinhVien->email);
-                Mail::send('admin.mails.user_success', 
-                array('name'=> $sinhVien->ho_ten, 'username' => $sinhVien->email, 'password'=> $password), function($message)
+                $taiKhoan = $this->taiKhoanService->store($sinhVien->email, config('constants.KHONG_DUOC_TRUY_CAP'));
+                Mail::send('admin.mails.user_success',
+                array('name'=> $sinhVien->ho_ten, 'username' => $email, 'password'=> $taiKhoan[1]), function($message) use($email)
                 {
-                    $message->to($username)->subject('Ki tuc xa Dai hoc Giao thong van tai');
+                    $message->to($email)->subject('Kí túc xá Đại học Giao thông vận tải');
                 });
             } else {
                 Mail::send('admin.mails.dang-ki-success', 
-                array('name'=> $sinhVien->ho_ten), function($message)
+                array('name'=> $sinhVien->ho_ten, 'username' => $sinhVien->email), function($message) use ($email)
                 {
-                    $message->to($username)->subject('Ki tuc xa Dai hoc Giao thong van tai');
+                    $message->to($email)->subject('Kí túc xá Đại học Giao thông vận tải');
                 });
             }
-            
             
             $this->donDangKiService->updateStatus($request->don_dang_ky);
             $this->phongService->incrementSLSinhVien($hopDong->ma_phong);

@@ -16,3 +16,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group([
+    'namespace' => 'API',
+    'prefix' => 'v1',
+    'middleware' => ['web']
+], function () {
+    Route::group([
+        'namespace' => 'Phong',
+        'prefix' => 'phong',
+    ], function () {
+        Route::get('get-by-khu-nha', 'GetPhongByKhuNha@main');
+    });
+});

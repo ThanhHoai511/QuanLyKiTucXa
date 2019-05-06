@@ -26,12 +26,13 @@ class NhanVienService
     public function create($request)
     {
         return DB::transaction(function () use ($request) {
-            $taiKhoan = $this->taiKhoanService->store($request->email);
-            $nhanVien = $this->store($request, $taiKhoan->id);
+            $taiKhoan = $this->taiKhoanService->store($request->email, config('constants.DUOC_TRUY_CAP'));
+            $nhanVienMoi = $this->store($request, $taiKhoan[0]->id);
+            $email = $nhanVienMoi->email;
             Mail::send('admin.mails.user_success', 
-                array('name'=> $nhanvien->ho_ten, 'username' => $nhanvien->email, 'password'=> $password), function($message)
+                array('name'=> $nhanVienMoi->ho_ten, 'username' => $email, 'password'=> $taiKhoan[1]), function($message) use ($email)
                 {
-                    $message->to($username)->subject('Ki tuc xa Dai hoc Giao thong van tai');
+                    $message->to($email)->subject('Kí túc xá trường Đaị học Giao thông vận tải');
                 });
         });
     }
