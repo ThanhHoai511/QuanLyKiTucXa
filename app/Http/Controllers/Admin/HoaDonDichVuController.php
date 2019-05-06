@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Services\DichVuService;
 use App\Services\HoaDonDichVuService;
+use App\Services\KhuNhaServices;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,11 +12,17 @@ class HoaDonDichVuController extends Controller
 {
     protected $hoaDonDichVuService;
     protected $dichVuService;
+    protected $khuNhaService;
 
-    public function __construct(HoaDonDichVuService $hoaDonDichVuService, DichVuService $dichVuService)
+    public function __construct(
+        HoaDonDichVuService $hoaDonDichVuService,
+        DichVuService $dichVuService,
+        KhuNhaServices $khuNhaService
+    )
     {
         $this->hoaDonDichVuService = $hoaDonDichVuService;
         $this->dichVuService = $dichVuService;
+        $this->khuNhaService = $khuNhaService;
     }
     /**
      * Display a listing of the resource.
@@ -34,11 +41,15 @@ class HoaDonDichVuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function chonKhu(Request $request)
     {
-        $dichVu = $this->dichVuService->getAll();
+        $khuNha = $this->khuNhaService->getAll();
+        return view('admin.hoadondichvu.chon-khu-nha', ['request' => $request, 'khuNha' => $khuNha]);
+    }
 
-        return view('admin.hoadondichvu.cap-nhat', ['dichVu' => $dichVu]);
+    public function chonThoiGian()
+    {
+        return view('admin.hoadondichvu.cap-nhat');
     }
 
     /**
