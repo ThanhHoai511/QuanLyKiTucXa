@@ -11,15 +11,30 @@
 |
 */
 
-Route::get('', 'User\HomeController@index')->name('home');
+//, 'middleware' => ['isAdmin', 'auth'], 'guard' => 'admin'
+Route::group(['prefix' => ''], function () {
+    Route::get('', 'User\HomeController@index')->name('trang-chu');
 
-Route::get('don-dang-ky', 'User\HomeController@donDangKy')->name('don-dang-ky');
-Route::post('don-dang-ky', 'User\HomeController@guiDonDangKy');
+    Route::get('don-dang-ky', 'User\HomeController@donDangKy')->name('don-dang-ky');
+    Route::post('don-dang-ky', 'User\HomeController@guiDonDangKy');
 
-Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function () {
+    Route::get('don-xin-huy', 'User\HomeController@donXinHuy')->name('don-xin-huy');
+    Route::post('don-xin-huy', 'User\HomeController@guiDonXinHuy');
+});
+
+Route::group(['prefix' => 'admin'], function () {
    Route::get('/', function () {
       return view('admin.layouts.home'); 
    })->name('admin.home');
+
+    Route::group(['prefix' => 'chuc-vu'], function () {
+        Route::get('', 'Admin\ChucVuController@index')->name('danhSachChucVu');
+        Route::get('them', 'Admin\ChucVuController@create')->name('themChucVu');
+        Route::post('them', 'Admin\ChucVuController@store');
+        Route::get('sua/{id}', 'Admin\ChucVuController@edit')->name('suaChucVu');
+        Route::post('sua/{id}', 'Admin\ChucVuController@update');
+        Route::get('xoa/{id}', 'Admin\ChucVuController@destroy')->name('xoaChucVu');
+    });
 
    Route::group(['prefix' => 'khu-nha'], function () {
       Route::get('', 'Admin\KhuNhaController@index')->name('danhSachKhuNha');
@@ -119,6 +134,7 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function () {
 
     Route::group(['prefix' => 'hoa-don-dich-vu'], function () {
         Route::get('', 'Admin\HoaDonDichVuController@index')->name('danhSachHDDV');
+        Route::get('them', 'Admin\HoaDonDichVuController@create')->name('themHDDV');
     });
 });
 

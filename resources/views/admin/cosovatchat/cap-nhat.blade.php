@@ -6,16 +6,15 @@
     <script src="{{ asset('backend/dist/js/csvc.js') }}"></script>
     <div class="box box-info">
         <div class="box-header">
-            <h3 style="text-align: center; tab-size: 25px;">Cập nhật cơ sở vật chất</h3>
+            @if(isset($csvcUpdate))
+                <h3 style="text-align: center; tab-size: 25px;">Sửa cơ sở vật chất</h3>
+            @elseif
+                <h3 style="text-align: center; tab-size: 25px;">Thêm cơ sở vật chất</h3>
+            @endif
         </div>
         @include('admin.layouts.flash-msg')
         <div class="box-body">
             <form method="post" role="form" id="form">
-                <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
-                    @if(isset($csvc))
-                        <a href="{{ route('xoaCSVC', [$csvc->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
-                    @endif
-                </div>
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="ten">Tên <span class="error">*</span>: </label>
@@ -36,6 +35,9 @@
                 </div>
                 <div class="box-footer clearfix" style="margin:0 300px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
+                    @if(isset($csvc))
+                        <a href="{{ route('xoaCSVC', [$csvc->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                    @endif
                     <a href="{{ route('danhSachCSVC') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>

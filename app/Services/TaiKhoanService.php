@@ -19,14 +19,15 @@ class TaiKhoanService
         return $this->taiKhoan->paginate(15);
     }
 
-    public function store($email)
+    public function store($email, $isAccess)
     {
         $this->taiKhoan->email = $email;
         $password = explode('@', $email)[0] . "123";
         $this->taiKhoan->password = Hash::make($password);
         $this->taiKhoan->status = config('constants.HOAT_DONG');
+        $this->taiKhoan->is_access = $isAccess;
         $this->taiKhoan->save();
-        return $this->taiKhoan;
+        return [$this->taiKhoan, $password];
     }
 
     public function update($params)
@@ -44,5 +45,10 @@ class TaiKhoanService
     public function getById($id)
     {
         return $this->taiKhoan->findOrFail($id);
+    }
+
+    public function findByEmail($email)
+    {
+        return $this->taiKhoan->where('email', $email)->first();
     }
 }

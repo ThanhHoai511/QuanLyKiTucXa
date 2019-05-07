@@ -13,7 +13,7 @@
                     <option value="">--Chọn loại tin--</option>
                     <option value="{{ config('constants.TIN_TUC') }}" {{ isset($params['loai']) ? ($params['loai'] == config('constants.TIN_TUC') ? 'selected' : '') : '' }}>Tin tức</option>
                     <option value="{{ config('constants.GIOI_THIEU') }}" {{ isset($params['loai']) ? ($params['loai'] == config('constants.GIOI_THIEU') ? 'selected' : '') : '' }}>Giới thiệu</option>
-                    <option value="{{ config('constants.NHAN_S') }}" {{ isset($params['loai']) ? ($params['loai'] == config('constants.NHAN_SU') ? 'selected' : '') : '' }}>Bộ máy quản lý</option>
+                    <option value="{{ config('constants.NHAN_SU') }}" {{ isset($params['loai']) ? ($params['loai'] == config('constants.NHAN_SU') ? 'selected' : '') : '' }}>Bộ máy quản lý</option>
                 </select>
             </div>
             <div class="col-md-8 pull-right">
@@ -69,8 +69,6 @@
 {{--                            <button style="@if($tt->trang_thai == 1) display: none @endif" class="btn btn-success col-md-6" name="approve" id='approve-btn-{{ $tt->id  }}'>Phê duyệt</button>--}}
 {{--                            <button style="@if($tt->trang_thai == 0) display: none @endif" class="btn btn-primary col-md-6" name="decline" id='decline-btn-{{ $tt->id  }}'>Từ chối</button>--}}
 {{--                        </form>--}}
-                    </td>
-                    <td>
                     </td>
                     <td>
                         <a href="{{ route('suaTinTuc', [$tt->id]) }}"><button class="btn btn-primary">Sửa</button></a>

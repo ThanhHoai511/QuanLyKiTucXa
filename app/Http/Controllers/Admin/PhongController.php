@@ -58,7 +58,7 @@ class PhongController extends Controller
      */
     public function store(PhongRequest $request)
     {
-        $this->phongService->store($request);
+        $this->phongService->createPhong($request);
 
         return redirect()->route('danhSachPhong')->with('success', 'Thêm phòng thành công!');
     }

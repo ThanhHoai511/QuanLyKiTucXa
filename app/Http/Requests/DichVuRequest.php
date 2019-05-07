@@ -38,8 +38,6 @@ class DichVuRequest extends FormRequest
             'gia.numeric' => 'Bạn chỉ được nhập số vào giá'
         ];
     }
-<<<<<<< HEAD
-=======
 
     public function prepareForValidation()
     {
@@ -47,5 +45,4 @@ class DichVuRequest extends FormRequest
             'gia' => str_replace(',', '', $this->get('gia')),
         ]);
     }
->>>>>>> 22ea7168de7a5fd7a6fb74e677e498ce01bd9f9b
 }

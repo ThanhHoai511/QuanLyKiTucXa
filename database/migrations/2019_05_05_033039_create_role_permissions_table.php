@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTinhTrangToDonxinnoitruTable extends Migration
+class CreateRolePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddTinhTrangToDonxinnoitruTable extends Migration
      */
     public function up()
     {
-        Schema::table('donxinnoitru', function (Blueprint $table) {
-            $table->tinyInteger('tinh_trang')->default(0);
+        Schema::create('role_permissions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('permission_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddTinhTrangToDonxinnoitruTable extends Migration
      */
     public function down()
     {
-        Schema::table('donxinnoitru', function (Blueprint $table) {
-            $table->dropColumn('tinh_trang');
-        });
+        Schema::dropIfExists('role_permissions');
     }
 }

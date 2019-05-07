@@ -19,10 +19,11 @@
             <div class="row align-items-center justify-content-between container">
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="{{ route('home') }}">Trang chủ</a></li>
+                        <li class="menu-active"><a href="{{ route('trang-chu') }}">Trang chủ</a></li>
                         <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">Bộ máy quản lý</a></li>
+                        <li><a href="#">Ban quản lý</a></li>
                         <li><a href="{{ route('don-dang-ky') }}">Đăng ký nội trú</a></li>
+                        <li><a href="{{ route('don-xin-huy') }}">Đơn xin chấm dứt hợp đồng</a></li>
                         <li><a href="#">Liên hệ</a></li>
                     </ul>
                 </nav><!-- #nav-menu-container -->

@@ -1,6 +1,45 @@
+<p style="color: white">---------- Quản lý tài khoản ------------------</p>
 <li class="treeview">
     <a href="#">
-        <i class="fa fa-files-o"></i>
+        <i class="fa fa-adjust"></i>
+        <span>Chức vụ</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachChucVu') }}"><i class="fa fa-circle-o"></i>Danh sách các chức vụ</a></li>
+        <li><a href="{{ route('themChucVu') }}"><i class="fa fa-circle-o"></i>Thêm chức vụ</a></li>
+    </ul>
+</li>
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-folder"></i> <span>Nhân Viên</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachNhanVien') }}"><i class="fa fa-circle-o"></i> Danh sách nhân viên</a></li>
+        <li><a href="{{ route('themNhanVien') }}"><i class="fa fa-circle-o"></i> Thêm nhân viên</a></li>
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-share"></i> <span>Tài khoản</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachTaiKhoan') }}"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
+    </ul>
+</li>
+<p style="color:white;">---------- Quản lý cơ sở vật chất-----------------</p>
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-home"></i>
         <span>Khu nhà</span>
         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -26,15 +65,14 @@
 </li>
 <li class="treeview">
     <a href="#">
-        <i class="fa fa-laptop"></i>
-        <span>Tin tức</span>
+        <i class="fa fa-calendar"></i> <span>Cơ sở vật chất</span>
         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachTinTuc') }}"><i class="fa fa-circle-o"></i>Danh sách tin tức</a></li>
-        <li><a href="{{ route('themTinTuc') }}"><i class="fa fa-circle-o"></i>Thêm tin tức</a></li>
+        <li><a href="{{ route('danhSachCSVC') }}"><i class="fa fa-circle-o"></i> Danh sách cơ sở vật chất</a></li>
+        <li><a href="{{ route('themCSVC') }}"><i class="fa fa-circle-o"></i> Thêm cơ sở vật chất</a></li>
     </ul>
 </li>
 <li class="treeview">
@@ -49,6 +87,22 @@
         <li><a href="{{ route('themPhong') }}"><i class="fa fa-circle-o"></i> Thêm phòng</a></li>
     </ul>
 </li>
+<p style="color:white;">---------- Quản lý tin tức-------------------------</p>
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-newspaper-o"></i>
+        <span>Tin tức</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachTinTuc') }}"><i class="fa fa-circle-o"></i>Danh sách tin tức</a></li>
+        <li><a href="{{ route('themTinTuc') }}"><i class="fa fa-circle-o"></i>Thêm tin tức</a></li>
+    </ul>
+</li>
+
+<p style="color: white">---------- Quản lý hóa đơn ---------------------</p>
 <li class="treeview">
     <a href="#">
         <i class="fa fa-table"></i> <span>Dịch vụ</span>
@@ -63,42 +117,17 @@
 </li>
 <li class="treeview">
     <a href="#">
-        <i class="fa fa-calendar"></i> <span>Cơ sở vật chất</span>
-        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-    </a>
-    <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachCSVC') }}"><i class="fa fa-circle-o"></i> Danh sách cơ sở vật chất</a></li>
-        <li><a href="{{ route('themCSVC') }}"><i class="fa fa-circle-o"></i> Thêm cơ sở vật chất</a></li>
-    </ul>
-</li>
-
-<li class="treeview">
-    <a href="#">
-        <i class="fa fa-folder"></i> <span>Nhân Viên</span>
+        <i class="fa fa-book"></i> <span>Hóa đơn dịch vụ</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachNhanVien') }}"><i class="fa fa-circle-o"></i> Danh sách nhân viên</a></li>
-        <li><a href="{{ route('themNhanVien') }}"><i class="fa fa-circle-o"></i> Thêm nhân viên</a></li>
+        <li><a href="{{ route('danhSachHDDV') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn dịch vụ</a></li>
+        <li><a href="{{ route('themHDDV') }}"><i class="fa fa-circle-o"></i> Thêm hóa đơn dịch vụ</a></li>
     </ul>
 </li>
-
-<li class="treeview">
-    <a href="#">
-        <i class="fa fa-share"></i> <span>Tài khoản</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachTaiKhoan') }}"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
-    </ul>
-</li>
-
+<p style="color: white">---------- Quản lý hợp đồng ------------------</p>
 <li class="treeview">
     <a href="#">
         <i class="fa fa-user"></i> <span>Sinh viên</span>
@@ -123,6 +152,7 @@
         <li><a href="{{ route('danhSachDonDangKy') }}"><i class="fa fa-circle-o"></i> Danh sách đơn đăng ký</a></li>
     </ul>
 </li>
+@can('managing_agreement', Auth::user())
 <li class="treeview">
     <a href="#">
         <i class="fa fa-amazon"></i> <span>Hợp đồng</span>
@@ -134,15 +164,5 @@
         <li><a href="{{ route('danhSachHopDong') }}"><i class="fa fa-circle-o"></i> Danh sách hợp đồng</a></li>
     </ul>
 </li>
+@endcan
 
-<li class="treeview">
-    <a href="#">
-        <i class="fa fa-address-book"></i> <span>Hóa đơn dịch vụ</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachHDDV') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn dịch vụ</a></li>
-    </ul>
-</li>
