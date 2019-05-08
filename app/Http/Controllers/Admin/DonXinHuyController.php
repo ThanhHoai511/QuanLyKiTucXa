@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 class DonXinHuyController extends Controller
 {
+    protected $donXinHuyService;
     /**
      * Display a listing of the resource.
      *
