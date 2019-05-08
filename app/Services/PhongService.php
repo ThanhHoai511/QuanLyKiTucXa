@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\KhuNha;
+use App\Models\LoaiPhong;
 use App\Models\Phong;
 use App\Models\PhongCSVC;
 use Illuminate\Support\Facades\DB;
@@ -95,27 +97,36 @@ class PhongService
 
     public function storeFromExcel($request)
     {
-        dd($request->file_excel);
         $phong = Excel::load($request->file_excel, function () {
         })->get()->toArray();
         if (empty($phong)) {
             return false;
         }
         $insert = [];
+        $errorCount = 0;
         foreach ($phong as $phong) {
             if (trim($phong['ten'])== '') {
                 break;
             }
             if (Phong::where('ten', $phong['ten'])->where('ma_khu', $request->khu_nha)->exists()) {
+                $errorCount++;
+                continue;
+            }
+            if (KhuNha::where('id', $phong['khu_nha'])->first() == null) {
+                $errorCount++;
+                continue;
+            }
+            if (LoaiPhong::where('id', $phong['loai_phong'])->first() == null) {
+                $errorCount++;
                 continue;
             }
             $insert[] = ['ten' => $phong['ten'],
-                'ma_khu' => $request->khu_nha,
+                'ma_khu' => $phong['khu_nha'],
                 'so_luong_sv_hien_tai' => 0,
-                'ma_loai_phong' => $request->loai_phong];
+                'ma_loai_phong' => $phong['loai_phong']];
         }
         Phong::insert($insert);
-        return true;
+        return ['loi' => $errorCount, 'thanh-cong' => count($insert)];
     }
 
     public function getPhongByCondition($doiTuong, $maLP)

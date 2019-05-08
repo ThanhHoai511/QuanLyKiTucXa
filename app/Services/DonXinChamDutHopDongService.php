@@ -16,7 +16,7 @@ class DonXinChamDutHopDongService
 
     public function store($request)
     {
-        $this->donXinHuy->ma_sv_utc = Auth::id();
+        $this->donXinHuy->ma_sv_utc = 1;
         $this->donXinHuy->ma_phong = $request->ma_phong;
         $this->donXinHuy->trang_thai = config('constants.DANG_CHO_HUY');
         $this->donXinHuy->save();
