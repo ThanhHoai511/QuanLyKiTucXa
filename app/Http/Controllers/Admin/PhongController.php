@@ -74,7 +74,7 @@ class PhongController extends Controller
     {
         $result = $this->phongService->storeFromExcel($request);
         if ($result) {
-            return redirect()->route('danhSachPhong')->with('success', 'Thêm phòng từ file excel thành công!');
+            return redirect()->route('danhSachPhong')->with('success', 'Thêm phòng từ file excel thành công!' . $request[0] . ' thất bại, ', $request[1] . ' thành công!');
         }
         return redirect()->route('danhSachPhong')->with('warning', 'Thêm phòng từ file excel không thành công!');
     }

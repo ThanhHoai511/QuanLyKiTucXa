@@ -7,7 +7,8 @@
         </div>
 
         <div class="box-body">
-            <form method="get" role="form" id="form">
+            <form method="get" href="/admin/hoa-don-dich-vu/chon-phong" role="form" id="form">
+                {{ csrf_field() }}
                 <div class="form-group col-md-12">
                     <div class="col-md-6">
                         <label for="ngay_bat_dau">Ngày bắt đầu <span class="error">*</span>: </label>
@@ -20,7 +21,7 @@
                         <span id="errNgayKetThuc" class="error"></span>
                     </div>
                 </div>
-                <div class="box-footer clearfix" style="margin:10px 300px;">
+                <div class="box-footer clearfix" style="margin:10px 400px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">
                             Tiếp tục
                     </button>
