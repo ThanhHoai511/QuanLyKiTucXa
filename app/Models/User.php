@@ -27,7 +27,7 @@ class User extends Authenticatable
 
     public function nhanvien()
     {
-        return $this->belongsTo('App\Models\NhanVien');
+        return $this->hasOne('App\Models\NhanVien');
     }
 
     public function roles()

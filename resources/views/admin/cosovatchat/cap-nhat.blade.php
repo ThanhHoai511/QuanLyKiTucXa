@@ -8,7 +8,7 @@
         <div class="box-header">
             @if(isset($csvcUpdate))
                 <h3 style="text-align: center; tab-size: 25px;">Sửa cơ sở vật chất</h3>
-            @elseif
+            @else 
                 <h3 style="text-align: center; tab-size: 25px;">Thêm cơ sở vật chất</h3>
             @endif
         </div>
@@ -17,9 +17,11 @@
             <form method="post" role="form" id="form">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="ten">Tên <span class="error">*</span>: </label>
-                    <input type="text" class="form-control" id="ten" name="ten" placeholder="Nhập tên cơ sở vật chất" value="{{ isset($csvc) ? $csvc->ten : old('ten') }}">
-                    <span id="errorTen" class="error"></span>
+                    <div class="col-md-12">
+                        <label for="ten">Tên <span class="error">*</span>: </label>
+                        <input type="text" class="form-control" id="ten" name="ten" placeholder="Nhập tên cơ sở vật chất" value="{{ isset($csvc) ? $csvc->ten : old('ten') }}">
+                        <span id="errorTen" class="error"></span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 form-group">

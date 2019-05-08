@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="container-fluid" style="background-color: #04091e">
-        <div class="container main-menu" id="main-menu" style="padding-left: 50px;">
+        <div class="container main-menu" id="main-menu">
             <div class="row align-items-center justify-content-between container">
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
@@ -23,8 +23,7 @@
                         <li><a href="#">Giới thiệu</a></li>
                         <li><a href="#">Ban quản lý</a></li>
                         <li><a href="{{ route('don-dang-ky') }}">Đăng ký nội trú</a></li>
-                        <li><a href="{{ route('don-xin-huy') }}">Đơn xin chấm dứt hợp đồng</a></li>
-                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="{{ route('don-xin-huy') }}">Đơn chấm dứt hợp đồng</a></li>
                     </ul>
                 </nav><!-- #nav-menu-container -->
                 <div class="navbar-right">

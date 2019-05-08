@@ -124,7 +124,7 @@
     </a>
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachHDDV') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn dịch vụ</a></li>
-        <li><a href="{{ route('chonThoiGian') }}"><i class="fa fa-circle-o"></i> Thêm hóa đơn dịch vụ</a></li>
+        <li><a href="{{ route('themHDDV') }}"><i class="fa fa-circle-o"></i> Thêm hóa đơn dịch vụ</a></li>
     </ul>
 </li>
 <p style="color: white">---------- Quản lý hợp đồng ------------------</p>
