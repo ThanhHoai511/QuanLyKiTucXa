@@ -122,6 +122,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('chon-phong/don-dang-ki={id}', 'Admin\DonXinNoiTruController@showPhong')->name('danhSachPhongChon');
     });
 
+    Route::group(['prefix' => 'don-xin-huy'], function () {
+        Route::get('', 'Admin\DonXinHuyController@index')->name('danhSachDonXinHuy');
+    });
+
     Route::group(['prefix' => 'hop-dong'], function () {
         Route::get('', 'Admin\HopDongController@index')->name('danhSachHopDong');
         Route::get('don-dang-ky={id}&phong={idPhong}', 'Admin\HopDongController@create')->name('taoHopDong');
@@ -134,8 +138,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'hoa-don-dich-vu'], function () {
         Route::get('', 'Admin\HoaDonDichVuController@index')->name('danhSachHDDV');
-        Route::get('chon-thoi-gian', 'Admin\HoaDonDichVuController@chonThoiGian')->name('chonThoiGian');
-        Route::get('chon-khu', 'Admin\HoaDonDichVuController@chonKhu')->name('chonKhu');
+        Route::get('them', 'Admin\HoaDonDichVuController@create')->name('themHDDV');
+        Route::post('them', 'Admin\HoaDonDichVuController@store');
     });
 });
 

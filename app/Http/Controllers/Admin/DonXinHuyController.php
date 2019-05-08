@@ -2,38 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Services\DichVuService;
-use App\Services\HoaDonDichVuService;
-use App\Services\KhuNhaServices;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class HoaDonDichVuController extends Controller
+class DonXinHuyController extends Controller
 {
-    protected $hoaDonDichVuService;
-    protected $dichVuService;
-    protected $khuNhaService;
-
-    public function __construct(
-        HoaDonDichVuService $hoaDonDichVuService,
-        DichVuService $dichVuService,
-        KhuNhaServices $khuNhaService
-    )
-    {
-        $this->hoaDonDichVuService = $hoaDonDichVuService;
-        $this->dichVuService = $dichVuService;
-        $this->khuNhaService = $khuNhaService;
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $hoaDon = $this->hoaDonDichVuService->index($request->thang, $request->nam);
-
-        return view('admin.hoadondichvu.danh-sach', ['hoaDon' => $hoaDon]);
+        //
     }
 
     /**
@@ -43,11 +24,8 @@ class HoaDonDichVuController extends Controller
      */
     public function create()
     {
-        $khuNha = $this->khuNhaService->getAll();
-        $dichVu = $this->dichVuService->getAll();
-        return view('admin.hoadondichvu.cap-nhat', ['khuNha' => $khuNha, 'dichVu' => $dichVu]);
+        //
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -57,9 +35,7 @@ class HoaDonDichVuController extends Controller
      */
     public function store(Request $request)
     {
-        $this->hoaDonDichVuService->store($request);
-
-        return redirect()->back()->with('success', 'Tao hoa don thanh cong!');
+        //
     }
 
     /**

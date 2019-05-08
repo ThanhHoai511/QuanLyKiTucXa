@@ -13,7 +13,7 @@
             </div>
             <form method="POST" enctype="multipart/form-data" id="form">
                 {{ csrf_field() }}
-                <div class="col-md-12 row" style="margin-bottom:20px;">
+                <div class="col-md-12" style="margin-bottom:20px;">
                     <label for="file_excel">Chọn file: </label>
                     <input type="file" class="form-control" id="file_excel" name="file_excel" placeholder="Chọn file" accept=".xlsx, .xls, .csv">
                     <span class="error" id="errFile"></span>

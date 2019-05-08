@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Services\NhanVienService;
+use App\Services\ChucVuService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class NhanVienController extends Controller
 {
     protected $nhanVienService;
+    protected $chucVuService;
 
-    public function __construct(NhanVienService $nhanVienService)
+    public function __construct(NhanVienService $nhanVienService, ChucVuService $chucVuService)
     {
         $this->nhanVienService = $nhanVienService;
+        $this->chucVuService = $chucVuService;
     }
 
     /**
@@ -34,7 +37,8 @@ class NhanVienController extends Controller
      */
     public function create()
     {
-        return view('admin.nhanvien.cap-nhat');
+        $chucVu = $this->chucVuService->getAll();
+        return view('admin.nhanvien.cap-nhat', ['chucVu' => $chucVu]);
     }
 
     /**

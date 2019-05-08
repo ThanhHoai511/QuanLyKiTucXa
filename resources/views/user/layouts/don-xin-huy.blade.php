@@ -9,7 +9,7 @@
     <div class="container col-md-8" style="height: 550px;">
         @include('admin.layouts.flash-msg')
         <h3 style="text-align: center; margin:20px;">Đơn xin chấm dứt hợp đồng</h3>
-        <form class="col-md-12" method="POST" id="form">
+        <form class="col-md-12" method="POST" id="form" action="">
             {{ csrf_field() }}
             <div class="row">
                 <div class="form-group col-md-6">

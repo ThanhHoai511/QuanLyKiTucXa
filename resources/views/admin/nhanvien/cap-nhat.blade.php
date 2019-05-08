@@ -15,17 +15,22 @@
             <form method="post" role="form" id="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="ten">Họ và tên: <span class="error">*</span></label>
-                    <input type="text" class="form-control" id="ho_ten" name="ho_ten" placeholder="Nhập họ tên nhân viên" value="{{ isset($nhanVienUpdate) ? $nhanVienUpdate->ho_ten : old('ho_ten') }}">
-                    <span id="errorTen" class="error"></span>
+                    <div class="col-md-12">
+                        <label for="ten">Họ và tên: <span class="error">*</span></label>
+                        <input type="text" class="form-control" id="ho_ten" name="ho_ten" placeholder="Nhập họ tên nhân viên" value="{{ isset($nhanVienUpdate) ? $nhanVienUpdate->ho_ten : old('ho_ten') }}">
+                        <span id="errorTen" class="error"></span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="chuc_vu">Chức vụ: <span class="error">*</span></label>
-                    <select name="chuc_vu" id="chuc_vu" class="form-control">
-
-                    </select>
-                    <input type="text" class="form-control" id="chuc_vu" name="chuc_vu" placeholder="Nhập chức vụ nhân viên" value="{{ isset($nhanVienUpdate) ? $nhanVienUpdate->chuc_vu : old('chuc_vu') }}">
-                    <span id="errorChucVu" class="error"></span>
+                    <div class="col-md-12">
+                        <label for="chuc_vu">Chức vụ: <span class="error">*</span></label>
+                        <select name="chuc_vu" id="chuc_vu" class="form-control">
+                            @foreach($chucVu as $cv)
+                                <option value="{{ $cv->id }}">{!! $cv->name !!}</option>
+                            @endforeach
+                        </select>
+                        <span id="errorChucVu" class="error"></span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
@@ -40,12 +45,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="mo_ta">Mô tả: <span class="error">*</span></label>
-                    <textarea name="mo_ta" id="" cols="30" rows="10" class="form-control">
-                        @if(isset($nhanVienUpdate))
-                            {!! $nhanVienUpdate->mo_ta !!}
-                        @endif
-                    </textarea>
+                    <div class="col-md-12">
+                        <label for="mo_ta">Mô tả: <span class="error">*</span></label>
+                        <textarea name="mo_ta" id="" cols="30" rows="10" class="form-control">
+                            @if(isset($nhanVienUpdate))
+                                {!! $nhanVienUpdate->mo_ta !!}
+                            @endif
+                        </textarea>
+                    </div>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="hinh_anh">Hình ảnh: <span class="error">*</span></label>

@@ -13,28 +13,6 @@
             </div>
             <form method="POST" enctype="multipart/form-data" id="form">
                 {{ csrf_field() }}
-                <div class="col-md-12 row">
-                    <div class="col-md-6 form-group">
-                        <label for="khu_nha">Chọn khu nhà</label>
-                        <select name="khu_nha" id="khu_nha" class="form-control">
-                            <option value="">--Chọn khu nhà--</option>
-                            @foreach($khuNha as $kn)
-                                <option value="{{ $kn->id }}">{!! $kn->ten !!}</option>
-                            @endforeach
-                        </select>
-                        <span class="error" id="errKhuNha"></span>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label for="loai_phong">Chọn loại phòng</label>
-                        <select name="loai_phong" id="loai_phong" class="form-control">
-                            <option value="">--Chọn loại phòng--</option>
-                            @foreach($loaiPhong as $lp)
-                                <option value="{{ $lp->id }}">{!! $lp->ten !!}</option>
-                            @endforeach
-                        </select>
-                        <span class="error" id="errLoaiPhong"></span>
-                    </div>
-                </div>
                 <div class="col-md-12 form-group">
                     <label for="file_excel">Chọn file: </label>
                     <input type="file" class="form-control" id="file_excel" name="file_excel" placeholder="Chọn file" accept=".xlsx, .xls, .csv">
