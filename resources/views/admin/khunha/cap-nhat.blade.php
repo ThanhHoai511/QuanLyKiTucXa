@@ -4,7 +4,13 @@
     <script src="{{ asset('backend/dist/js/khunha.js') }}"></script>
     <div class="box box-info">
         <div class="box-header">
-            <h3 style="text-align: center; tab-size: 25px;">Cập nhật khu nhà</h3>
+            <h3 style="text-align: center; tab-size: 25px;">
+                @if(isset($khuNhaUpdate))
+                    Sửa thông tin khu nhà
+                @else
+                    Thêm khu nhà
+                @endif
+            </h3>
         </div>
         @include('admin.layouts.flash-msg')
         <div class="box-body">
@@ -35,7 +41,7 @@
                         @endif
                     </button>
                     @if(isset($khuNhaUpdate))
-                        <a href="{{ route('xoaKhuNha', [$khuNhaUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                        <a href="{{ route('xoaKhuNha', [$khuNhaUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button type="button" class="btn btn-danger">Xóa</button></a>
                     @endif
                     <a href="{{ route('danhSachKhuNha') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>

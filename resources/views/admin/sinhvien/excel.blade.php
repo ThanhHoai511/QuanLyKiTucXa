@@ -19,7 +19,7 @@
                     <span class="error" id="errFile"></span>
                 </div>
                 <div class="box-footer clearfix" style="margin:20px 300px;">
-                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
+                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Thêm</button>
                     <a href="{{ route('danhSachSinhVien') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>

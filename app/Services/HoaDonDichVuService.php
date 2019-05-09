@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class HoaDonDichVuService
 {
     protected $hoaDonDichVu;
+    protected $phongService;
 
-    public function __construct(HoaDonDichVu $hoaDonDichVu)
+    public function __construct(HoaDonDichVu $hoaDonDichVu, PhongService $phongService)
     {
         $this->hoaDonDichVu = $hoaDonDichVu;
+        $this->phongService = $phongService;
     }
 
     public function index($thang = "", $nam = "")
@@ -33,11 +35,12 @@ class HoaDonDichVuService
         $this->hoaDonDichVu->so_tieu_thu_cho_phep = $request->so_tieu_thu_cho_phep;
         $this->hoaDonDichVu->chu_thich = $request->chu_thich;
         $this->hoaDonDichVu->ma_phong = $request->ma_phong;
+        $soSinhVien = $this->phongService->getSLSVHienTai($request->ma_phong);
         $this->hoaDonDichVu->chi_so_dau = $request->chi_so_dau;
         $this->hoaDonDichVu->chi_so_cuoi = $request->chi_so_cuoi;
         $this->hoaDonDichVu->ma_dich_vu = $request->ma_dich_vu;
         $this->hoaDonDichVu->nhan_vien_tao = 1;
-        $soTieuThu = $request->chi_so_cuoi - $request->chi_so_dau - $request->so_tieu_thu_cho_phep;
+        $soTieuThu = $request->chi_so_cuoi - $request->chi_so_dau - ($request->so_tieu_thu_cho_phep * $soSinhVien);
         if ($soTieuThu <= 0) {
             $this->hoaDonDichVu->tong_tien = 0;
         } else {

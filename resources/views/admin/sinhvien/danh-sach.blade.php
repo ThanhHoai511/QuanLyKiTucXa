@@ -2,7 +2,7 @@
 
 @section('content')
     <h3 style="text-align:center;">Danh sách sinh viên</h3>
-    <a href="{{ route('themCSVCExcel') }}"><button class="btn btn-google" style="margin-bottom: 20px;">Thêm từ file</button></a>
+    <a href="{{ route('themExcel') }}"><button class="btn btn-google" style="margin-bottom: 20px;">Thêm từ file</button></a>
     <form class="form-inline active-cyan-4 pull-right" action="{{ route('danhSachSinhVien') }}" method="get">
         <input class="form-control form-control-sm mr-3 w-75" name="search" type="text" placeholder="Tìm kiếm" aria-label="Search" style="border-radius:3px;">
         <button type="submit" class="btn btn-primary">Tìm kiếm</button>

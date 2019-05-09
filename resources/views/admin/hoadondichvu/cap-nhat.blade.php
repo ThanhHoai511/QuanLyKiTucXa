@@ -21,7 +21,7 @@
                         <span class="error" id="errKhuNha"></span>
                     </div>
                     <div class="col-md-6">
-                        <label for="ma_phong">Chọn phong </label>
+                        <label for="ma_phong">Chọn phòng </label>
                         <select name="ma_phong" id="ma_phong" class="form-control">
                         </select>
                         <span class="error" id="errPhong"></span>
@@ -30,7 +30,7 @@
                 <div class="form-group col-md-12">
                     <div class="col-md-6">
                         <label for="ngay_bat_dau">Ngày bắt đầu <span class="error">*</span>: </label>
-                        <input type="date" class="form-control" name="ngay_bat_dau" id="ngay_bat_dau" value="10/02/2019">
+                        <input type="date" class="form-control" name="ngay_bat_dau" id="ngay_bat_dau" value="{{ old('ngay_bat_dau') }}">
                         <span id="errNgayBatDau" class="error"></span>
                     </div>
                     <div class="col-md-6">
@@ -41,46 +41,46 @@
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-6">
-                        <label for="chi_so_dau">Chi so dau</label>
-                        <input type="chi_so_dau" name="chi_so_dau" class="form-control" placeholder="Nhap chi so dau">
+                        <label for="chi_so_dau">Chỉ số đầu</label>
+                        <input type="chi_so_dau" name="chi_so_dau" class="form-control" placeholder="Nhập chỉ số cũ">
                         <span class="error" id="errChiSoDau"></span>
                     </div>
                     <div class="col-md-6">
-                        <label for="chi_so_cuoi">Chi so cuoi</label>
-                        <input type="chi_so_cuoi" name="chi_so_cuoi" class="form-control" placeholder="Nhap chi so cuoi">
+                        <label for="chi_so_cuoi">Chỉ số cuối</label>
+                        <input type="chi_so_cuoi" name="chi_so_cuoi" class="form-control" placeholder="Nhập chỉ số mới">
                         <span class="error" id="errChiSoCuoi"></span>
                     </div>
                 </div>
                  <div class="form-group col-md-12">
                     <div class="col-md-6">
-                        <label for="don_gia">Don gia</label>
-                        <input type="don_gia" name="don_gia" class="form-control" placeholder="Nhap don gia">
+                        <label for="don_gia">Đơn giá</label>
+                        <input type="don_gia" name="don_gia" class="form-control" placeholder="Nhập đơn giá dịch vụ">
                         <span class="error" id="errDonGia"></span>
                     </div>
                     <div class="col-md-6">
-                        <label for="so_tieu_thu_cho_phep">So tieu thu cho phep</label>
-                        <input type="so_tieu_thu_cho_phep" name="so_tieu_thu_cho_phep" class="form-control" placeholder="Nhap so tieu thu cho phep">
+                        <label for="so_tieu_thu_cho_phep">Số tiêu thụ cho phép với mỗi sinh viên</label>
+                        <input type="so_tieu_thu_cho_phep" name="so_tieu_thu_cho_phep" class="form-control" placeholder="Nhập số tiêu thụ cho phép đối với mỗi sinh viên">
                         <span class="error" id="errSoTieuThuChoPhep"></span>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-6">
-                        <label for="ma_dich_vu">Dich vu</label>
+                        <label for="ma_dich_vu">Dịch vụ</label>
                         <select name="ma_dich_vu" id="ma_dich_vu" class="form-control">
                             @foreach($dichVu as $dv)
                                 <option value="{{ $dv->id}}">{!! $dv->ten !!}</option>
-                                @endforeach
+                            @endforeach
                         </select>
                         <span class="error" id="errDichVu"></span>
                     </div>
                     <div class="col-md-6">
-                        <label for="chu_thich">Mo ta</label>
+                        <label for="chu_thich">Mô tả</label>
                         <textarea class="form-control" id="chu_thich" name="chu_thich" cols="10" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="box-footer clearfix" style="margin:10px 400px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">
-                            Them
+                            Tạo
                     </button>
                     <a href="{{ route('danhSachHDDV') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>

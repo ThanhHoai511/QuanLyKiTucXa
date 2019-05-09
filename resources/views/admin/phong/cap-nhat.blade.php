@@ -5,7 +5,7 @@
     <div class="box box-info">
         <div class="box-header">
             @if(isset($phongUpdate))
-                <h3 style="text-align: center; tab-size: 25px;">Sửa phòng</h3>
+                <h3 style="text-align: center; tab-size: 25px;">Sửa thông tin phòng</h3>
             @else
                 <h3 style="text-align: center; tab-size: 25px;">Thêm phòng</h3>
                 <div class="col-md-4">
@@ -54,7 +54,7 @@
                         @endif
                     </button>
                     @if(isset($phongUpdate))
-                        <a href="{{ route('xoaPhong', [$phongUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa phòng</button></a>
+                        <a href="{{ route('xoaPhong', [$phongUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button type="button" class="btn btn-danger">Xóa phòng</button></a>
                     @endif
                     <a href="{{ route('danhSachPhong') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>

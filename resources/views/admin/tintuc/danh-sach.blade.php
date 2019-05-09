@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
+    <h3 style="text-align:center;">Danh sách tin tức</h3>
     @include('admin.layouts.flash-msg')
     <div class="row col-md-12 form-group" style="margin-top: 10px;">
         <div class="col-md-4">

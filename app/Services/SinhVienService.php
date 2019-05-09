@@ -2,6 +2,8 @@
 namespace App\Services;
 
 use App\Models\SinhVienUTC;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SinhVienService{
@@ -32,6 +34,7 @@ class SinhVienService{
         if (empty($sinhVien)) {
             return false;
         }
+//        dd($sinhVien);
         $insert = [];
 
         foreach ($sinhVien as $sinhVien) {
@@ -43,7 +46,7 @@ class SinhVienService{
             }
             $insert[] = ['ma_sinh_vien' => $sinhVien['ma_sinh_vien'],
                 'ho_ten' => $sinhVien['ho_ten'],
-                'ngay_sinh' => $sinhVien['ngay_sinh'],
+                'ngay_sinh' => ($sinhVien['ngay_sinh']),
                 'noi_sinh' => $sinhVien['noi_sinh'],
                 'lop' => $sinhVien['lop'],
                 'khoa' => $sinhVien['khoa'],

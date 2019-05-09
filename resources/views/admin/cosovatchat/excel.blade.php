@@ -13,13 +13,13 @@
             </div>
             <form method="POST" enctype="multipart/form-data" id="form">
                 {{ csrf_field() }}
-                <div class="col-md-12 row" style="margin-bottom:20px;">
+                <div class="col-md-12" style="margin-bottom:20px;">
                     <label for="file_excel">Chọn file: </label>
                     <input type="file" class="form-control" id="file_excel" name="file_excel" placeholder="Chọn file" accept=".xlsx, .xls, .csv">
                     <span class="error" id="errFile"></span>
                 </div>
                 <div class="box-footer clearfix" style="margin:20px 300px;">
-                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
+                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Thêm</button>
                     <a href="{{ route('danhSachCSVC') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>

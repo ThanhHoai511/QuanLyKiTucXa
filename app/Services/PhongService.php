@@ -90,6 +90,12 @@ class PhongService
         $phongUpdate->save();
     }
 
+    public function getSLSVHienTai($id)
+    {
+        $phongFind = $this->getById($id);
+        return $phongFind->so_luong_sv_hien_tai;
+    }
+
     public function getById($id)
     {
         return $this->phong->findOrFail($id);
@@ -108,7 +114,7 @@ class PhongService
             if (trim($phong['ten'])== '') {
                 break;
             }
-            if (Phong::where('ten', $phong['ten'])->where('ma_khu', $request->khu_nha)->exists()) {
+            if (Phong::where('ten', $phong['ten'])->where('ma_khu', $phong['khu_nha'])->exists()) {
                 $errorCount++;
                 continue;
             }
@@ -120,10 +126,17 @@ class PhongService
                 $errorCount++;
                 continue;
             }
+            foreach ($insert as $item) {
+                if ($item['ten'] == $phong['ten'] && $item['ma_khu'] == $phong['khu_nha']) {
+                    $errorCount++;
+                    goto end;
+                }
+            }
             $insert[] = ['ten' => $phong['ten'],
                 'ma_khu' => $phong['khu_nha'],
                 'so_luong_sv_hien_tai' => 0,
                 'ma_loai_phong' => $phong['loai_phong']];
+            end:
         }
         Phong::insert($insert);
         return ['loi' => $errorCount, 'thanh-cong' => count($insert)];
