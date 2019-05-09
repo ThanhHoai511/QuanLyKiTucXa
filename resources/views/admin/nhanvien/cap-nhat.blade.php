@@ -5,7 +5,7 @@
     <div class="box box-info">
         <div class="box-header">
             @if(isset($nhanVienUpdate))
-                <h3 style="text-align: center; tab-size: 25px;">Sửa nhân viên</h3>
+                <h3 style="text-align: center; tab-size: 25px;">Sửa thông tin nhân viên</h3>
             @else
                 <h3 style="text-align: center; tab-size: 25px;">Thêm nhân viên</h3>
             @endif
@@ -62,7 +62,7 @@
                 <div class="box-footer clearfix" style="margin:10px 300px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">@if(isset($nhanVienUpdate)) Sửa @else Thêm @endif</button>
                     @if(isset($nhanVienUpdate))
-                        <a href="{{ route('xoaNhanVien', [$nhanVienUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                        <a href="{{ route('xoaNhanVien', [$nhanVienUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button type="button" class="btn btn-danger">Xóa</button></a>
                     @endif
                     <a href="{{ route('danhSachNhanVien') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>

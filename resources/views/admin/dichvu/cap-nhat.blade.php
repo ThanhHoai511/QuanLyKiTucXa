@@ -5,15 +5,16 @@
     <script src="{{ asset('backend/dist/js/dichvu.js') }}"></script>
     <div class="box box-info">
         <div class="box-header">
-            <h3 style="text-align: center; tab-size: 25px;">Cập nhật dịch vụ</h3>
+            <h3 style="text-align: center; tab-size: 25px;">
+                @if(isset($dichVuUpdate))
+                    Sửa thông tin dịch vụ
+                @else
+                    Thêm dịch vụ
+                @endif
+            </h3>
         </div>
         @include('admin.layouts.flash-msg')
         <div class="box-body">
-            <div class="row col-md-12" style="margin-left: 3px; margin-bottom: 10px;">
-                @if(isset($dichVuUpdate))
-                    <a href="{{ route('xoaDichVu', [$dichVuUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
-                @endif
-            </div>
             <form method="post" role="form" id="form">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -31,8 +32,13 @@
                     <span id="errGia" class="error"></span>
                 </div>
                 <div class="box-footer clearfix" style="margin:0 300px;">
-                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
-                    <button type="reset" class="btn btn-dropbox">Làm mới</button>
+                    @if(isset($dichVuUpdate))
+                        <button type="submit" class="btn btn-success" style="margin-left:50px;">Sửa</button>
+                        <a href="{{ route('xoaDichVu', [$dichVuUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button type="button" class="btn btn-danger">Xóa</button></a>
+                    @else
+                        <button type="submit" class="btn btn-success" style="margin-left:50px;">Thêm</button>
+                    @endif
+                    <a href="{{ route('danhSachDichVu') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>
         </div>

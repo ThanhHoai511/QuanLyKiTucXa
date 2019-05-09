@@ -7,9 +7,12 @@
     <div class="box box-info">
         <div class="box-header">
             @if(isset($csvcUpdate))
-                <h3 style="text-align: center; tab-size: 25px;">Sửa cơ sở vật chất</h3>
-            @else 
+                <h3 style="text-align: center; tab-size: 25px;">Sửa thông tin cơ sở vật chất</h3>
+            @else
                 <h3 style="text-align: center; tab-size: 25px;">Thêm cơ sở vật chất</h3>
+                <div class="col-md-4">
+                    <a href="{{ route('themCSVCExcel') }}"><button class="btn btn-instagram" style="margin-bottom: 20px;">Thêm từ file</button></a>
+                </div>
             @endif
         </div>
         @include('admin.layouts.flash-msg')
@@ -24,21 +27,27 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-6">
                         <label for="gia">Giá <span class="error">*</span></label>
                         <input type="text" name="gia" placeholder="Nhập giá" class="form-control" id="gia" value="{{ isset($csvc) ? number_format($csvc->gia) : old('gia') }}">
                         <span id="errGia" class="error"></span>
                     </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-6">
                         <label for="tien_cong">Tiền công <span class="error">*</span></label>
                         <input type="text" name="tien_cong" placeholder="Nhập tiền công sửa chữa" class="form-control" id="tien_cong" value="{{ isset($csvc) ? number_format($csvc->tien_cong) : old('tien_cong') }}">
                         <span id="errTienCong" class="error"></span>
                     </div>
                 </div>
                 <div class="box-footer clearfix" style="margin:0 300px;">
-                    <button type="submit" class="btn btn-success" style="margin-left:50px;">Cập nhật</button>
+                    <button type="submit" class="btn btn-success" style="margin-left:50px;">
+                        @if(isset($csvcUpdate))
+                            Sửa
+                        @else
+                            Thêm
+                        @endif
+                    </button>
                     @if(isset($csvc))
-                        <a href="{{ route('xoaCSVC', [$csvc->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button class="btn btn-danger">Xóa</button></a>
+                        <a href="{{ route('xoaCSVC', [$csvc->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button type="button" class="btn btn-danger">Xóa</button></a>
                     @endif
                     <a href="{{ route('danhSachCSVC') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
