@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class HoaDonPhongService
 {
     protected $hoaDonPhong;
+    protected $hopDongService;
 
-    public function __construct(HoaDonPhong $hoaDonPhong)
+    public function __construct(HoaDonPhong $hoaDonPhong, HopDongService $hopDongService)
     {
         $this->hoaDonPhong = $hoaDonPhong;
+        $this->hopDongService = $hopDongService;
     }
 
     public function index()
@@ -27,5 +29,16 @@ class HoaDonPhongService
         $this->hoaDonPhong->save();
 
         return $this->hoaDonPhong;
+    }
+
+    public function getHoaDonChuaThanhToanTheoSV($maSV)
+    {
+        $hopDong = $this->hopDongService->getByMSV($maSV);
+        dd($hopDong);
+        $hoaDon = $this->hoaDonPhong->where('ma_hop_dong', $hopDong->id)->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->get();
+        if ($hoaDon->toArray() == null) {
+            return false;
+        }
+        return $hoaDon;
     }
 }

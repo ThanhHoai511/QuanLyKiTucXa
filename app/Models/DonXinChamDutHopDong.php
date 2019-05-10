@@ -10,4 +10,14 @@ class DonXinChamDutHopDong extends Model
     use SoftDeletes;
 
     protected $table = 'donxinchamduthopdong';
+
+    public function sinhvien()
+    {
+        return $this->belongsTo('App\Models\SinhVienUTC', 'ma_sv_utc');
+    }
+
+    public function phong()
+    {
+        return $this->belongsTo('App\Models\phong', 'ma_phong');
+    }
 }
