@@ -14,9 +14,14 @@ class DonXinChamDutHopDongService
         $this->donXinHuy = $donXinChamDutHopDong;
     }
 
+    public function getAllWithPaginate()
+    {
+        return $this->donXinHuy->paginate(20);
+    }
+
     public function store($request)
     {
-        $this->donXinHuy->ma_sv_utc = 1;
+        $this->donXinHuy->ma_sv_utc = 19;
         $this->donXinHuy->ma_phong = $request->ma_phong;
         $this->donXinHuy->trang_thai = config('constants.DANG_CHO_HUY');
         $this->donXinHuy->save();

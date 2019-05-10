@@ -166,3 +166,15 @@
 </li>
 @endcan
 
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-youtube-play"></i> <span>Đơn xin chấm dứt hợp đồng</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachDonXinHuy') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+    </ul>
+</li>
+

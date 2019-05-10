@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\DonXinChamDutHopDongService;
+use App\Services\HoaDonPhongService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class DonXinHuyController extends Controller
 {
     protected $donXinHuyService;
+    protected $hoaDonPhongService;
+
+    public function __construct(DonXinChamDutHopDongService $donXinHuyService, HoaDonPhongService $hoaDonPhongService)
+    {
+        $this->donXinHuyService = $donXinHuyService;
+        $this->hoaDonPhongService = $hoaDonPhongService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,13 @@ class DonXinHuyController extends Controller
      */
     public function index()
     {
-        //
+        $donXinHuy = $this->donXinHuyService->getAllWithPaginate();
+        foreach ($donXinHuy as $don) {
+            $don->hoa_don_phong = $this->hoaDonPhongService->getHoaDonChuaThanhToanTheoSV($don->ma_sv_utc);
+        }
+        dd($donXinHuy);
+
+        return view('admin.donxinchamduthopdong.danh-sach', ['donXinHuy' => $donXinHuy]);
     }
 
     /**

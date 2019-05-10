@@ -34,7 +34,6 @@ class SinhVienService{
         if (empty($sinhVien)) {
             return false;
         }
-//        dd($sinhVien);
         $insert = [];
 
         foreach ($sinhVien as $sinhVien) {
@@ -111,14 +110,13 @@ class SinhVienService{
     {
         $sinhVienCollect = collect();
 
-        $sinhVien = $this->sinhVien->all();
+        $sinhViens = $this->sinhVien->all();
 
-        foreach ($sinhVien as $sv) {
+        foreach ($sinhViens as $sv) {
             $sinhVienCollect = $sinhVienCollect->push(['ma_sinh_vien' => $sv->ma_sinh_vien, 'sinh_vien' => $sv]);
         }
         return $sinhVienCollect->mapWithKeys(function ($item) {
             return [$item['ma_sinh_vien'] => $item['sinh_vien']];
         });
-
     }
 }

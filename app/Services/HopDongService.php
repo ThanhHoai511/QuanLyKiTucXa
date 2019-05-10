@@ -34,4 +34,9 @@ class HopDongService
         $this->hopDong->save();
         return $this->hopDong;
     }
+
+    public function getByMSV($maSV)
+    {
+        return $this->hopDong->where('ma_sv_utc', $maSV)->first();
+    }
 }
