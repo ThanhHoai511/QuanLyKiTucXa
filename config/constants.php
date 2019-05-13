@@ -15,5 +15,7 @@
         'DUOC_TRUY_CAP' => 1,
         'KHONG_DUOC_TRUY_CAP' => 0,
         'CHAP_NHAN_HUY' => 1,
-        'DANG_CHO_HUY' => 0
+        'DANG_CHO_HUY' => 0,
+        'TANG_SV' => 1,
+        'GIAM_SV' => -1
     ];

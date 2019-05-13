@@ -36,6 +36,19 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('xoa/{id}', 'Admin\ChucVuController@destroy')->name('xoaChucVu');
     });
 
+    Route::group(['prefix' => 'quyen'], function () {
+        Route::get('', 'Admin\QuyenController@index')->name('danhSachQuyen');
+        Route::get('them', 'Admin\QuyenController@create')->name('themQuyen');
+        Route::post('them', 'Admin\QuyenController@store');
+        Route::get('sua/{id}', 'Admin\QuyenController@edit')->name('suaQuyen');
+        Route::post('sua/{id}', 'Admin\QuyenController@update');
+        Route::get('xoa/{id}', 'Admin\QuyenController@destroy')->name('xoaQuyen');
+    });
+
+    Route::group(['prefix' => 'quyen-chucvu'], function () {
+        Route::get('', 'Admin\QuyenChucVuController@index')->name('danhSachQuyenChucVu');
+    });
+
    Route::group(['prefix' => 'khu-nha'], function () {
       Route::get('', 'Admin\KhuNhaController@index')->name('danhSachKhuNha');
       Route::get('them', 'Admin\KhuNhaController@create')->name('themKhuNha');
@@ -124,6 +137,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'don-xin-huy'], function () {
         Route::get('', 'Admin\DonXinHuyController@index')->name('danhSachDonXinHuy');
+        Route::get('chap-nhan/{id}', 'Admin\DonXinHuyController@chapNhanDon');
     });
 
     Route::group(['prefix' => 'hop-dong'], function () {
@@ -140,6 +154,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('', 'Admin\HoaDonDichVuController@index')->name('danhSachHDDV');
         Route::get('them', 'Admin\HoaDonDichVuController@create')->name('themHDDV');
         Route::post('them', 'Admin\HoaDonDichVuController@store');
+        Route::get('sua/{id}', 'Admin\HoaDonDichVuController@edit')->name('suaHDDV');
+        Route::post('sua/{id}', 'Admin\HoaDonDichVuController@update');
     });
 });
 

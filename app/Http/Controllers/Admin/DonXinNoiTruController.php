@@ -14,10 +14,11 @@ class DonXinNoiTruController extends Controller
     protected $sinhVienService;
     protected $phongService;
 
-    public function __construct(DonDangKyService $donDangKyService,
-                                SinhVienService $sinhVienService,
-                                PhongService $phongService)
-    {
+    public function __construct(
+        DonDangKyService $donDangKyService,
+        SinhVienService $sinhVienService,
+        PhongService $phongService
+    ) {
         $this->donDangKyService = $donDangKyService;
         $this->sinhVienService = $sinhVienService;
         $this->phongService = $phongService;

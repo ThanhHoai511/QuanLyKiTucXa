@@ -10,10 +10,14 @@ class HoaDonDichVuService
     protected $hoaDonDichVu;
     protected $phongService;
 
-    public function __construct(HoaDonDichVu $hoaDonDichVu, PhongService $phongService)
+    public function __construct(
+        HoaDonDichVu $hoaDonDichVu,
+        PhongService $phongService
+    )
     {
         $this->hoaDonDichVu = $hoaDonDichVu;
         $this->phongService = $phongService;
+
     }
 
     public function index($thang = "", $nam = "")
@@ -60,5 +64,19 @@ class HoaDonDichVuService
     public function getById($id)
     {
         return $this->hoaDonDichVu->findOrFail($id);
+    }
+
+    public function getHDChuaThanhToanByPhongID($phongId)
+    {
+        $hoaDons = $this->hoaDonDichVu->where('ma_phong', $phongId)->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->get();
+        $tongTien = 0;
+        if ($hoaDons) {
+            $phong = $this->phongService->getById($phongId);
+            $soSVHT = $phong->so_luong_sv_hien_tai;
+            foreach($hoaDons as $hd) {
+                $tongTien += $hd->tong_tien / $soSVHT;
+            }
+        }
+        return $tongTien;
     }
 }

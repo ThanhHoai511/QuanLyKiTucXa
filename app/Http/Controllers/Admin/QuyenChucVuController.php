@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ChucVuRequest;
-use App\Services\ChucVuService;
+use App\Services\QuyenChucVuService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ChucVuController extends Controller
+class QuyenChucVuController extends Controller
 {
-    protected $chucVuService;
+    protected $quyenChucVuService;
 
-    public function __construct(ChucVuService $chucVuService)
+    public function __construct(QuyenChucVuService $quyenChucVuService)
     {
-        $this->chucVuService = $chucVuService;
+        $this->quyenChucVuService = $quyenChucVuService;
     }
 
     /**
@@ -23,9 +22,9 @@ class ChucVuController extends Controller
      */
     public function index()
     {
-        $chucVu = $this->chucVuService->getAll();
+        $quyenChucVu = $this->quyenChucVuService->getAll();
 
-        return view('admin.chucvu.danh-sach', ['chucVu' => $chucVu]);
+        return view('admin.quyen-chucvu.danh-sach', ['quyenChucVu' => $quyenChucVu]);
     }
 
     /**
@@ -35,7 +34,7 @@ class ChucVuController extends Controller
      */
     public function create()
     {
-        return view('admin.chucvu.cap-nhat');
+        //
     }
 
     /**
@@ -44,10 +43,9 @@ class ChucVuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ChucVuRequest $request)
+    public function store(Request $request)
     {
-        $this->chucVuService->store($request);
-        return redirect()->route('danhSachChucVu')->with('success', 'Thêm chức vụ thành công!');
+        //
     }
 
     /**
@@ -58,7 +56,7 @@ class ChucVuController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -69,8 +67,7 @@ class ChucVuController extends Controller
      */
     public function edit($id)
     {
-        $chucVu = $this->chucVuService->getById($id);
-        return view('admin.chucvu.cap-nhat', ['chucVuUpdate' => $chucVu]);
+        //
     }
 
     /**
@@ -80,11 +77,9 @@ class ChucVuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ChucVuRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->chucVuService->update($request, $id);
-
-        return redirect()->route('danhSachChucVu')->with('success', 'Sửa chức vụ thành công!');
+        //
     }
 
     /**
@@ -95,8 +90,6 @@ class ChucVuController extends Controller
      */
     public function destroy($id)
     {
-        $this->chucVuService->destroy($id);
-
-        return redirect()->route('danhSachChucVu')->with('success', 'Xóa chức vụ thành công!');
+        //
     }
 }

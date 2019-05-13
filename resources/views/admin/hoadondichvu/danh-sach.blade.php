@@ -49,16 +49,17 @@
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Khu nha</th>
+                                <th>Khu nhà</th>
                                 <th>Phòng</th>
                                 <th>Ngày bắt đầu</th>
                                 <th>Ngày kết thúc</th>
                                 <th>Tình trạng</th>
-                                <th>Don gia</th>
+                                <th>Đơn giá</th>
                                 <th>Tên dịch vụ</th>
                                 <th>Nhân viên lập hóa đơn</th>
                                 <th>Chú thích</th>
-                                <th>Đã thanh toán</th>
+                                <th>Xử lý</th>
+                                <th>Thanh toán</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,6 +80,9 @@
                                 <td>{!! $hd->dichvu->ten !!}</td>
                                 <td>{!! $hd->user->nhanvien['ho_ten'] !!}</td>
                                 <td>{!! $hd->chu_thich !!}</td>
+                                <td>
+                                    <a href="{{ route('suaHDDV', $hd->id) }}"><button class="btn btn-primary">Sửa</button></a>
+                                </td>
                                 <td data-hddv-id="{{ $hd->id }}">
                                     <form>
                                         {{ csrf_field() }}

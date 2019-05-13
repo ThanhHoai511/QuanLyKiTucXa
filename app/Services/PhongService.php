@@ -83,10 +83,15 @@ class PhongService
     }
 
 
-    public function incrementSLSinhVien($maPhong)
+    public function updateSLSinhVien($maPhong, $option)
     {
         $phongUpdate = $this->getById($maPhong);
-        $phongUpdate->so_luong_sv_hien_tai = $phongUpdate->so_luong_sv_hien_tai + 1;
+
+        if ($option == config('constants.TANG_SV')) {
+            $phongUpdate->so_luong_sv_hien_tai = $phongUpdate->so_luong_sv_hien_tai + 1;
+        } else {
+            $phongUpdate->so_luong_sv_hien_tai = $phongUpdate->so_luong_sv_hien_tai - 1;
+        }
         $phongUpdate->save();
     }
 

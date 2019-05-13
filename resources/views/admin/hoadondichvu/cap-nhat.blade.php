@@ -11,24 +11,6 @@
                 {{ csrf_field() }}
                 <div class="form-group col-md-12">
                     <div class="col-md-6">
-                        <label for="khu_nha">Chọn khu nhà</label>
-                        <select name="khu_nha" id="khu_nha" class="form-control">
-                            <option value="">-- Chọn khu nhà --</option>
-                            @foreach($khuNha as $kn)
-                                <option value="{{ $kn->id }}">{!! $kn->ten !!}</option>
-                            @endforeach
-                        </select>
-                        <span class="error" id="errKhuNha"></span>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="ma_phong">Chọn phòng </label>
-                        <select name="ma_phong" id="ma_phong" class="form-control">
-                        </select>
-                        <span class="error" id="errPhong"></span>
-                    </div>
-                </div>
-                <div class="form-group col-md-12">
-                    <div class="col-md-6">
                         <label for="ngay_bat_dau">Ngày bắt đầu <span class="error">*</span>: </label>
                         <input type="date" class="form-control" name="ngay_bat_dau" id="ngay_bat_dau" value="{{ old('ngay_bat_dau') }}">
                         <span id="errNgayBatDau" class="error"></span>
@@ -67,9 +49,9 @@
                     <div class="col-md-6">
                         <label for="ma_dich_vu">Dịch vụ</label>
                         <select name="ma_dich_vu" id="ma_dich_vu" class="form-control">
-                            @foreach($dichVu as $dv)
-                                <option value="{{ $dv->id}}">{!! $dv->ten !!}</option>
-                            @endforeach
+{{--                            @foreach($dichVu as $dv)--}}
+{{--                                <option value="{{ $dv->id}}">{!! $dv->ten !!}</option>--}}
+{{--                            @endforeach--}}
                         </select>
                         <span class="error" id="errDichVu"></span>
                     </div>

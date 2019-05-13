@@ -16,7 +16,7 @@ class HoaDonPhongService
         $this->hopDongService = $hopDongService;
     }
 
-    public function index()
+    public function getAllWithPaginate()
     {
         return $this->hoaDonPhong->paginate(20);
     }
@@ -25,7 +25,7 @@ class HoaDonPhongService
     {
         $this->hoaDonPhong->ma_hop_dong = $request->ma_hop_dong;
         $this->hoaDonPhong->tong_tien = $request->tong_tien;
-        $this->hoaDonPhong->nhan_vien_tao = Auth::id();
+        $this->hoaDonPhong->nhan_vien_tao = 1;
         $this->hoaDonPhong->save();
 
         return $this->hoaDonPhong;
@@ -34,11 +34,11 @@ class HoaDonPhongService
     public function getHoaDonChuaThanhToanTheoSV($maSV)
     {
         $hopDong = $this->hopDongService->getByMSV($maSV);
-        dd($hopDong);
         $hoaDon = $this->hoaDonPhong->where('ma_hop_dong', $hopDong->id)->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->get();
-        if ($hoaDon->toArray() == null) {
-            return false;
+        $tongTien = 0;
+        if ($hoaDon->toArray() != null) {
+            $tongTien = $hoaDon[0]->tong_tien;
         }
-        return $hoaDon;
+        return $tongTien;
     }
 }

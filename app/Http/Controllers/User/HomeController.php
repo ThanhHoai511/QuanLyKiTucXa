@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Requests\DonXinHuyRequest;
+use App\Http\Requests\DonXinNoiTruRequest;
 use App\Services\DonDangKyService;
 use App\Services\DonXinChamDutHopDongService;
 use App\Services\KhuNhaServices;
@@ -45,7 +47,7 @@ class HomeController extends Controller
         return view('user.layouts.don-dang-ky', ['loaiPhong' => $loaiPhong]);
     }
 
-    public function guiDonDangKy(Request $request)
+    public function guiDonDangKy(DonXinNoiTruRequest $request)
     {
         $this->donDangKyService->store($request);
         return redirect()->back()->with('success', 'Gửi đơn đăng ký thành công!');
@@ -57,7 +59,7 @@ class HomeController extends Controller
         return view('user.layouts.don-xin-huy', ['khuNha' => $khuNha]);
     }
 
-    public function guiDonXinHuy(Request $request)
+    public function guiDonXinHuy(DonXinHuyRequest $request)
     {
         $this->donXinHuyService->store($request);
         return redirect()->back()->with('success', 'Gửi đơn xin chấm dứt hợp đồng thành công!');

@@ -12,12 +12,10 @@
                         <thead>
                         <tr>
                             <th>Mã hợp đồng</th>
+                            <th>Sinh viên</th>
+                            <th>Phòng</th>
                             <th>Tổng tiền</th>
                             <th>Tình trạng</th>
-                            <th>Giá</th>
-                            <th>Chú thích</th>
-                            <th>Phòng</th>
-                            <th>Tên dịch vụ</th>
                             <th>Nhân viên lập hóa đơn</th>
                             <th>Đã thanh toán</th>
                         </tr>
@@ -25,14 +23,19 @@
                         <tbody>
                         @foreach($hoaDon as $key => $hd)
                             <tr class="{{ $key % 2 == 1 ? "success" : "info" }}">
-                                <td>{!! $hd->ngay_bat_dau !!}</td>
-                                <td>{!! $hd->ngay_ket_thuc !!}</td>
-                                <td>{!! $hd->tinh_trang !!}</td>
-                                <td>{!! $hd->gia !!}</td>
-                                <td>{!! $hd->chu_thich !!}</td>
-                                <td>{!! $hd->ma_phong !!}</td>
-                                <td>{!! $hd->ma_dich_vu !!}</td>
-                                <td>{!! $nv->nhan_vien_tao !!}</td>
+                                <td>{!! $hd->id !!}</td>
+                                <td>{!! $hd->hopdong->sinhvien->ho_ten !!}</td>
+                                <td>{!! $hd->hopdong->phong->ten !!} - {!! $hd->hopdong->phong->khunha->ten !!}</td>
+                                <td>{!! $hd->tong_tien !!}</td>
+                                <td>
+                                    @if($hd->trang_thai == 0)
+                                        Chưa thanh toán
+                                    @else
+                                        Đã thanh toán
+                                    @endif
+                                </td>
+                                <td>{!! $hd->user->nhanvien->ho_ten !!}</td>
+                                <td></td>
                             </tr>
                         @endforeach
                         </tbody>

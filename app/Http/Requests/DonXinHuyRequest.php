@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TinTucRequest extends FormRequest
+class DonXinHuyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class TinTucRequest extends FormRequest
     public function rules()
     {
         return [
-            'tieu_de' => 'required|string',
-            'noi_dung' => 'required|string',
-            'loai' => 'required|numeric',
-            'trang_thai' => 'required|numeric',
-            'noi_bat' => 'required|numeric',
-            'nhan_vien_tao' => 'required|numeric',
+            'ma_sv_utc' => 'required|numeric',
+            'ma_phong' => 'required|numeric',
+            'trang_thai' => 'required|numeric'
         ];
     }
 }

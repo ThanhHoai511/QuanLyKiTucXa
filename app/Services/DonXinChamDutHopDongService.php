@@ -21,23 +21,23 @@ class DonXinChamDutHopDongService
 
     public function store($request)
     {
-        $this->donXinHuy->ma_sv_utc = 19;
+        $this->donXinHuy->ma_sv_utc = 1;
         $this->donXinHuy->ma_phong = $request->ma_phong;
+        $this->donXinHuy->ngay_ket_thuc = $request->ngay_ket_thuc;
         $this->donXinHuy->trang_thai = config('constants.DANG_CHO_HUY');
         $this->donXinHuy->save();
 
         return $this->donXinHuy;
     }
 
-    public function accept($maDon, $request)
+    public function accept($maDon)
     {
         $donUpdate = $this->getById($maDon);
-        $donUpdate->ngay_ket_thuc = $request->ngay_ket_thuc;
-        $this->donXinHuy->trang_thai = config('constants.CHAP_NHAN_HUY');
-        $this->donXinHuy->nhan_vien_tao = Auth::id();
-        $this->donXinHuy->save();
+        $donUpdate->trang_thai = config('constants.CHAP_NHAN_HUY');
+        $donUpdate->nhan_vien_tao = Auth::id();
+        $donUpdate->save();
 
-        return $this->donXinHuy;
+        return $donUpdate;
     }
 
     public function getById($id)
