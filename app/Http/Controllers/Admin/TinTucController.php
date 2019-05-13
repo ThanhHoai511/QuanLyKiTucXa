@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\TinTucRequest;
 use App\Services\PhongService;
 use App\Services\TinTucService;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class TinTucController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TinTucRequest $request)
     {
         $this->tinTucService->store($request);
 

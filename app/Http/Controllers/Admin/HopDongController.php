@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Services\DonDangKyService;
+use App\Services\HoaDonPhongService;
 use App\Services\HopDongService;
 use App\Services\PhongService;
+use App\Services\PhongSinhVienService;
 use App\Services\SinhVienService;
 use App\Services\TaiKhoanService;
 use Illuminate\Http\Request;
@@ -19,13 +21,17 @@ class HopDongController extends Controller
     protected $phongService;
     protected $sinhVienService;
     protected $taiKhoanService;
+    protected $hoaDonPhongService;
+    protected $phongSinhVienService;
 
     public function __construct(
         HopDongService $hopDongService,
         DonDangKyService $donDangKyService,
         PhongService $phongService,
         SinhVienService $sinhVienService,
-        TaiKhoanService $taiKhoanService
+        TaiKhoanService $taiKhoanService,
+        HoaDonPhongService $hoaDonPhongService,
+        PhongSinhVienService $phongSinhVienService
     )
     {
         $this->hopDongService = $hopDongService;
@@ -33,6 +39,8 @@ class HopDongController extends Controller
         $this->phongService = $phongService;
         $this->sinhVienService = $sinhVienService;
         $this->taiKhoanService = $taiKhoanService;
+        $this->hoaDonPhongService = $hoaDonPhongService;
+        $this->phongSinhVienService = $phongSinhVienService;
     }
     /**
      * Display a listing of the resource.
@@ -56,6 +64,7 @@ class HopDongController extends Controller
         $phong = $this->phongService->getById($request->idPhong);
         $donDangKy = $this->donDangKiService->getById($request->id);
         $sinhVien = $this->sinhVienService->getByMSV($donDangKy->ma_sinh_vien);
+
         return view('admin.hopdong.create', ['phong' => $phong, 'donDangKy'=> $donDangKy, 'sinhVien' => $sinhVien]);
     }
 
@@ -69,6 +78,17 @@ class HopDongController extends Controller
     {
         return DB::transaction(function () use ($request) {
             $hopDong = $this->hopDongService->store($request);
+            $paramsHDP = [
+                'ma_hop_dong' => $hopDong->id,
+                'tong_tien' => $hopDong->tien_phong + $hopDong->tien_cuoc,
+                'nhan_vien_tao' => 1
+            ];
+            $this->hoaDonPhongService->store($paramsHDP);
+            $paramsPSV = [
+                'ma_sv_utc' => $request->ma_sinh_vien,
+                'ma_phong' => $request->ma_phong
+            ];
+            $this->phongSinhVienService->store($paramsPSV);
             $sinhVien = $this->sinhVienService->getById($hopDong->ma_sv_utc);
             $email = $sinhVien->email;
             if (!$this->taiKhoanService->findByEmail($sinhVien->email)) {
@@ -87,7 +107,7 @@ class HopDongController extends Controller
             }
             
             $this->donDangKiService->updateStatus($request->don_dang_ky);
-            $this->phongService->incrementSLSinhVien($hopDong->ma_phong);
+            $this->phongService->updateSLSinhVien($hopDong->ma_phong, config('constants.TANG_SV'));
             
             return redirect()->route('danhSachHopDong')->with('success', 'Tạo hợp đồng thành công');
         });

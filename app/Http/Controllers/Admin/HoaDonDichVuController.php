@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\HoaDonDichVuRequest;
 use App\Services\DichVuService;
 use App\Services\HoaDonDichVuService;
 use App\Services\KhuNhaServices;
@@ -55,7 +56,7 @@ class HoaDonDichVuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HoaDonDichVuRequest $request)
     {
         $this->hoaDonDichVuService->store($request);
 
@@ -81,7 +82,9 @@ class HoaDonDichVuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hoaDonDV = $this->hoaDonDichVuService->getById($id);
+
+        return view('admin.hoadondichvu.cap-nhat', ['hoaDonDV' => $hoaDonDV]);
     }
 
     /**

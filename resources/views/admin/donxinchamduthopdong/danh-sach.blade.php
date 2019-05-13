@@ -18,8 +18,8 @@
                             <th>Ngày sinh</th>
                             <th>Chứng minh nhân dân</th>
                             <th>Số điện thoại</th>
-                            <th>Khu nha</th>
-                            <th>Phong</th>
+                            <th>Khu nhà</th>
+                            <th>Phòng</th>
                             <th>Kiểm tra</th>
                             <th>Duyệt</th>
                         </tr>
@@ -43,7 +43,7 @@
                                 <td>{!! $don->phong->khunha->ten !!}</td>
                                 <td>{!! $don->phong->ten !!}</td>
                                 <td>
-                                    <a><button class="btn btn-default">Kiểm tra</button></a>
+                                    <a data-target="#thanh_toan_{{ $don->id }}" data-toggle="modal"><button class="btn btn-default">Kiểm tra</button></a>
                                 </td>
                                 <td>
                                     @if($don->trang_thai != 1)
@@ -52,35 +52,39 @@
                                     @endif
                                 </td>
                             </tr>
-                            {{--<div id="detail_review{{ $nv->ma_sinh_vien }}" class="modal" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">--}}
-                                {{--<div class="modal-dialog" role="document" id="test">--}}
-                                    {{--@php $sv = $nv->sinh_vien; @endphp--}}
-                                    {{--@if ($sv == null)--}}
-                                        {{--<div class="modal-content">--}}
-                                            {{--<div class="modal-header">--}}
-                                                {{--<h5 class="modal-title">Không tìm thấy sinh viên này</h5>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--@else--}}
-                                        {{--<div class="modal-content">--}}
-                                            {{--<div class="modal-header">--}}
-                                                {{--<h5 class="modal-title">Chi tiết sinh viên</h5>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="modal-body">--}}
-                                                {{--<p>Họ và tên: {!! $sv->ho_ten !!}</p>--}}
-                                                {{--<p>Ngày sinh: {!! $sv->ngay_sinh !!}</p>--}}
-                                                {{--<p>Nơi sinh: {!! $sv->noi_sinh !!}</p>--}}
-                                                {{--<p>Lớp: {!! $sv->lop !!}</p>--}}
-                                                {{--<p>Khóa: {!! $sv->khoa !!}</p>--}}
-                                                {{--<p>Cmnd: {!! $sv->cmnd !!}</p>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="modal-footer">--}}
-                                                {{--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--@endif--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                            <div id="thanh_toan_{{ $don->id }}" class="modal" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" id="test">
+                                    @php
+                                        $tien = $don->tong_tien;
+                                        $tienPhong = $don->tien_phong;
+                                        $tienDV = $don->tien_dich_vu;
+                                    @endphp
+                                    @if ($tien == 0)
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Sinh viên không còn nợ khoản chi phí nào!</h5>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Sinh viên chưa thanh toán hết chi phí:</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                @if ($tienPhong != 0)
+                                                    <p>Tiền phòng: {!! $tienPhong !!}</p>
+                                                @endif
+                                                @if ($tienDV != 0)
+                                                    <p>Tiền dịch vụ: {!! $tienDV !!}</p>
+                                                @endif
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                         @endforeach
                         </tbody>
                     </table>

@@ -28,7 +28,7 @@ class HopDongService
         $this->hopDong->chu_thich = $request->chu_thich;
         $this->hopDong->tien_phong = (int) str_replace(',', '', $request->tien_phong);
         $this->hopDong->tien_cuoc = (int) str_replace(',', '', $request->tien_cuoc);
-        $this->hopDong->nhan_vien_tao = Auth::id();
+        $this->hopDong->nhan_vien_tao = 1;
         $this->hopDong->ma_sv_utc = $request->ma_sinh_vien;
         $this->hopDong->ma_phong = $request->ma_phong;
         $this->hopDong->save();

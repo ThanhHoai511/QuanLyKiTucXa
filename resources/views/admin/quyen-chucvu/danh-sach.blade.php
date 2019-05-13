@@ -1,8 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h3 style="text-align:center;">Danh sách các quyền</h3>
-    <a href="{{ route('themQuyen') }}"><button class="btn btn-primary" style="margin-bottom: 20px;">Thêm</button></a>
+    <h3 style="text-align:center;">Danh sách các quyền của chức vụ</h3>
     @include('admin.layouts.flash-msg')
     <div class="row">
         <div class="col-md-12">
@@ -12,18 +11,18 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Tên chức vụ</th>
                             <th>Tên quyền</th>
                             <th>Hành động</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($quyen as $key => $item)
+                        @foreach($quyenChucVu as $key => $item)
                             <tr class="{{ $key % 2 == 1 ? "success" : "info" }}">
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>
-                                    <a href="{{ route('suaQuyen', [$item->id]) }}"><button class="btn btn-primary">Sửa</button></a>
-                                </td>
+                                <td>{!! $item->id !!}</td>
+                                <td>{!! $item->chucvu->name !!}</td>
+                                <td>{!! $item->quyen->name !!}</td>
+                                <td></td>
                             </tr>
                         @endforeach
                         </tbody>

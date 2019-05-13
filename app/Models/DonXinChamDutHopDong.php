@@ -18,6 +18,6 @@ class DonXinChamDutHopDong extends Model
 
     public function phong()
     {
-        return $this->belongsTo('App\Models\phong', 'ma_phong');
+        return $this->belongsTo('App\Models\Phong', 'ma_phong');
     }
 }

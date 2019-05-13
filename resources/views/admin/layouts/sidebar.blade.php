@@ -12,6 +12,34 @@
         <li><a href="{{ route('themChucVu') }}"><i class="fa fa-circle-o"></i>Thêm chức vụ</a></li>
     </ul>
 </li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-adn"></i>
+        <span>Quyền</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachQuyen') }}"><i class="fa fa-circle-o"></i>Danh sách các quyền</a></li>
+        <li><a href="{{ route('themQuyen') }}"><i class="fa fa-circle-o"></i>Thêm quyền</a></li>
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-adn"></i>
+        <span>Quyền theo Chức vụ</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachQuyenChucVu') }}"><i class="fa fa-circle-o"></i>Danh sách các quyền theo chức vụ</a></li>
+    </ul>
+</li>
+
 <li class="treeview">
     <a href="#">
         <i class="fa fa-folder"></i> <span>Nhân Viên</span>
@@ -127,6 +155,18 @@
         <li><a href="{{ route('themHDDV') }}"><i class="fa fa-circle-o"></i> Thêm hóa đơn dịch vụ</a></li>
     </ul>
 </li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-edit"></i> <span>Hóa đơn phòng</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachHDP') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn phòng</a></li>
+    </ul>
+</li>
 <p style="color: white">---------- Quản lý hợp đồng ------------------</p>
 <li class="treeview">
     <a href="#">
@@ -152,7 +192,7 @@
         <li><a href="{{ route('danhSachDonDangKy') }}"><i class="fa fa-circle-o"></i> Danh sách đơn đăng ký</a></li>
     </ul>
 </li>
-@can('managing_agreement', Auth::user())
+{{--@can('managing_agreement', Auth::user())--}}
 <li class="treeview">
     <a href="#">
         <i class="fa fa-amazon"></i> <span>Hợp đồng</span>
@@ -164,7 +204,7 @@
         <li><a href="{{ route('danhSachHopDong') }}"><i class="fa fa-circle-o"></i> Danh sách hợp đồng</a></li>
     </ul>
 </li>
-@endcan
+{{--@endcan--}}
 
 <li class="treeview">
     <a href="#">

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class HopDong extends Model
+class PhongSinhVien extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'hopdong';
+    protected $table = 'phong_sinhvien';
 
     public function sinhvien()
     {

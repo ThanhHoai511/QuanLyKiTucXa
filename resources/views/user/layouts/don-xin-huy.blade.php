@@ -41,6 +41,11 @@
                     <span class="error" id="errPhong"></span>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="ngay_ket_thuc">Chọn ngày bạn muốn kết thúc hợp đồng</label>
+                <input type="date" name="ngay_ket_thuc" class="form-control" id="ngay_ket_thuc">
+                <span class="error" id="errNgayKT"></span>
+            </div>
             <div class="form-group col-md-12" style="margin: 10px 500px;">
                 <button class="btn btn-primary" type="submit">Gửi đơn</button>
                 <a href="{{ route('home') }}"><button class="btn btn-danger" type="submit">Hủy</button></a>
@@ -73,7 +78,11 @@
                     $('#ma_phong').focus();
                     return false;
                 }
-                return true;
+                if ($('#ngay_ket_thuc').val() == '') {
+                    $('#errNgayKT').text('Bạn phải chọn ngày bạn muốn xin ra khỏi kí túc!');
+                    $('#ngay_ket_thuc').focus();
+                    return false;
+                }
             });
             $('#ma_sv').keyup(function () {
                 if ($('#ma_sv').val() == '') {
@@ -101,6 +110,13 @@
                     $('#errPhong').text('Bạn phải chọn phòng đang ở!');
                 } else {
                     $('#errPhong').text('');
+                }
+            });
+            $('#ngay_ket_thuc').change(function () {
+                if ($('#ngay_ket_thuc').val() == '') {
+                    $('#errNgayKT').text('Bạn phải chọn ngày kết thúc!');
+                } else {
+                    $('#errNgayKT').text('');
                 }
             });
         });
