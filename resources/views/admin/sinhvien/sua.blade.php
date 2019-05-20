@@ -32,6 +32,14 @@
                     <span id="errorNoiSinh" class="error"></span>
                 </div>
                 <div class="form-group col-md-12 row" style="margin: 10px 10px 10px 0px;">
+                    <label for="gioi_tinh">Giới tính<span class="error">*</span></label>
+                    <select name="gioi_tinh" id="gioi_tinh" class="form-control">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select>
+                    <span id="errorNoiSinh" class="error"></span>
+                </div>
+                <div class="form-group col-md-12 row" style="margin: 10px 10px 10px 0px;">
                     <label for="lop">Lớp<span class="error">*</span></label>
                     <input type="text" class="form-control" id="lop" name="lop" placeholder="Lớp" value="{{ $sinhVienUpdate->lop }}">
                     <span id="errorLop" class="error"></span>

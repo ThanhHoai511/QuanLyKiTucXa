@@ -37,14 +37,12 @@ class MasterPolicy
 
     public function getPermission($user, $per_id)
     {
-        foreach ($user->roles as $role) {
-            $permissions = RolePermission::where('role_id', $role->role_id)->get();
+            $permissions = RolePermission::where('role_id', $user->role_id)->get();
             foreach($permissions as $permission) {
                 if ($permission->permission_id == $per_id) {
                     return true;
                 }
             }
-        }
 
         return false;
     }

@@ -17,9 +17,11 @@ class CreatePhanhoiTable extends Migration
             $table->bigIncrements('id');
             $table->text('noi_dung');
             $table->unsignedBigInteger('user_id');
+            $table->tinyInteger('loai');
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+            $table->tinyInteger('tinh_trang')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

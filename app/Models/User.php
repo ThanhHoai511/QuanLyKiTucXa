@@ -30,9 +30,14 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\NhanVien');
     }
 
-    public function roles()
+    public function sinhvien()
     {
-        return $this->hasMany('App\Models\UserRole');
+        return $this->hasOne('App\Models\SinhVienUTC');
+    }
+
+    public function chucvu()
+    {
+        return $this->hasOne('App\Models\Role', 'id', 'role_id');
     }
 }
 

@@ -45,8 +45,9 @@ class SinhVienService{
             }
             $insert[] = ['ma_sinh_vien' => $sinhVien['ma_sinh_vien'],
                 'ho_ten' => $sinhVien['ho_ten'],
-                'ngay_sinh' => ($sinhVien['ngay_sinh']),
+                'ngay_sinh' => $sinhVien['ngay_sinh'],
                 'noi_sinh' => $sinhVien['noi_sinh'],
+                'gioi_tinh' => $sinhVien['gioi_tinh'],
                 'lop' => $sinhVien['lop'],
                 'khoa' => $sinhVien['khoa'],
                 'dan_toc' => $sinhVien['dan_toc'],
@@ -76,6 +77,7 @@ class SinhVienService{
         $sinhVienUpdate->ho_ten = $request->ho_ten;
         $sinhVienUpdate->ngay_sinh = $request->ngay_sinh;
         $sinhVienUpdate->noi_sinh = $request->noi_sinh;
+        $sinhVienUpdate->gioi_tinh = $request->gioi_tinh;
         $sinhVienUpdate->lop = $request->lop;
         $sinhVienUpdate->khoa = $request->khoa;
         $sinhVienUpdate->dan_toc = $request->dan_toc;
@@ -87,6 +89,14 @@ class SinhVienService{
         $sinhVienUpdate->huyen = $request->huyen;
         $sinhVienUpdate->xa = $request->xa;
         $sinhVienUpdate->email = $request->email;
+        $sinhVienUpdate->save();
+        return $sinhVienUpdate;
+    }
+
+    public function updateUserId($sinhVienId, $userId)
+    {
+        $sinhVienUpdate = $this->getById($sinhVienId);
+        $sinhVienUpdate->user_id = $userId;
         $sinhVienUpdate->save();
         return $sinhVienUpdate;
     }
@@ -106,11 +116,11 @@ class SinhVienService{
         return $this->sinhVien->where('ma_sinh_vien', $mSV)->first();
     }
 
-    public function getByMaSVCollect()
+    public function getByMaSVCollect($maSVInDonDK)
     {
         $sinhVienCollect = collect();
 
-        $sinhViens = $this->sinhVien->all();
+        $sinhViens = $this->sinhVien->whereIn('ma_sinh_vien', $maSVInDonDK)->get();
 
         foreach ($sinhViens as $sv) {
             $sinhVienCollect = $sinhVienCollect->push(['ma_sinh_vien' => $sv->ma_sinh_vien, 'sinh_vien' => $sv]);

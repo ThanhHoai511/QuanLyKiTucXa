@@ -19,8 +19,8 @@
                                 <th>Họ tên</th>
                                 <th>Ngày sinh</th>
                                 <th>Nơi sinh</th>
+                                <th>Giới tính</th>
                                 <th>Lớp</th>
-                                <th>Khóa</th>
                                 <th>Dân tộc</th>
                                 <th>CMND</th>
                                 <th>Số điện thoại</th>
@@ -37,9 +37,9 @@
                                     <td>{!! $sv->ma_sinh_vien !!}</td>
                                     <td>{!! $sv->ho_ten !!}</td>
                                     <td>{!! $sv->ngay_sinh !!}</td>
-                                    <td>{!! $sv->noi_sinh !!}</td>
-                                    <td>{!! $sv->lop !!}</td>
-                                    <td>{!! $sv->khoa !!}</td>
+                                    <td>{!! $sv->tinh !!}</td>
+                                    <td>{!! $sv->gioi_tinh !!}</td>
+                                    <td>{!! $sv->lop !!} - Khóa {!! $sv->khoa !!}</td>
                                     <td>{!! $sv->dan_toc !!}</td>
                                     <td>{!! $sv->cmnd !!}</td>
                                     <td>{!! $sv->sdt !!}</td>

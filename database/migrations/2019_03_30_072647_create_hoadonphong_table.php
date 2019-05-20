@@ -24,6 +24,7 @@ class CreateHoadonphongTable extends Migration
             $table->foreign('nhan_vien_tao')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+            $table->tinyInteger('trang_thai')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

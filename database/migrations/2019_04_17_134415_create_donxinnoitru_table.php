@@ -16,13 +16,6 @@ class CreateDonxinnoitruTable extends Migration
         Schema::create('donxinnoitru', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ma_sinh_vien');
-            $table->string('ten');
-            $table->tinyInteger('gioi_tinh');
-            $table->date('ngay_sinh');
-            $table->string('noi_sinh');
-            $table->string('cmnd');
-            $table->string('sdt');
-            $table->string('email');
             $table->unsignedBigInteger('ma_loai_phong');
             $table->foreign('ma_loai_phong')
                 ->references('id')->on('loaiphong')

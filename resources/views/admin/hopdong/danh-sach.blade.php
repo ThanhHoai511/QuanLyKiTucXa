@@ -14,7 +14,6 @@
                                 <th>Mã sinh viên</th>
                                 <th>Tên sinh viên</th>
                                 <th>Kì học</th>
-                                <th>Năm học</th>
                                 <th>Ngày bắt đầu</th>
                                 <th>Ngày kết thúc</th>
                                 <th>Tiền phòng</th>
@@ -25,14 +24,13 @@
                             @foreach($hopDong as $hd)
                                 <tr>
                                     <td>{{ $hd->id }}</td>
-                                    <td>{{ $hd->ma_sv_utc }}</td>
+                                    <td>{{ $hd->sinhvien->ma_sinh_vien }}</td>
                                     <td>{{ $hd->sinhvien->ho_ten }}</td>
-                                    <td>{{ $hd->ki_hoc }}</td>
-                                    <td>{{ $hd->nam_hoc }}</td>
-                                    <td>{{ $hd->ngay_bat_dau }}</td>
-                                    <td>{{ $hd->ngay_ket_thuc }}</td>
-                                    <td>{{ $hd->tien_phong }}</td>
-                                    <td>{{ $hd->tien_cuoc }}</td>
+                                    <td>Kì {{ $hd->ki_hoc }} năm học {{ $hd->nam_hoc }}</td>
+                                    <td>{{ date("d-m-Y", strtotime($hd->ngay_bat_dau)) }}</td>
+                                    <td>{{ date("d-m-Y", strtotime($hd->ngay_ket_thuc)) }}</td>
+                                    <td>{{ $hd->tien_phong }} đ</td>
+                                    <td>{{ $hd->tien_cuoc }} đ</td>
                                 </tr>
                             @endforeach
                         </tbody>

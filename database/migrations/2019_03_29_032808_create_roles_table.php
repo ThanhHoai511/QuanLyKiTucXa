@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EditChuThichToHoadondichvuTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class EditChuThichToHoadondichvuTable extends Migration
      */
     public function up()
     {
-        Schema::table('hoadondichvu', function (Blueprint $table) {
-            $table->text('chu_thich')->nullable()->change();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +28,6 @@ class EditChuThichToHoadondichvuTable extends Migration
      */
     public function down()
     {
-        Schema::table('hoadondichvu', function (Blueprint $table) {
-            $table->text('chu_thich')->nullable('false')->change();
-        });
+        Schema::dropIfExists('roles');
     }
 }

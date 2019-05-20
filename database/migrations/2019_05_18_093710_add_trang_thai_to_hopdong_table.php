@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateToDonxinchamduthopdongTable extends Migration
+class AddTrangThaiToHopdongTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class UpdateToDonxinchamduthopdongTable extends Migration
      */
     public function up()
     {
-        Schema::table('donxinchamduthopdong', function (Blueprint $table) {
-            $table->unsignedBigInteger('nhan_vien_tao')->nullable()->change();
-            $table->tinyInteger('trang_thai')->default(0);
+        Schema::table('hopdong', function (Blueprint $table) {
+            $table->tinyInteger('trang_thai')->default(1);
         });
     }
 
@@ -26,8 +25,7 @@ class UpdateToDonxinchamduthopdongTable extends Migration
      */
     public function down()
     {
-        Schema::table('donxinchamduthopdong', function (Blueprint $table) {
-            $table->unsignedBigInteger('nhan_vien_tao')->change();
+        Schema::table('hopdong', function (Blueprint $table) {
             $table->dropColumn('trang_thai');
         });
     }

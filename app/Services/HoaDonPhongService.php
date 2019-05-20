@@ -23,22 +23,26 @@ class HoaDonPhongService
 
     public function store($request)
     {
-        $this->hoaDonPhong->ma_hop_dong = $request->ma_hop_dong;
-        $this->hoaDonPhong->tong_tien = $request->tong_tien;
+        $this->hoaDonPhong->ma_hop_dong = $request['ma_hop_dong'];
+        $this->hoaDonPhong->tong_tien = $request['tong_tien'];
         $this->hoaDonPhong->nhan_vien_tao = 1;
         $this->hoaDonPhong->save();
 
         return $this->hoaDonPhong;
     }
 
+    public function thanhToan($id)
+    {
+        $hdP = $this->hoaDonPhong->findOrFail($id);
+        $hdP->trang_thai = config('constants.DA_THANH_TOAN');
+        $hdP->save();
+        return $hdP;
+    }
+
     public function getHoaDonChuaThanhToanTheoSV($maSV)
     {
         $hopDong = $this->hopDongService->getByMSV($maSV);
-        $hoaDon = $this->hoaDonPhong->where('ma_hop_dong', $hopDong->id)->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->get();
-        $tongTien = 0;
-        if ($hoaDon->toArray() != null) {
-            $tongTien = $hoaDon[0]->tong_tien;
-        }
-        return $tongTien;
+        $hoaDon = $this->hoaDonPhong->where('ma_hop_dong', $hopDong[0]->id)->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->get();
+        return $hoaDon;
     }
 }

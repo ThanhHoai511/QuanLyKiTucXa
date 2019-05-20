@@ -72,7 +72,9 @@ class TinTucController extends Controller
      */
     public function edit($id)
     {
+        $tinTucUpdate = $this->tinTucService->getById($id);
 
+        return view('admin.tintuc.cap-nhat', ['tinTucUpdate' => $tinTucUpdate]);
     }
 
     /**
@@ -82,9 +84,11 @@ class TinTucController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TinTucRequest $request, $id)
     {
-        //
+        $this->tinTucService->update($request, $id);
+
+        return redirect()->route('danhSachTinTuc')->with('success', 'Sửa tin thành công!');
     }
 
     /**
@@ -95,6 +99,7 @@ class TinTucController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->tinTucService->destroy($id);
+        return redirect()->route('danhSachTinTuc')->with('success', 'Xóa tin thành công!');
     }
 }

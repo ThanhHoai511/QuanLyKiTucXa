@@ -11,13 +11,8 @@ class DonXinChamDutHopDong extends Model
 
     protected $table = 'donxinchamduthopdong';
 
-    public function sinhvien()
+    public function hopdong()
     {
-        return $this->belongsTo('App\Models\SinhVienUTC', 'ma_sv_utc');
-    }
-
-    public function phong()
-    {
-        return $this->belongsTo('App\Models\Phong', 'ma_phong');
+        return $this->belongsTo('App\Models\HopDong', 'ma_hop_dong');
     }
 }

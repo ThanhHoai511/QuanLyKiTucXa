@@ -15,19 +15,15 @@ class CreateDonxinchamduthopdongTable extends Migration
     {
         Schema::create('donxinchamduthopdong', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('ma_phong');
-            $table->unsignedBigInteger('ma_sv_utc');
-            $table->foreign('ma_phong')
-                ->references('id')->on('phong')
+            $table->unsignedBigInteger('ma_hop_dong');
+            $table->foreign('ma_hop_dong')
+                ->references('id')->on('hopdong')
                 ->onDelete('cascade');
-            $table->foreign('ma_sv_utc')
-                ->references('id')->on('sinhvienutc')
-                ->onDelete('cascade');
-            $table->date('ngay_ket_thuc')->nullable();
-            $table->unsignedBigInteger('nhan_vien_tao');
+            $table->unsignedBigInteger('nhan_vien_tao')->nullable();
             $table->foreign('nhan_vien_tao')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+            $table->tinyInteger('trang_thai')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

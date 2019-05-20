@@ -20,17 +20,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($csvc as $key => $csvc)
+            @foreach($csvc as $key => $item)
                 <tr class="{{ $key % 2 == 1 ? "success" : "info" }}">
-                    <td>{{ $csvc->id }}</td>
-                    <td>{{ $csvc->ten }}</td>
-                    <td>{{ number_format($csvc->gia) }}</td>
-                    <td>{{ number_format($csvc->tien_cong) }}</td>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->ten }}</td>
+                    <td>{{ number_format($item->gia) }}</td>
+                    <td>{{ number_format($item->tien_cong) }}</td>
                     <td>
-                        <a href="{{ route('suaCSVC', [$csvc->id]) }}"><button class="btn btn-primary">Sửa</button></a>
+                        <a href="{{ route('suaCSVC', [$item->id]) }}"><button class="btn btn-primary">Sửa</button></a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <div class="text-center">
+        {{ $csvc->appends(request()->all())->links() }}
+    </div>
 @endsection

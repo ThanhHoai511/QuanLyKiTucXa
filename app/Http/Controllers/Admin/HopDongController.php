@@ -64,8 +64,9 @@ class HopDongController extends Controller
         $phong = $this->phongService->getById($request->idPhong);
         $donDangKy = $this->donDangKiService->getById($request->id);
         $sinhVien = $this->sinhVienService->getByMSV($donDangKy->ma_sinh_vien);
+        $currentYear = now()->year;
 
-        return view('admin.hopdong.create', ['phong' => $phong, 'donDangKy'=> $donDangKy, 'sinhVien' => $sinhVien]);
+        return view('admin.hopdong.create', ['phong' => $phong, 'donDangKy'=> $donDangKy, 'sinhVien' => $sinhVien, 'currentYear' => $currentYear]);
     }
 
     /**
@@ -91,16 +92,19 @@ class HopDongController extends Controller
             $this->phongSinhVienService->store($paramsPSV);
             $sinhVien = $this->sinhVienService->getById($hopDong->ma_sv_utc);
             $email = $sinhVien->email;
-            if (!$this->taiKhoanService->findByEmail($sinhVien->email)) {
-                $taiKhoan = $this->taiKhoanService->store($sinhVien->email, config('constants.KHONG_DUOC_TRUY_CAP'));
+            $taiKhoanFind = $this->taiKhoanService->findByEmail($email);
+            if (!$taiKhoanFind) {
+                $taiKhoan = $this->taiKhoanService->store($email, config('constants.KHONG_DUOC_TRUY_CAP'), config('constants.SINH_VIEN'));
+                $this->sinhVienService->updateUserId($sinhVien->id, $taiKhoan[0]->id);
                 Mail::send('admin.mails.user_success',
                 array('name'=> $sinhVien->ho_ten, 'username' => $email, 'password'=> $taiKhoan[1]), function($message) use($email)
                 {
                     $message->to($email)->subject('Kí túc xá Đại học Giao thông vận tải');
                 });
             } else {
+                $this->taiKhoanService->activeTaiKhoan($taiKhoanFind->id);
                 Mail::send('admin.mails.dang-ki-success', 
-                array('name'=> $sinhVien->ho_ten, 'username' => $sinhVien->email), function($message) use ($email)
+                array('name'=> $sinhVien->ho_ten, 'username' => $email), function($message) use ($email)
                 {
                     $message->to($email)->subject('Kí túc xá Đại học Giao thông vận tải');
                 });

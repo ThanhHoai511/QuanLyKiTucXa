@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTrangThaiToHoadonphongTable extends Migration
+class ChangeToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTrangThaiToHoadonphongTable extends Migration
      */
     public function up()
     {
-        Schema::table('hoadonphong', function (Blueprint $table) {
-            $table->tinyInteger('trang_thai')->default(0);
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('role_id')->nullable()->change();
         });
     }
 
@@ -25,8 +25,8 @@ class AddTrangThaiToHoadonphongTable extends Migration
      */
     public function down()
     {
-        Schema::table('hoadonphong', function (Blueprint $table) {
-            $table->dropColumn('trang_thai');
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('role_id')->nullable(false)->change();
         });
     }
 }

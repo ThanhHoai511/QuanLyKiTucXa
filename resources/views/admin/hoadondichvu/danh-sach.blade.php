@@ -71,9 +71,9 @@
                                 <td>{{ date("d/m/Y", strtotime($hd->ngay_ket_thuc)) }}</td>
                                 <td id="trang_thai_{{ $hd->id }}">
                                     @if($hd->trang_thai == config('constants.CHUA_THANH_TOAN'))
-                                        Chua thanh toan
+                                        Chưa thanh toán
                                     @else 
-                                        Da thanh toan
+                                        Đã thanh toán
                                     @endif
                                 </td>
                                 <td>{!! $hd->gia !!} d</td>
@@ -86,7 +86,7 @@
                                 <td data-hddv-id="{{ $hd->id }}">
                                     <form>
                                         {{ csrf_field() }}
-                                        <button style="@if($hd->trang_thai == config('constants.DA_THANH_TOAN')) display: none @endif" class="btn btn-success thanh_toan" id="btn_thanh_toan_{{ $hd->id }}" name="id">Da thanh toan</button>
+                                        <button style="@if($hd->trang_thai == config('constants.DA_THANH_TOAN')) display: none @endif" class="btn btn-success thanh_toan" id="btn_thanh_toan_{{ $hd->id }}" name="id">Đã thanh toán</button>
                                     </form>
                                 </td>
                             </tr>
@@ -100,7 +100,7 @@
     <script type="text/javascript">
         $(".thanh_toan").click(function(e) {
             e.preventDefault();
-            if(confirm('Xac nhan thanh toan?') == true) {
+            if(confirm('Xác nhận thanh toán?') == true) {
                 var id = $(this).closest('td').attr('data-hddv-id');
                 $.ajax({
                     type: 'PUT',
@@ -110,7 +110,7 @@
                     },
                     success: function()
                     {
-                        $("#trang_thai_" + id).text('Da thanh toan');
+                        $("#trang_thai_" + id).text('Đã thanh toán');
                         $("#btn_thanh_toan_" + id).hide();
                     }
                 });

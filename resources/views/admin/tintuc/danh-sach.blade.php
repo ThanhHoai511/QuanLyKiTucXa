@@ -33,7 +33,6 @@
             <th>Ảnh</th>
             <th>Tình trạng</th>
             <th>Nổi bật</th>
-            <th>Xử lý</th>
             <th>Hành động</th>
         </tr>
         </thead>
@@ -47,7 +46,7 @@
                         @if($tt->anh == "")
                             <img src="{{ asset('images/common/utc2.jpg') }}" alt="" style="width:70px;height: 70px;">
                         @else
-                            <img src="{{ asset('images/tintuc/' . $tt->hinh_anh) }}" alt=""  style="width:70px;height: 70px;">
+                            <img src="{{ asset('images/tintuc/' . $tt->anh) }}" alt=""  style="width:70px;height: 70px;">
                         @endif
                     </td>
                     <td>
@@ -64,13 +63,6 @@
                             Tin thường
                         @endif
                     </td>
-                    <td data-tin-tuc-id="{{ $tt->id }}">
-{{--                        <form>--}}
-{{--                            {{ csrf_field() }}--}}
-{{--                            <button style="@if($tt->trang_thai == 1) display: none @endif" class="btn btn-success col-md-6" name="approve" id='approve-btn-{{ $tt->id  }}'>Phê duyệt</button>--}}
-{{--                            <button style="@if($tt->trang_thai == 0) display: none @endif" class="btn btn-primary col-md-6" name="decline" id='decline-btn-{{ $tt->id  }}'>Từ chối</button>--}}
-{{--                        </form>--}}
-                    </td>
                     <td>
                         <a href="{{ route('suaTinTuc', [$tt->id]) }}"><button class="btn btn-primary">Sửa</button></a>
                     </td>
@@ -83,41 +75,4 @@
         $('#loai select').change(function() {
             document.getElementById('form').submit();
         });
-        {{--$(document).on("click","button",function(e) {--}}
-        {{--    e.preventDefault();--}}
-        {{--    var self = $(this);--}}
-        {{--    var typeBtn = self.attr("name");--}}
-        {{--    var url = "";--}}
-        {{--    if (typeBtn == "approve") {--}}
-        {{--        url = "{{ route('approve') }}";--}}
-        {{--    } else {--}}
-        {{--        url = "{{ route('decline') }}";--}}
-        {{--    }--}}
-        {{--    var tinTucID = parseInt(self.closest('td').attr('data-tin-tuc-id'));--}}
-        {{--    $.ajax({--}}
-        {{--        type: "POST",--}}
-        {{--        url: url,--}}
-        {{--        dataType: "json",--}}
-        {{--        data: {--}}
-        {{--            "id" : tinTucID--}}
-        {{--        },--}}
-        {{--        success: function()--}}
-        {{--        {--}}
-        {{--            if (typeBtn == "approve") {--}}
-        {{--                $("#status-td-" + tinTucID).text('Đang hiển thị');--}}
-        {{--                $("#approve-btn-" + tinTucID).hide();--}}
-        {{--                $("#decline-btn-" + tinTucID).show();--}}
-        {{--            } else {--}}
-        {{--                $("#status-td-" + tinTucID).text('Đang ẩn');--}}
-        {{--                $("#approve-btn-" + tinTucID).show();--}}
-        {{--                $("#decline-btn-" + tinTucID).hide();--}}
-        {{--            }--}}
-        {{--        },--}}
-        {{--        error: function () {--}}
-        {{--            alert("Phê duyệt không thành công!");--}}
-        {{--        }--}}
-        {{--    });--}}
-        {{--});--}}
-
-    </script>
 @endsection

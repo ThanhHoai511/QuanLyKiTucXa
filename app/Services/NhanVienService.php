@@ -11,6 +11,7 @@ class NhanVienService
 {
     protected $nhanVien;
     protected $taiKhoanService;
+    protected $chucVuService;
 
     public function __construct(NhanVien $nhanVien, TaiKhoanService $taiKhoanService)
     {
@@ -26,10 +27,10 @@ class NhanVienService
     public function create($request)
     {
         return DB::transaction(function () use ($request) {
-            $taiKhoan = $this->taiKhoanService->store($request->email, config('constants.DUOC_TRUY_CAP'));
+            $taiKhoan = $this->taiKhoanService->store($request, config('constants.DUOC_TRUY_CAP'), config('constants.NHAN_VIEN'));
             $nhanVienMoi = $this->store($request, $taiKhoan[0]->id);
             $email = $nhanVienMoi->email;
-            Mail::send('admin.mails.user_success', 
+            Mail::send('admin.mails.tai-khoan-nhan-vien',
                 array('name'=> $nhanVienMoi->ho_ten, 'username' => $email, 'password'=> $taiKhoan[1]), function($message) use ($email)
                 {
                     $message->to($email)->subject('Kí túc xá trường Đaị học Giao thông vận tải');

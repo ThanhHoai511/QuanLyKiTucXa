@@ -38,7 +38,11 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="nam_hoc">Năm học</label>
-                        <input type="text" class="form-control" id="nam_hoc" name="nam_hoc" placeholder="Ví dụ: 2016-2017">
+                        <select name="nam_hoc" id="nam_hoc" class="form-control">
+                            <option value="">-- Chọn năm học --</option>
+                            <option value="{{ $currentYear - 1 }} - {{ $currentYear }}">{{ $currentYear - 1 }} - {{ $currentYear }}</option>
+                            <option value="{{ $currentYear }} - {{ $currentYear + 1}}">{{ $currentYear }} - {{ $currentYear + 1 }}</option>
+                        </select>
                         <span class="error" id="errNamHoc"></span>
                     </div>
                 </div>
@@ -57,12 +61,12 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="tien_phong">Tiền phòng</label>
-                        <input type="text" class="form-control" id="gia_phong" name="tien_phong" value="{!! number_format($phong->loaiphong->gia_phong) !!}">
+                        <input type="text" class="form-control" id="gia_phong" name="tien_phong" value="{!! number_format($phong->loaiphong->gia_phong) !!}" readonly>
                         <span class="error" id="errorGiaPhong"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="tien_cuoc">Tiền cược</label>
-                        <input type="text" class="form-control" id="tien_cuoc_tai_san" name="tien_cuoc" value="{!! number_format($phong->loaiphong->tien_cuoc_tai_san) !!}">
+                        <input type="text" class="form-control" id="tien_cuoc_tai_san" name="tien_cuoc" value="{!! number_format($phong->loaiphong->tien_cuoc_tai_san) !!}" readonly>
                         <span class="error" id="errorTc"></span>
                     </div>
                 </div>
@@ -87,7 +91,7 @@
             }
 
             if ($('#nam_hoc').val() == '') {
-                $('#errNamHoc').text("Bạn phải nhập năm học!");
+                $('#errNamHoc').text("Bạn phải chọn năm học!");
                 $('#nam_hoc').focus();
                 return false;
             }
@@ -141,11 +145,11 @@
                 $('#errKiHoc').text("Bạn phải chọn kì học!");
             }
         });
-        $('#nam_hoc').keyup(function() {
+        $('#nam_hoc').change(function() {
             if ($('#nam_hoc').val() != '') {
                 $('#errNamHoc').text("");
             } else {
-                $('#errNamHoc').text("Bạn phải nhập năm học!");
+                $('#errNamHoc').text("Bạn phải chọn năm học!");
             }
         });
 

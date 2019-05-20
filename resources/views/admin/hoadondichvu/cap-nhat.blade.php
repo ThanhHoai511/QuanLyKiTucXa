@@ -23,12 +23,12 @@
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-6">
-                        <label for="chi_so_dau">Chỉ số đầu</label>
+                        <label for="chi_so_dau">Chỉ số đầu (Nếu là hóa đơn mạng và hóa đơn sửa chữa thì nhập vào 0)</label>
                         <input type="chi_so_dau" name="chi_so_dau" class="form-control" placeholder="Nhập chỉ số cũ">
                         <span class="error" id="errChiSoDau"></span>
                     </div>
                     <div class="col-md-6">
-                        <label for="chi_so_cuoi">Chỉ số cuối</label>
+                        <label for="chi_so_cuoi">Chỉ số cuối  (Nếu là hóa đơn mạng và hóa đơn sửa chữa thì nhập vào 0)</label>
                         <input type="chi_so_cuoi" name="chi_so_cuoi" class="form-control" placeholder="Nhập chỉ số mới">
                         <span class="error" id="errChiSoCuoi"></span>
                     </div>

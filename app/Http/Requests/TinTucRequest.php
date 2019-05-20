@@ -29,7 +29,6 @@ class TinTucRequest extends FormRequest
             'loai' => 'required|numeric',
             'trang_thai' => 'required|numeric',
             'noi_bat' => 'required|numeric',
-            'nhan_vien_tao' => 'required|numeric',
         ];
     }
 }

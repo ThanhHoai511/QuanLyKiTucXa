@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class TaiKhoanService
 {
@@ -19,13 +20,16 @@ class TaiKhoanService
         return $this->taiKhoan->paginate(15);
     }
 
-    public function store($email, $isAccess)
+    public function store($email, $isAccess, $option, $chucVu = "")
     {
         $this->taiKhoan->email = $email;
-        $password = explode('@', $email)[0] . "123";
+        $password = Str::random(10);
         $this->taiKhoan->password = Hash::make($password);
         $this->taiKhoan->status = config('constants.HOAT_DONG');
         $this->taiKhoan->is_access = $isAccess;
+        if ($option == config('constants.NHAN_VIEN')) {
+            $this->taiKhoan->role_id = $chucVu;
+        }
         $this->taiKhoan->save();
         return [$this->taiKhoan, $password];
     }
@@ -40,6 +44,20 @@ class TaiKhoanService
     public function destroy($id)
     {
         return $this->taiKhoan->destroy($id);
+    }
+
+    public function voHieuHoa($id)
+    {
+        $taiKhoanVHH = $this->getById($id);
+        $taiKhoanVHH->status = 0;
+        $taiKhoanVHH->save();
+    }
+
+    public function activeTaiKhoan($id)
+    {
+        $taiKhoanVHH = $this->getById($id);
+        $taiKhoanVHH->status = 1;
+        $taiKhoanVHH->save();
     }
 
     public function getById($id)

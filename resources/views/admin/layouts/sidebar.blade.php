@@ -1,4 +1,5 @@
 <p style="color: white">---------- Quản lý tài khoản ------------------</p>
+@if(Auth::user()->role_id == 2)
 <li class="treeview">
     <a href="#">
         <i class="fa fa-adjust"></i>
@@ -12,7 +13,7 @@
         <li><a href="{{ route('themChucVu') }}"><i class="fa fa-circle-o"></i>Thêm chức vụ</a></li>
     </ul>
 </li>
-
+@endif
 <li class="treeview">
     <a href="#">
         <i class="fa fa-adn"></i>
@@ -113,6 +114,18 @@
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachPhong') }}"><i class="fa fa-circle-o"></i>Danh sách phòng</a></li>
         <li><a href="{{ route('themPhong') }}"><i class="fa fa-circle-o"></i> Thêm phòng</a></li>
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-ambulance"></i> <span>Phản hồi</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ route('danhSachPhanHoi') }}"><i class="fa fa-circle-o"></i>Danh sách phản hồi</a></li>
     </ul>
 </li>
 <p style="color:white;">---------- Quản lý tin tức-------------------------</p>
