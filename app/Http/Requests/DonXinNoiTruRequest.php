@@ -24,16 +24,19 @@ class DonXinNoiTruRequest extends FormRequest
     public function rules()
     {
         return [
-            'ten' => 'required|string',
-            'ma_sinh_vien' => 'required|numeric',
-            'gioi_tinh' => 'required',
-            'ngay_sinh' => 'required|date',
-            'noi_sinh' => 'required|string',
-            'cmnd' => 'required|numeric|unique:donxinnoitru, cmnd',
-            'sdt' => 'required|numeric|unique:donxinnoitru, sdt',
-            'email' => 'required|unique:donxinnoitru,email',
+            'ma_sinh_vien' => 'required|numeric|exists:sinhvienutc,ma_sinh_vien',
             'chu_thich' => 'nullable',
-            'ma_loai_phong' => 'required|numeric'
+            'ma_loai_phong' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'ma_sinh_vien.required' => 'Bạn phải nhập mã sinh viên!',
+            'ma_sinh_vien.numeric' => 'Mã sinh viên phải là số!',
+            'ma_sinh_vien.exists' => 'Mã sinh viên của bạn không đúng! Vui lòng nhập lại!',
+            'ma_loai_phong.required' => 'Bạn phải chọn loại phòng'
         ];
     }
 }

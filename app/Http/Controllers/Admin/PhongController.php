@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PhongRequest;
+use App\Services\HoaDonDichVuService;
+use App\Services\HoaDonPhongService;
 use App\Services\KhuNhaServices;
 use App\Services\LoaiPhongService;
 use App\Services\PhongService;
@@ -14,15 +16,18 @@ class PhongController extends Controller
     protected $phongService;
     protected $loaiPhongService;
     protected $khuNhaService;
+    protected $hoaDonDichVuService;
 
     public function __construct(
         PhongService $phongService,
         LoaiPhongService $loaiPhongService,
-        KhuNhaServices $khuNhaService
+        KhuNhaServices $khuNhaService,
+        HoaDonDichVuService $hoaDonDichVuService
     ) {
         $this->phongService = $phongService;
         $this->loaiPhongService = $loaiPhongService;
         $this->khuNhaService = $khuNhaService;
+        $this->hoaDonDichVuService = $hoaDonDichVuService;
     }
 
     /**
@@ -33,6 +38,10 @@ class PhongController extends Controller
     public function index(Request $request)
     {
         $phong = $this->phongService->getAllWithPaginate($request->ten, $request->khu_nha);
+        foreach($phong as $p)
+        {
+            $p->hoa_don_dich_vu = $this->hoaDonDichVuService->getHDChuaThanhToanByPhongID($p->id);
+        }
         $khuNha = $this->khuNhaService->getAll();
 
         return view('admin.phong.danh-sach', ['phong' => $phong, 'khuNha' => $khuNha, 'params' => $request]);

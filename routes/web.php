@@ -11,18 +11,27 @@
 |
 */
 
-//, 'middleware' => ['isAdmin', 'auth'], 'guard' => 'admin'
+
 Route::group(['prefix' => ''], function () {
     Route::get('', 'User\HomeController@index')->name('trang-chu');
 
     Route::get('don-dang-ky', 'User\HomeController@donDangKy')->name('don-dang-ky');
     Route::post('don-dang-ky', 'User\HomeController@guiDonDangKy');
 
+    Route::get('chi-tiet-hop-dong', 'User\HomeController@chiTietHopDong')->name('chi-tiet-hop-dong');
+
     Route::get('don-xin-huy', 'User\HomeController@donXinHuy')->name('don-xin-huy');
-    Route::post('don-xin-huy', 'User\HomeController@guiDonXinHuy');
+    Route::post('don-xin-huy', 'User\HomeController@guiDonXinHuy')->name('don-xin-huy');
+
+    Route::get('phan-hoi', 'User\HomeController@formPhanHoi')->name('phan-hoi');
+    Route::post('phan-hoi', 'User\HomeController@guiPhanHoi')->name('guiPhanHoi');
+    Route::post('binh-luan', 'User\HomeController@guiBinhLuan')->name('guiBinhLuan');
+
+    Route::get('gioi-thieu', 'User\HomeController@gioiThieu')->name('gioi-thieu');
+    Route::get('ban-quan-ly', 'User\HomeController@banQuanLy')->name('ban-quan-ly');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' => 'admin'], function () {
    Route::get('/', function () {
       return view('admin.layouts.home'); 
    })->name('admin.home');
@@ -133,11 +142,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'don-dang-ky'], function () {
         Route::get('', 'Admin\DonXinNoiTruController@index')->name('danhSachDonDangKy');
         Route::get('chon-phong/don-dang-ki={id}', 'Admin\DonXinNoiTruController@showPhong')->name('danhSachPhongChon');
+        Route::post('tu-choi-don/{id}', 'Admin\DonXinNoiTruController@tuChoiDon')->name('tuChoiDonDK');
     });
 
     Route::group(['prefix' => 'don-xin-huy'], function () {
         Route::get('', 'Admin\DonXinHuyController@index')->name('danhSachDonXinHuy');
-        Route::get('chap-nhan/{id}', 'Admin\DonXinHuyController@chapNhanDon');
+        Route::post('chap-nhan/{id}', 'Admin\DonXinHuyController@chapNhanDon')->name('chapNhanDon');
+        Route::post('nhac-nho/{id}', 'Admin\DonXinHuyController@nhacNho')->name('nhacNhoSV');
     });
 
     Route::group(['prefix' => 'hop-dong'], function () {
@@ -148,6 +159,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'hoa-don-phong'], function () {
         Route::get('', 'Admin\HoaDonPhongController@index')->name('danhSachHDP');
+    });
+
+    Route::group(['prefix' => 'phan-hoi'], function () {
+        Route::get('', 'Admin\PhanHoiController@index')->name('danhSachPhanHoi');
     });
 
     Route::group(['prefix' => 'hoa-don-dich-vu'], function () {
@@ -162,3 +177,6 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/editPass', 'Auth\ChangePasswordController@edit')->name('editPass');
+Route::put('/updatePass', 'Auth\ChangePasswordController@update')->name('updatePass');

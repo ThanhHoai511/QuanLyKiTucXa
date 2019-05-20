@@ -35,7 +35,12 @@
                                     @endif
                                 </td>
                                 <td>{!! $hd->user->nhanvien->ho_ten !!}</td>
-                                <td></td>
+                                <td data-hddv-id="{{ $hd->id }}">
+                                    <form>
+                                        {{ csrf_field() }}
+                                        <button style="@if($hd->trang_thai == config('constants.DA_THANH_TOAN')) display: none @endif" class="btn btn-success thanh_toan" id="btn_thanh_toan_{{ $hd->id }}" name="id">Đã thanh toán</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -44,4 +49,27 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(".thanh_toan").click(function(e) {
+            e.preventDefault();
+            if(confirm('Xác nhận thanh toán?') == true) {
+                var id = $(this).closest('td').attr('data-hddv-id');
+                $.ajax({
+                    type: 'PUT',
+                    url: '/api/v1/hoa-don-phong/thanh-toan',
+                    data: {
+                        id: id
+                    },
+                    success: function()
+                    {
+                        $("#trang_thai_" + id).text('Đã thanh toán');
+                        $("#btn_thanh_toan_" + id).hide();
+                    }
+                });
+            }
+            else {
+                return false;
+            }
+        });
+    </script>
 @endsection

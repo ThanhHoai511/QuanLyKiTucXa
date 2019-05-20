@@ -18,7 +18,6 @@
                             <th>Ngày sinh</th>
                             <th>Chứng minh nhân dân</th>
                             <th>Số điện thoại</th>
-                            <th>Khu nhà</th>
                             <th>Phòng</th>
                             <th>Kiểm tra</th>
                             <th>Duyệt</th>
@@ -27,64 +26,42 @@
                         <tbody>
                         @foreach($donXinHuy as $key => $don)
                             <tr class="{{ $key % 2 == 1 ? "success" : "info" }}">
-                                <td>{!! $don->sinhvien->ma_sinh_vien !!}</td>
-                                <td>{!! $don->sinhvien->ho_ten !!}</td>
-                                <td>{!! $don->sinhvien->email !!}</td>
+                                <td>{!! $don->hopdong->sinhvien->ma_sinh_vien !!}</td>
+                                <td>{!! $don->hopdong->sinhvien->ho_ten !!}</td>
+                                <td>{!! $don->hopdong->sinhvien->email !!}</td>
+                                <td>{!! $don->hopdong->sinhvien->gioi_tinh !!}</td>
+                                <td>{!! $don->hopdong->sinhvien->ngay_sinh !!}</td>
+                                <td>{!! $don->hopdong->sinhvien->cmnd !!}</td>
+                                <td>{!! $don->hopdong->sinhvien->sdt !!}</td>
+                                <td>{!! $don->hopdong->phong->ten !!} {!! $don->hopdong->phong->khunha->ten !!}</td>
                                 <td>
-                                    @if($don->sinhvien->gioi_tinh == 1)
-                                        Nữ
+                                    @php
+                                        $countHDP = count($don['hoa_don_phong']);
+                                        $countHDDV = count($don['hoa_don_dich_vu']);
+                                    @endphp
+                                    @if($countHDP == 0 && $countHDDV == 0)
+                                        Đã thanh toán toàn bộ chi phí
                                     @else
-                                        Nam
+                                        Còn nợ chi phí
                                     @endif
-                                </td>
-                                <td>{!! $don->sinhvien->ngay_sinh !!}</td>
-                                <td>{!! $don->sinhvien->cmnd !!}</td>
-                                <td>{!! $don->sinhvien->sdt !!}</td>
-                                <td>{!! $don->phong->khunha->ten !!}</td>
-                                <td>{!! $don->phong->ten !!}</td>
-                                <td>
-                                    <a data-target="#thanh_toan_{{ $don->id }}" data-toggle="modal"><button class="btn btn-default">Kiểm tra</button></a>
                                 </td>
                                 <td>
                                     @if($don->trang_thai != 1)
-                                        <a href=""><button class="btn btn-primary">Phê duyệt</button></a>
-                                        <button class="btn btn-danger" style="margin-top: 3px;">Gửi mail nhắc nhở</button>
+                                        <a onclick="return confirm('Bạn có chắc chắn muốn phê duyệt?')">
+                                            <form action="{{ route('chapNhanDon', $don->id) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-primary">Phê duyệt</button>
+                                            </form>
+                                        </a>
+                                        <a onclick="return confirm('Bạn có chắc chắn muốn gửi email nhắc nhở?')">
+                                            <form action="{{ route('nhacNhoSV', $don->id) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <button class="btn btn-danger" style="margin-top: 3px;">Gửi mail nhắc nhở</button>
+                                            </form>
+                                        </a>
                                     @endif
                                 </td>
                             </tr>
-                            <div id="thanh_toan_{{ $don->id }}" class="modal" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" id="test">
-                                    @php
-                                        $tien = $don->tong_tien;
-                                        $tienPhong = $don->tien_phong;
-                                        $tienDV = $don->tien_dich_vu;
-                                    @endphp
-                                    @if ($tien == 0)
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Sinh viên không còn nợ khoản chi phí nào!</h5>
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Sinh viên chưa thanh toán hết chi phí:</h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                @if ($tienPhong != 0)
-                                                    <p>Tiền phòng: {!! $tienPhong !!}</p>
-                                                @endif
-                                                @if ($tienDV != 0)
-                                                    <p>Tiền dịch vụ: {!! $tienDV !!}</p>
-                                                @endif
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
                         @endforeach
                         </tbody>
                     </table>

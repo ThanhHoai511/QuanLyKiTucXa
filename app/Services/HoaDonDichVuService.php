@@ -44,11 +44,16 @@ class HoaDonDichVuService
         $this->hoaDonDichVu->chi_so_cuoi = $request->chi_so_cuoi;
         $this->hoaDonDichVu->ma_dich_vu = $request->ma_dich_vu;
         $this->hoaDonDichVu->nhan_vien_tao = 1;
-        $soTieuThu = $request->chi_so_cuoi - $request->chi_so_dau - ($request->so_tieu_thu_cho_phep * $soSinhVien);
-        if ($soTieuThu <= 0) {
-            $this->hoaDonDichVu->tong_tien = 0;
+        if($request->chi_so_dau == 0 && $request->chi_so_cuoi == 0)
+        {
+            $this->hoaDonDichVu->tong_tien = $request->don_gia;
         } else {
-            $this->hoaDonDichVu->tong_tien = $soTieuThu * $request->don_gia;
+            $soTieuThu = $request->chi_so_cuoi - $request->chi_so_dau - ($request->so_tieu_thu_cho_phep * $soSinhVien);
+            if ($soTieuThu <= 0) {
+                $this->hoaDonDichVu->tong_tien = 0;
+            } else {
+                $this->hoaDonDichVu->tong_tien = $soTieuThu * $request->don_gia;
+            }
         }
         $this->hoaDonDichVu->save();
         return $this->hoaDonDichVu;
@@ -69,14 +74,14 @@ class HoaDonDichVuService
     public function getHDChuaThanhToanByPhongID($phongId)
     {
         $hoaDons = $this->hoaDonDichVu->where('ma_phong', $phongId)->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->get();
-        $tongTien = 0;
-        if ($hoaDons) {
-            $phong = $this->phongService->getById($phongId);
-            $soSVHT = $phong->so_luong_sv_hien_tai;
-            foreach($hoaDons as $hd) {
-                $tongTien += $hd->tong_tien / $soSVHT;
-            }
-        }
-        return $tongTien;
+//        $tongTien = 0;
+//        if ($hoaDons) {
+//            $phong = $this->phongService->getById($phongId);
+//            $soSVHT = $phong->so_luong_sv_hien_tai;
+//            foreach($hoaDons as $hd) {
+//                $tongTien += $hd->tong_tien / $soSVHT;
+//            }
+//        }
+        return $hoaDons;
     }
 }

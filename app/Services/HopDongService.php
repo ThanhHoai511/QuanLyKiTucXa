@@ -37,6 +37,19 @@ class HopDongService
 
     public function getByMSV($maSV)
     {
-        return $this->hopDong->where('ma_sv_utc', $maSV)->first();
+        return $this->hopDong->where('ma_sv_utc', $maSV)->orderBy('created_at', 'asc')->get();
+    }
+
+    public function chuyenTrangThai($maHD)
+    {
+        $hd = $this->getByID($maHD);
+        $hd->trang_thai = 0;
+        $hd->save();
+        return $hd;
+    }
+
+    public function getByID($id)
+    {
+        return $this->hopDong->findOrFail($id);
     }
 }

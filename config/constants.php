@@ -17,5 +17,9 @@
         'CHAP_NHAN_HUY' => 1,
         'DANG_CHO_HUY' => 0,
         'TANG_SV' => 1,
-        'GIAM_SV' => -1
+        'GIAM_SV' => -1,
+        'NHAN_VIEN' => 1,
+        'SINH_VIEN' => 0,
+        'GOP_Y' => 0,
+        'BAO_HONG' => 1
     ];

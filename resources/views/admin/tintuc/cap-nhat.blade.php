@@ -32,28 +32,30 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label for="noi_dung">Nội dung tin tức: </label>
-                        <textarea class="ckeditor" name="noi_dung" id="editor1" cols="30" rows="10"></textarea>
+                        <textarea class="ckeditor" name="noi_dung" id="editor1" cols="30" rows="10">{!! isset($tinTucUpdate) ? $tinTucUpdate->noi_dung : old('noi_dung') !!}</textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
                         <label for="loai">Loại</label>
                         <select name="loai" id="loai" class="form-control">
-                            <option value="1">Tin tức</option>
+                            <option value="1" {{ isset($tinTucUpdate) ? ($tinTucUpdate->loai == 1 ? 'selected' : '') : 'selected' }}>Tin tức</option>
+                            <option value="2" {{ isset($tinTucUpdate) ? ($tinTucUpdate->loai == 2 ? 'selected' : '') : '' }}>Giới thiệu</option>
+                            <option value="3" {{ isset($tinTucUpdate) ? ($tinTucUpdate->loai == 3 ? 'selected' : '') : '' }}>Ban quản lý</option>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <label for="tinh_trang">Trạng thái</label>
                         <div class="form-control">
-                            <input type="radio" name="trang_thai" value="1" checked> Hiển thị
-                            <input type="radio" name="trang_thai" value="0"> Ẩn
+                            <input type="radio" name="trang_thai" value="1" {{ isset($tinTucUpdate) ? ($tinTucUpdate->trang_thai == 1 ? 'checked' : '') : 'checked' }}> Hiển thị
+                            <input type="radio" name="trang_thai" value="0" {{ isset($tinTucUpdate) ? ($tinTucUpdate->trang_thai == 0 ? 'checked' : '') : '' }}> Ẩn
                         </div>
                     </div>
                     <div class="col-md-3">
                         <label for="noi_bat">Nổi bật</label>
                         <div class="form-control">
-                            <input type="radio" name="noi_bat" value="1"> Nổi bật
-                            <input type="radio" name="noi_bat" value="0" checked> Thường
+                            <input type="radio" name="noi_bat" value="1" {{ isset($tinTucUpdate) ? ($tinTucUpdate->noi_bat == 1 ? 'checked' : '') : '' }}> Nổi bật
+                            <input type="radio" name="noi_bat" value="0" {{ isset($tinTucUpdate) ? ($tinTucUpdate->noi_bat == 0 ? 'checked' : '') : 'checked' }}> Thường
                         </div>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
                     @if(isset($tinTucUpdate))
                         <a href="{{ route('xoaTinTuc', [$tinTucUpdate->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><button type="button" class="btn btn-danger">Xóa</button></a>
                     @endif
-                    <a href="{{ route('danhSachTinTuc') }}"><button type="button" class="btn btn-danger">Hủy</button></a>
+                    <a href="{{ route('danhSachTinTuc') }}"><button type="button" class="btn btn-primary">Hủy</button></a>
                 </div>
             </form>
         </div>

@@ -5,6 +5,9 @@
         .error {
             color: red;
         }
+        label {
+            color:black;
+        }
     </style>
     <div class="container col-md-8">
         @include('admin.layouts.flash-msg')
@@ -18,47 +21,16 @@
                     <span class="error" id="errAnh"></span>
                 </div>
                 <div class="form-group col-md-7">
-                    <img src="" alt="" style="width: 300px; height: 250px;" id="img">
+                    <img alt="" style="width: 300px; height: 250px;" id="img">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="ten">Họ và tên</label>
-                <input type="text" class="form-control" name="ten" id="ten" placeholder="Ví dụ: Nguyễn Thị Thanh Hoài">
-                <span class="error" id="errTen"></span>
-            </div>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="col-md-6 form-group">
                     <label for="ma_sinh_vien">Mã sinh viên</label>
                     <input type="text" class="form-control" name="ma_sinh_vien" id="ma_sinh_vien" placeholder="Ví dụ: 151211368">
                     <span class="error" id="errMSV"></span>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="gioi_tinh">Giới tính</label>
-                    <select name="gioi_tinh" id="gioi_tinh" class="form-control">
-                        <option value="">-- Chọn giới tính --</option>
-                        <option value="0">Nam</option>
-                        <option value="1">Nữ</option>
-                    </select>
-                    <span class="error" id="errGioiTinh"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="ngay_sinh">Ngày sinh</label>
-                    <input type="date" class="form-control" name="ngay_sinh" id="ngay_sinh">
-                    <span class="error" id="errNgaySinh"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="cmnd">Chứng minh thư</label>
-                    <input type="text" class="form-control" name="cmnd" id="cmnd" placeholder="Ví dụ: 017472917">
-                    <span class="error" id="errCMT"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="sdt">Số điện thoại</label>
-                    <input type="text" class="form-control" name="sdt" id="sdt" placeholder="Ví dụ: 0396136933">
-                    <span class="error" id="errSDT"></span>
-                </div>
-                <div class="form-group col-md-4">
+                <div class="col-md-6 form-group">
                     <label for="ma_loai_phong">Loại phòng muốn ở</label>
                     <select name="ma_loai_phong" id="ma_loai_phong" class="form-control">
                         <option value="">-- Chọn loại phòng --</option>
@@ -70,18 +42,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" name="email" id="email" placeholder="Ví dụ: hoaintt97.gtvt@gmail.com">
-                <span class="error" id="errEmail"></span>
-            </div>
-            <div class="form-group">
-                <label for="noi_sinh">Nơi sinh</label>
-                <input type="text" class="form-control" name="noi_sinh" id="noi_sinh" placeholder="Ví dụ: Phù Lưu - Ứng Hòa - Hà Nội">
-                <span class="error" id="errNoiSinh"></span>
-            </div>
-            <div class="form-group">
                 <label for="chu_thich">Chú thích</label>
-                <textarea name="chu_thich" id="chu_thich" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="chu_thich" id="chu_thich" cols="30" rows="3" class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Gửi đơn</button>

@@ -92,10 +92,10 @@ $black			: #222;
 }
 
 body {
-  color: #777777;
+  color: black;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: normal;
   line-height: 1.625em;
   position: relative;
 }
@@ -950,7 +950,7 @@ header {
 }
 
 .main-menu {
-  background: #04091e;
+  background: #292056;
   padding: 15px 20px;
   position: relative;
 }
@@ -1278,6 +1278,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .Search-box-label,
 .Search-close {
+  top:15px;
   position: absolute;
   right: 0;
   z-index: 2;
@@ -1647,7 +1648,7 @@ body {
 .latest-post-area .latest-post-wrap .cat-title {
   font-size: 14px;
   font-weight: 600;
-  background: #04091e;
+  background: #292056;
   color: #fff;
   padding: 10px 25px;
 }
@@ -2067,7 +2068,7 @@ body {
 }
 
 .single-sidebar-widget .title {
-  background: #04091e;
+  background: #292056;
   color: #fff;
   padding: 12px 20px;
   margin-bottom: 20px;
@@ -3227,7 +3228,8 @@ div.thumbnail_container .overlay-bg {
 /*  Footer Styles
 /* =================================== */
 .footer-area {
-  background: #04091e;
+  background: #292056;
+  height:50px;
 }
 
 @media (max-width: 991px) {
@@ -3276,6 +3278,7 @@ div.thumbnail_container .overlay-bg {
 
 .footer-area .footer-bottom p {
   color: #fff;
+  padding-top:15px;
 }
 
 .footer-area .footer-bottom a, .footer-area .footer-bottom span {
