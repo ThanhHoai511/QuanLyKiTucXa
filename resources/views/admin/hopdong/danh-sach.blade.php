@@ -14,6 +14,7 @@
                                 <th>Mã sinh viên</th>
                                 <th>Tên sinh viên</th>
                                 <th>Kì học</th>
+                                <th>Phòng</th>
                                 <th>Ngày bắt đầu</th>
                                 <th>Ngày kết thúc</th>
                                 <th>Tiền phòng</th>
@@ -27,6 +28,7 @@
                                     <td>{{ $hd->sinhvien->ma_sinh_vien }}</td>
                                     <td>{{ $hd->sinhvien->ho_ten }}</td>
                                     <td>Kì {{ $hd->ki_hoc }} năm học {{ $hd->nam_hoc }}</td>
+                                    <td>{{ $hd->phong->ten }} - Khu {{ $hd->phong->khunha->ten }}</td>
                                     <td>{{ date("d-m-Y", strtotime($hd->ngay_bat_dau)) }}</td>
                                     <td>{{ date("d-m-Y", strtotime($hd->ngay_ket_thuc)) }}</td>
                                     <td>{{ $hd->tien_phong }} đ</td>

@@ -21,6 +21,11 @@ class HoaDonPhongService
         return $this->hoaDonPhong->paginate(20);
     }
 
+    public function getById($id)
+    {
+        return $this->hoaDonPhong->findOrFail($id);
+    }
+
     public function store($request)
     {
         $this->hoaDonPhong->ma_hop_dong = $request['ma_hop_dong'];

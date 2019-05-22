@@ -34,6 +34,7 @@ class CreateHopdongTable extends Migration
             $table->foreign('ma_phong')
                 ->references('id')->on('phong')
                 ->onDelete('cascade');
+            $table->tinyInteger('trang_thai')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

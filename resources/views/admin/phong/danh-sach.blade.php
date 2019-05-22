@@ -36,6 +36,7 @@
                             <th>Số lượng sinh viên hiện tại</th>
                             <th>Khu nhà</th>
                             <th>Loại phòng</th>
+                            <th>In hóa đơn</th>
                             <th>Hành động</th>
                         </tr>
                         </thead>
@@ -47,6 +48,22 @@
                                 <td>{{ $p->so_luong_sv_hien_tai }}</td>
                                 <td>{{ $p->khunha->ten }}</td>
                                 <td>{{ $p->loaiphong->ten }}</td>
+                                <td>
+                                    @php
+                                        $dienNuoc = count($p->dien_nuoc);
+                                        $mang = count($p->mang);
+                                        $csvc = count($p->csvc);
+                                    @endphp
+                                    @if($dienNuoc != 0)
+                                        <a href=""><button>Điện nước</button></a>
+                                    @endif
+                                    @if($mang != 0)
+                                    <a href=""><button>Mạng</button></a>
+                                    @endif
+                                    @if($csvc != 0)
+                                    <a href=""><button>Cơ sở vật chất</button></a>
+                                        @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('suaPhong', [$p->id]) }}">
                                         <button class="btn btn-primary">Sửa</button>

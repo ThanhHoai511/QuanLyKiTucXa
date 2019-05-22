@@ -95,6 +95,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
         Route::get('sua/{id}', 'Admin\PhongController@edit')->name('suaPhong');
         Route::post('sua/{id}', 'Admin\PhongController@update');
         Route::get('xoa/{id}', 'Admin\PhongController@destroy')->name('xoaPhong');
+        Route::get('hd-dien-nuoc/{id}', 'Admin\PhongController@inHDDN')->name('inHDDienNuoc');
+        Route::get('hd-dien-nuoc/{id}', 'Admin\PhongController@inHDDN')->name('inHDMang');
+        Route::get('hd-dien-nuoc/{id}', 'Admin\PhongController@inHDDN')->name('inHDCSVC');
     });
 
     Route::group(['prefix' => 'co-so-vat-chat'], function () {
@@ -159,6 +162,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
 
     Route::group(['prefix' => 'hoa-don-phong'], function () {
         Route::get('', 'Admin\HoaDonPhongController@index')->name('danhSachHDP');
+        Route::get('in/{id}', 'Admin\HoaDonPhongController@inHDP')->name('inHDP');
     });
 
     Route::group(['prefix' => 'phan-hoi'], function () {

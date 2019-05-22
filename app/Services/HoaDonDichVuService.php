@@ -84,4 +84,16 @@ class HoaDonDichVuService
 //        }
         return $hoaDons;
     }
+
+    public function getHDDienNuoc($phongID)
+    {
+        return $this->hoaDonDichVu->where('ma_dich_vu', 1)->orWhere('ma_dich_vu', 2)
+            ->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->where('ma_phong', $phongID)->get();
+    }
+
+    public function getHDByLoai($phongID, $loai)
+    {
+        return $this->hoaDonDichVu->where('ma_dich_vu', $loai)
+            ->where('trang_thai', config('constants.CHUA_THANH_TOAN'))->where('ma_phong', $phongID)->get();
+    }
 }

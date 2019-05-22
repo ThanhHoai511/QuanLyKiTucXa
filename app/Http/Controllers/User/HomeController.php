@@ -17,6 +17,7 @@ use App\Services\PhongSinhVienService;
 use App\Services\TinTucService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -121,11 +122,11 @@ class HomeController extends Controller
 
     public function chiTietHopDong()
     {
-        $hopDong = $this->hopDongService->getByMSV(3);
-        $hoaDonPhong = $this->hoaDonPhongService->getHoaDonChuaThanhToanTheoSV(3);
-        $phongSV = $this->phongSVService->getBySVID(3);
+        $hopDong = $this->hopDongService->getByMSV(Auth::id());
+        $hoaDonPhong = $this->hoaDonPhongService->getHoaDonChuaThanhToanTheoSV(Auth::id());
+        $phongSV = $this->phongSVService->getBySVID(Auth::id());
         $hoaDonDichVu = [];
-        if($phongSV) {
+        if(count($phongSV) != 0) {
             $hoaDonDichVu = $this->hoaDonDVService->getHDChuaThanhToanByPhongID($phongSV->ma_phong);
         }
         return view('user.layouts.chi-tiet-hop-dong', ['hopDong' => $hopDong, 'hoaDonPhong' => $hoaDonPhong, 'hoaDonDichVu' => $hoaDonDichVu]);

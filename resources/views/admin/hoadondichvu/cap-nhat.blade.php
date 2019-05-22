@@ -9,6 +9,31 @@
         <div class="box-body">
             <form method="POST" role="form" id="form">
                 {{ csrf_field() }}
+                <div class="col-md-12 form-group">
+                    <div class="col-md-12">
+                        <label for="ma_dich_vu">Dịch vụ</label>
+                        <select name="ma_dich_vu" id="ma_dich_vu" class="form-control">
+                            @foreach($dichVu as $dv)
+                                <option value="{{ $dv->id}}">{!! $dv->ten !!}</option>
+                            @endforeach
+                        </select>
+                        <span class="error" id="errDichVu"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-md-6">
+                        <label for="khu_nha">Khu nhà <span class="error">*</span>: </label>
+                        <select name="khu_nha" id="khu_nha" class="form-control">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ma_phong">Phòng <span class="error">*</span>: </label>
+                        <select name="ma_phong" id="ma_phong" class="form-control">
+                        </select>
+                        <span id="errNgayKetThuc" class="error"></span>
+                    </div>
+                </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-6">
                         <label for="ngay_bat_dau">Ngày bắt đầu <span class="error">*</span>: </label>
@@ -34,28 +59,21 @@
                     </div>
                 </div>
                  <div class="form-group col-md-12">
-                    <div class="col-md-6">
-                        <label for="don_gia">Đơn giá</label>
-                        <input type="don_gia" name="don_gia" class="form-control" placeholder="Nhập đơn giá dịch vụ">
-                        <span class="error" id="errDonGia"></span>
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="so_tieu_thu_cho_phep">Số tiêu thụ cho phép với mỗi sinh viên</label>
                         <input type="so_tieu_thu_cho_phep" name="so_tieu_thu_cho_phep" class="form-control" placeholder="Nhập số tiêu thụ cho phép đối với mỗi sinh viên">
                         <span class="error" id="errSoTieuThuChoPhep"></span>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-6">
-                        <label for="ma_dich_vu">Dịch vụ</label>
-                        <select name="ma_dich_vu" id="ma_dich_vu" class="form-control">
-{{--                            @foreach($dichVu as $dv)--}}
-{{--                                <option value="{{ $dv->id}}">{!! $dv->ten !!}</option>--}}
-{{--                            @endforeach--}}
-                        </select>
-                        <span class="error" id="errDichVu"></span>
+                    <div class="col-md-12">
+                        <label for="don_gia">Đơn giá</label>
+                        <input type="don_gia" name="don_gia" class="form-control" placeholder="Nhập đơn giá dịch vụ">
+                        <span class="error" id="errDonGia"></span>
                     </div>
-                    <div class="col-md-6">
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-md-12">
                         <label for="chu_thich">Mô tả</label>
                         <textarea class="form-control" id="chu_thich" name="chu_thich" cols="10" rows="4"></textarea>
                     </div>

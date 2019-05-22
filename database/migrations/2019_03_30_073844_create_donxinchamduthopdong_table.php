@@ -16,6 +16,7 @@ class CreateDonxinchamduthopdongTable extends Migration
         Schema::create('donxinchamduthopdong', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('ma_hop_dong');
+            $table->date('ngay_ket_thuc');
             $table->foreign('ma_hop_dong')
                 ->references('id')->on('hopdong')
                 ->onDelete('cascade');
