@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Services\HoaDonPhongService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use \Pdf;
 class HoaDonPhongController extends Controller
 {
     protected $hoaDonPhongService;
@@ -26,14 +26,11 @@ class HoaDonPhongController extends Controller
         return view('admin.hoadonphong.danh-sach', ['hoaDon' => $hoaDonPhong]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function inHDP($id)
     {
-        //
+          $hd = $this->hoaDonPhongService->getById($id);
+            $pdf = \PDF::loadView('admin.hoadonphong.pdf', compact('hd'));
+            return $pdf->download('hoa-don-phong.pdf');
     }
 
     /**

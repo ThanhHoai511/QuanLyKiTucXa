@@ -17,6 +17,7 @@
                             <th>Tổng tiền</th>
                             <th>Tình trạng</th>
                             <th>Nhân viên lập hóa đơn</th>
+                            <th>In hóa đơn</th>
                             <th>Đã thanh toán</th>
                         </tr>
                         </thead>
@@ -34,7 +35,8 @@
                                         Đã thanh toán
                                     @endif
                                 </td>
-                                <td>{!! $hd->user->nhanvien->ho_ten !!}</td>
+                                <td>{!! $hd->user->email !!}</td>
+                                <td><a href="{{ route('inHDP', $hd->id) }}"><button class="btn btn-primary">In hóa đơn</button></a></td>
                                 <td data-hddv-id="{{ $hd->id }}">
                                     <form>
                                         {{ csrf_field() }}

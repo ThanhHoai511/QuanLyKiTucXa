@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\SinhVienUTC;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SinhVienService{
@@ -36,7 +37,7 @@ class SinhVienService{
         }
         $insert = [];
 
-        foreach ($sinhVien as $sinhVien) {
+        foreach ($sinhVien[0] as $sinhVien) {
             if (trim($sinhVien['ma_sinh_vien'])== '') {
                 break;
             }
@@ -58,13 +59,9 @@ class SinhVienService{
                 'tinh' => $sinhVien['tinh'],
                 'huyen' => $sinhVien['huyen'],
                 'xa' => $sinhVien['xa'],
-                'email' => $sinhVien['email'],
+                'email' => Str::slug(last(explode(' ', $sinhVien['ho_ten']))) . $sinhVien['ma_sinh_vien'] . '@st.utc.edu.vn',
+                'doi_tuong' => $sinhVien['doi_tuong']
             ];
-
-            if ($sinhVien['doi_tuong'] != null) {
-                $insert[] = ['doi_tuong' => $sinhVien['doi_tuong']];
-            }
-
         }
         SinhVienUTC::insert($insert);
         return true;

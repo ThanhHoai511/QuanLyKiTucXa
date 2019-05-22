@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->tinyInteger('status')->default(1);
             $table->tinyInteger('is_access');
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->foreign('role_id')
                 ->references('id')->on('roles')
                 ->onDelete('cascade');

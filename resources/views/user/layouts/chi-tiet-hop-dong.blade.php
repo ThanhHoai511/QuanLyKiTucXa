@@ -69,7 +69,12 @@
                                     @foreach($hoaDonDichVu as $hddv)
                                         <tr>
                                             <td>Hóa đơn {!! $hddv->dichvu->ten !!}</td>
-                                            <td>{!! $hddv->tong_tien !!} đ</td>
+                                            @php
+                                                $tongTien = $hddv->tong_tien;
+                                                $soSV = $hddv->phong->loaiphong->so_sv_hien_tai;
+                                                $tien = $tongTien / $soSV;
+                                            @endphp
+                                            <td>{!! $tien !!} đ</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

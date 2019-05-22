@@ -40,10 +40,11 @@ class PhongController extends Controller
         $phong = $this->phongService->getAllWithPaginate($request->ten, $request->khu_nha);
         foreach($phong as $p)
         {
-            $p->hoa_don_dich_vu = $this->hoaDonDichVuService->getHDChuaThanhToanByPhongID($p->id);
+            $p->dien_nuoc = $this->hoaDonDichVuService->getHDDienNuoc($p->id);
+            $p->mang = $this->hoaDonDichVuService->getHDByLoai($p->id, 2);
+            $p->csvc = $this->hoaDonDichVuService->getHDByLoai($p->id, 3);
         }
         $khuNha = $this->khuNhaService->getAll();
-
         return view('admin.phong.danh-sach', ['phong' => $phong, 'khuNha' => $khuNha, 'params' => $request]);
     }
     /**

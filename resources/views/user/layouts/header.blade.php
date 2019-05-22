@@ -10,11 +10,13 @@
                     </ul>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 header-top-right no-padding">
+
+                    @if(Auth::check() && Auth::user()->role_id == null)
                     <ul>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img class="user-image">
-                                <span class="hidden-xs">Hoài</span>
+                                <span class="hidden-xs">{{ Auth()->user()->sinhvien->ho_ten }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-footer">
@@ -36,6 +38,9 @@
                             </ul>
                         </li>
                     </ul>
+                        @else
+                        <a href="{{ route('login') }}" style="color:white">Đăng nhập</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -64,8 +69,10 @@
                         <li><a href="{{ route('gioi-thieu') }}">Giới thiệu</a></li>
                         <li><a href="{{ route('ban-quan-ly') }}">Ban quản lý</a></li>
                         <li><a href="{{ route('don-dang-ky') }}">Đăng ký nội trú</a></li>
+                        @if(Auth::check() && Auth::user()->role_id == null)
                         <li><a href="{{ route('chi-tiet-hop-dong') }}">Chi tiết hợp đồng</a></li>
                         <li><a href="{{ route('phan-hoi') }}">Phản hồi</a></li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- #nav-menu-container -->

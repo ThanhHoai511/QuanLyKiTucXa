@@ -1,5 +1,6 @@
+@if(Auth::user()->role_id == 1)
 <p style="color: white">---------- Quản lý tài khoản ------------------</p>
-@if(Auth::user()->role_id == 2)
+
 <li class="treeview">
     <a href="#">
         <i class="fa fa-adjust"></i>
@@ -11,33 +12,6 @@
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachChucVu') }}"><i class="fa fa-circle-o"></i>Danh sách các chức vụ</a></li>
         <li><a href="{{ route('themChucVu') }}"><i class="fa fa-circle-o"></i>Thêm chức vụ</a></li>
-    </ul>
-</li>
-@endif
-<li class="treeview">
-    <a href="#">
-        <i class="fa fa-adn"></i>
-        <span>Quyền</span>
-        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachQuyen') }}"><i class="fa fa-circle-o"></i>Danh sách các quyền</a></li>
-        <li><a href="{{ route('themQuyen') }}"><i class="fa fa-circle-o"></i>Thêm quyền</a></li>
-    </ul>
-</li>
-
-<li class="treeview">
-    <a href="#">
-        <i class="fa fa-adn"></i>
-        <span>Quyền theo Chức vụ</span>
-        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-        <li><a href="{{ route('danhSachQuyenChucVu') }}"><i class="fa fa-circle-o"></i>Danh sách các quyền theo chức vụ</a></li>
     </ul>
 </li>
 
@@ -65,6 +39,8 @@
         <li><a href="{{ route('danhSachTaiKhoan') }}"><i class="fa fa-circle-o"></i> Danh sách tài khoản</a></li>
     </ul>
 </li>
+@endif
+@if(Auth::user()->role_id == 1 || Auth::user()->role_id == 6)
 <p style="color:white;">---------- Quản lý cơ sở vật chất-----------------</p>
 <li class="treeview">
     <a href="#">
@@ -128,6 +104,8 @@
         <li><a href="{{ route('danhSachPhanHoi') }}"><i class="fa fa-circle-o"></i>Danh sách phản hồi</a></li>
     </ul>
 </li>
+@endif
+@if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
 <p style="color:white;">---------- Quản lý tin tức-------------------------</p>
 <li class="treeview">
     <a href="#">
@@ -142,7 +120,8 @@
         <li><a href="{{ route('themTinTuc') }}"><i class="fa fa-circle-o"></i>Thêm tin tức</a></li>
     </ul>
 </li>
-
+@endif
+@if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4 || Auth::user()->role_id == 5)
 <p style="color: white">---------- Quản lý hóa đơn ---------------------</p>
 <li class="treeview">
     <a href="#">
@@ -180,7 +159,9 @@
         <li><a href="{{ route('danhSachHDP') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn phòng</a></li>
     </ul>
 </li>
-<p style="color: white">---------- Quản lý hợp đồng ------------------</p>
+@endif
+@if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+<p style="color: white">---------- Quản lý sinh viên ------------------</p>
 <li class="treeview">
     <a href="#">
         <i class="fa fa-user"></i> <span>Sinh viên</span>
@@ -205,7 +186,6 @@
         <li><a href="{{ route('danhSachDonDangKy') }}"><i class="fa fa-circle-o"></i> Danh sách đơn đăng ký</a></li>
     </ul>
 </li>
-{{--@can('managing_agreement', Auth::user())--}}
 <li class="treeview">
     <a href="#">
         <i class="fa fa-amazon"></i> <span>Hợp đồng</span>
@@ -217,7 +197,6 @@
         <li><a href="{{ route('danhSachHopDong') }}"><i class="fa fa-circle-o"></i> Danh sách hợp đồng</a></li>
     </ul>
 </li>
-{{--@endcan--}}
 
 <li class="treeview">
     <a href="#">
@@ -230,4 +209,4 @@
         <li><a href="{{ route('danhSachDonXinHuy') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
     </ul>
 </li>
-
+@endif
