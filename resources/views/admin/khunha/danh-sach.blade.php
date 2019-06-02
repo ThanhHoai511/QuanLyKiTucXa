@@ -22,7 +22,7 @@
                     <td>{{ $kn->ten }}</td>
                     <td>{{ $kn->mo_ta }}</td>
                     <td>
-                        @if($kn->doi_tuong == 1) Nam
+                        @if($kn->doi_tuong == 0) Nam
                         @else Nữ
                         @endif
                     </td>

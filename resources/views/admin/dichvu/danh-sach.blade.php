@@ -12,6 +12,7 @@
                 <th>Tên</th>
                 <th>Mô tả</th>
                 <th>Giá</th>
+                <th>Số tiêu thụ cho phép</th>
                 <th>Hành động</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                     <td>{{ $dv->ten }}</td>
                     <td>{{ $dv->mo_ta }}</td>
                     <td>{{ number_format($dv->gia) }}</td>
+                    <td>{{ $dv->so_tieu_thu_cho_phep }}</td>
                     <td>
                         <a href="{{ route('suaDichVu', [$dv->id]) }}"><button class="btn btn-primary">Sửa</button></a>
                     </td>

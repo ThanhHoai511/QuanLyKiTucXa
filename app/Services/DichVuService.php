@@ -22,6 +22,7 @@ class DichVuService{
         $this->dichVu->ten = $request->ten;
         $this->dichVu->mo_ta = $request->mo_ta;
         $this->dichVu->gia = (int)str_replace(',', '', $request->gia);
+        $this->dichVu->so_tieu_thu_cho_phep = $request->so_tieu_thu_cho_phep;
         $this->dichVu->save();
     }
 
@@ -31,6 +32,7 @@ class DichVuService{
         $dichVuUpdate->ten = $request->ten;
         $dichVuUpdate->mo_ta = $request->mo_ta;
         $dichVuUpdate->gia = (int)str_replace(',', '', $request->gia);
+        $dichVuUpdate->so_tieu_thu_cho_phep = $request->so_tieu_thu_cho_phep;
         $dichVuUpdate->save();
     }
 

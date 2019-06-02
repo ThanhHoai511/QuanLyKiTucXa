@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\BinhLuan;
+use Illuminate\Support\Facades\Auth;
 
 class BinhLuanService
 {
@@ -16,7 +17,7 @@ class BinhLuanService
     public function store($params)
     {
         $this->binhLuan->noi_dung = $params['noi_dung'];
-        $this->binhLuan->user_id = 1;
+        $this->binhLuan->user_id = Auth::id();
         $this->binhLuan->ma_phan_hoi = $params['ma_phan_hoi'];
         $this->binhLuan->save();
         return $this->binhLuan;

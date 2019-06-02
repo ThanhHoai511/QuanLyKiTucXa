@@ -27,7 +27,7 @@ class NhanVienService
     public function create($request)
     {
         return DB::transaction(function () use ($request) {
-            $taiKhoan = $this->taiKhoanService->store($request, config('constants.DUOC_TRUY_CAP'), config('constants.NHAN_VIEN'));
+            $taiKhoan = $this->taiKhoanService->store($request->email, config('constants.DUOC_TRUY_CAP'), config('constants.NHAN_VIEN'), $request->chuc_vu);
             $nhanVienMoi = $this->store($request, $taiKhoan[0]->id);
             $email = $nhanVienMoi->email;
             Mail::send('admin.mails.tai-khoan-nhan-vien',

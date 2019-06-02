@@ -91,6 +91,13 @@ class DonXinHuyController extends Controller
         });
     }
 
+    public function guiMail(Request $request)
+    {
+        $this->donXinHuyService->guiMail($request);
+
+        return redirect()->route('danhSachDonXinHuy')->with('success', 'Gửi email thành công!');
+    }
+
     public function nhacNho($maDon)
     {
         $don = $this->donXinHuyService->getById($maDon);

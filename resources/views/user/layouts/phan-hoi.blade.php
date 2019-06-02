@@ -47,12 +47,19 @@
         <form class="col-md-12" method="post" id="form">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="loai">Loại phản hôì</label>
-                <select name="loai" id="loai" class="form-control">
-                    <option value="{{ config('constants.GOP_Y') }}">Góp ý</option>
-                    <option value="{{ config('constants.BAO_HONG') }}">Báo hỏng cơ sở vật chất</option>
-                </select>
-                <span class="error" id="errLoai"></span>
+                <div class="col-md-6">
+                    <label for="loai">Loại phản hôì</label>
+                    <select name="loai" id="loai" class="form-control">
+                        <option value="{{ config('constants.GOP_Y') }}">Góp ý</option>
+                        <option value="{{ config('constants.BAO_HONG') }}">Báo hỏng cơ sở vật chất</option>
+                    </select>
+                    <span class="error" id="errLoai"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="an_danh">Gửi ẩn danh:</label>
+                    <input type="checkbox" class="form-control" name="an_danh">
+                    <span class="error" id="errLoai"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="noi_dung">Nội dung phản hồi</label>

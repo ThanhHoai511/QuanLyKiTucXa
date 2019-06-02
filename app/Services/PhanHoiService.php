@@ -26,7 +26,9 @@ class PhanHoiService
     public function store($request)
     {
         $this->phanHoi->noi_dung = $request->noi_dung;
-        $this->phanHoi->user_id = 1;
+        if($request->an_danh != "on") {
+            $this->phanHoi->user_id = Auth::id();
+        }
         $this->phanHoi->loai = $request->loai;
         $this->phanHoi->save();
         return $this->phanHoi;

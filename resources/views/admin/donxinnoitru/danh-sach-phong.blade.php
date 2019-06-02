@@ -14,14 +14,7 @@
                                 <a href="{{ route('taoHopDong', [$maDon, $phong->id]) }}">
                                     <div class="small-box bg-green" style="padding-left:20px; padding-top:5px;">
                                         <p>{!! $phong->ten !!}</p>
-                                        <div class="inner">
-                                            @for($i=1;$i<=$phong->so_luong_sv_hien_tai; $i++)
-                                                <i class="fa fa-user" style="font-size: 60px;color:blue;"></i>
-                                            @endfor
-                                            @for($i=$phong->so_luong_sv_hien_tai+1;$i<=$phong->loaiphong->so_luong_sv_toi_da; $i++)
-                                                <i class="fa fa-user" style="font-size: 60px;"></i>
-                                            @endfor
-                                        </div>
+                                        <p>Số SV hiện tại: {!! $phong->so_luong_sv_hien_tai !!} / {!! $phong->loaiphong->so_luong_sv_toi_da !!}</p>
                                     </div>
                                 </a>
                             </div>

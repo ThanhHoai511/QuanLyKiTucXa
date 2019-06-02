@@ -28,8 +28,8 @@
                 <div class="form-group">
                     <label for="doi_tuong">Khu nhà này dành cho nam hay nữ? <span class="error">*</span></label>
                     <select class="form-control" id="doi_tuong" name="doi_tuong" required>
-                        <option value="1" {{ isset($khuNhaUpdate) ? ($khuNhaUpdate->doi_tuong == 1 ? 'selected' : '') : old('doi_tuong') }}>Nam</option>
-                        <option value="2" {{ isset($khuNhaUpdate) ? ($khuNhaUpdate->doi_tuong == 2 ? 'selected' : '') : old('doi_tuong') }}>Nữ</option>
+                        <option value="1" {{ isset($khuNhaUpdate) ? ($khuNhaUpdate->doi_tuong == 0 ? 'selected' : '') : old('doi_tuong') }}>Nam</option>
+                        <option value="2" {{ isset($khuNhaUpdate) ? ($khuNhaUpdate->doi_tuong == 1 ? 'selected' : '') : old('doi_tuong') }}>Nữ</option>
                     </select>
                 </div>
                 <div class="box-footer clearfix" style="margin:0 300px;">

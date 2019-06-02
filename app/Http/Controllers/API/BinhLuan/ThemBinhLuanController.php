@@ -20,7 +20,7 @@ class ThemBinhLuanController extends Controller
     {
         $requestData = $this->getData($request);
         $this->validation($requestData);
-        $this->hoaDonPhongService->thanhToan($requestData['id']);
+        $this->binhLuanService->store($requestData);
 
         return response()->json([], 204);
     }

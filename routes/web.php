@@ -32,9 +32,7 @@ Route::group(['prefix' => ''], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' => 'admin'], function () {
-   Route::get('/', function () {
-      return view('admin.layouts.home'); 
-   })->name('admin.home');
+   Route::get('/', 'Admin\HomeController@index')->name('admin.home');
 
     Route::group(['prefix' => 'chuc-vu'], function () {
         Route::get('', 'Admin\ChucVuController@index')->name('danhSachChucVu');
@@ -43,19 +41,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
         Route::get('sua/{id}', 'Admin\ChucVuController@edit')->name('suaChucVu');
         Route::post('sua/{id}', 'Admin\ChucVuController@update');
         Route::get('xoa/{id}', 'Admin\ChucVuController@destroy')->name('xoaChucVu');
-    });
-
-    Route::group(['prefix' => 'quyen'], function () {
-        Route::get('', 'Admin\QuyenController@index')->name('danhSachQuyen');
-        Route::get('them', 'Admin\QuyenController@create')->name('themQuyen');
-        Route::post('them', 'Admin\QuyenController@store');
-        Route::get('sua/{id}', 'Admin\QuyenController@edit')->name('suaQuyen');
-        Route::post('sua/{id}', 'Admin\QuyenController@update');
-        Route::get('xoa/{id}', 'Admin\QuyenController@destroy')->name('xoaQuyen');
-    });
-
-    Route::group(['prefix' => 'quyen-chucvu'], function () {
-        Route::get('', 'Admin\QuyenChucVuController@index')->name('danhSachQuyenChucVu');
     });
 
    Route::group(['prefix' => 'khu-nha'], function () {
@@ -96,8 +81,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
         Route::post('sua/{id}', 'Admin\PhongController@update');
         Route::get('xoa/{id}', 'Admin\PhongController@destroy')->name('xoaPhong');
         Route::get('hd-dien-nuoc/{id}', 'Admin\PhongController@inHDDN')->name('inHDDienNuoc');
-        Route::get('hd-dien-nuoc/{id}', 'Admin\PhongController@inHDDN')->name('inHDMang');
-        Route::get('hd-dien-nuoc/{id}', 'Admin\PhongController@inHDDN')->name('inHDCSVC');
+        Route::get('hd-mang/{id}', 'Admin\PhongController@inHDM')->name('inHDMang');
+//        Route::get('hd-dien-nuoc/{id}', 'Admin\PhongController@inHDDN')->name('inHDCSVC');
     });
 
     Route::group(['prefix' => 'co-so-vat-chat'], function () {
@@ -144,6 +129,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
 
     Route::group(['prefix' => 'don-dang-ky'], function () {
         Route::get('', 'Admin\DonXinNoiTruController@index')->name('danhSachDonDangKy');
+        Route::post('gui-email', 'Admin\DonXinNoiTruController@guiMail')->name('guiMailHenNgay');
         Route::get('chon-phong/don-dang-ki={id}', 'Admin\DonXinNoiTruController@showPhong')->name('danhSachPhongChon');
         Route::post('tu-choi-don/{id}', 'Admin\DonXinNoiTruController@tuChoiDon')->name('tuChoiDonDK');
     });
@@ -151,6 +137,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
     Route::group(['prefix' => 'don-xin-huy'], function () {
         Route::get('', 'Admin\DonXinHuyController@index')->name('danhSachDonXinHuy');
         Route::post('chap-nhan/{id}', 'Admin\DonXinHuyController@chapNhanDon')->name('chapNhanDon');
+        Route::post('gui-email', 'Admin\DonXinHuyController@guiMail')->name('guiMailHenNgayHuy');
         Route::post('nhac-nho/{id}', 'Admin\DonXinHuyController@nhacNho')->name('nhacNhoSV');
     });
 
@@ -167,6 +154,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
 
     Route::group(['prefix' => 'phan-hoi'], function () {
         Route::get('', 'Admin\PhanHoiController@index')->name('danhSachPhanHoi');
+        Route::post('them-binh-luan', 'Admin\PhanHoiController@themBinhLuan')->name('themBinhLuan');
     });
 
     Route::group(['prefix' => 'hoa-don-dich-vu'], function () {
@@ -175,6 +163,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth'], 'guard' 
         Route::post('them', 'Admin\HoaDonDichVuController@store');
         Route::get('sua/{id}', 'Admin\HoaDonDichVuController@edit')->name('suaHDDV');
         Route::post('sua/{id}', 'Admin\HoaDonDichVuController@update');
+        Route::get('them-excel', 'Admin\HoaDonDichVuController@createExcel')->name('themHDDVExcel');
+        Route::post('them-excel', 'Admin\HoaDonDichVuController@storeExcel');
+    });
+
+    Route::group(['prefix' => 'thong-ke'], function () {
+        Route::get('sinh-vien-dang-noi-tru', 'Admin\HomeController@getSinhVienDangNoiTru')->name('danhSachSVDangNoiTru');
+        Route::get('hoa-don-chua-thanh-toan', 'Admin\HomeController@getHDChuaThanhToan')->name('danhSachHDChuaThanhToan');
     });
 });
 

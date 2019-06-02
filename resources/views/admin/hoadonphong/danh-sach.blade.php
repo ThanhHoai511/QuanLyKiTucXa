@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h3 style="text-align:center;">Danh sách các hóa đơn dịch vụ</h3>
+    <h3 style="text-align:center;">Danh sách các hóa đơn phòng</h3>
 
     @include('admin.layouts.flash-msg')
     <div class="row">

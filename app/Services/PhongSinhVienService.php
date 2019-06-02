@@ -13,6 +13,11 @@ class PhongSinhVienService
         $this->phongSinhVien = $phongSinhVien;
     }
 
+    public function getAll()
+    {
+        return $this->phongSinhVien->all();
+    }
+
     public function store($params)
     {
         $this->phongSinhVien->ma_sv_utc = $params['ma_sv_utc'];

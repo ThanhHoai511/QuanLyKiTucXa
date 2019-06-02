@@ -31,6 +31,10 @@
                     <input class="form-control" type="text" name="gia" id="gia" placeholder="Nhập giá" value="{{ isset($dichVu) ? number_format($dichVu->gia) : old('gia') }}">
                     <span id="errGia" class="error"></span>
                 </div>
+                <div class="form-group">
+                    <label for="so_tieu_thu_cho_phep">Số tiêu thụ cho phép <span class="error">*</span></label>
+                    <input class="form-control" type="text" name="so_tieu_thu_cho_phep" id="so_tieu_thu_cho_phep" placeholder="Nhập số tiêu thụ cho phép" value="{{ isset($dichVu) ? $dichVu->so_tieu_thu_cho_phep : old('so_tieu_thu_cho_phep') }}">
+                </div>
                 <div class="box-footer clearfix" style="margin:0 300px;">
                     @if(isset($dichVuUpdate))
                         <button type="submit" class="btn btn-success" style="margin-left:50px;">Sửa</button>
