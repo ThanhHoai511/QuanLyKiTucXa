@@ -29,9 +29,9 @@
                                     <div class="col-lg-5 post-left">
                                         <div class="feature-img relative">
                                             @if($tt->anh == null)
-                                                <img class="img-fluid" src="{{ asset('images/common/utc2.jpg') }}" alt="" style="width: 300px; height: 250px;">
+                                                <img class="img-fluid" src="{{ asset('images/common/utc2.jpg') }}" alt="" style="width: 200px; height: 200px;">
                                             @else
-                                                <img class="img-fluid" src="{{ asset('images/tintuc/' . $tt->anh) }}" alt=""  style="width: 300px; height: 250px;">
+                                                <img class="img-fluid" src="{{ asset('images/tintuc/' . $tt->anh) }}" alt=""  style="width: 200px; height: 200px;">
                                             @endif
                                         </div>
                                     </div>
@@ -40,11 +40,11 @@
                                             <h4>{!! $tt->tieu_de !!}</h4>
                                         </a>
                                         <ul class="meta">
-                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>{!! $tt->created_at !!}</a></li>
+                                            <li><a href="#"><span class="lnr lnr-calendar-full"></span>{!! date('d-m-Y', strtotime($tt->created_at)) !!}</a></li>
                                         </ul>
-                                        <p class="excert">
-                                            {!! $tt->noi_dung !!}
-                                        </p>
+{{--                                        <p class="excert">--}}
+{{--                                            {!! $tt->noi_dung !!}--}}
+{{--                                        </p>--}}
                                     </div>
                                 </div>
                             @endforeach
@@ -135,18 +135,18 @@
                                 @foreach($hotNews as $hn)
                                     <div class="single-list flex-row d-flex">
                                         <div class="thumb">
-                                            @if($tt->anh == null)
-                                                <img class="img-fluid" src="{{ asset('images/common/utc2.jpg') }}" alt="" style="width: 140px;">
+                                            @if($hn->anh == null)
+                                                <img class="img-fluid" src="{{ asset('images/common/utc2.jpg') }}" alt="" style="width: 200px;">
                                             @else
-                                                <img class="img-fluid" src="{{ asset('images/tintuc/' . $tt->anh) }}" alt="" style="width: 140px;">
+                                                <img class="img-fluid" src="{{ asset('images/tintuc/' . $hn->anh) }}" alt="" style="width: 200px;">
                                             @endif
                                         </div>
                                         <div class="details">
-                                            <a href="image-post.html">
-                                                <h6>{!! $tt->tieu_de !!}</h6>
+                                            <a href="">
+                                                <h6>{!! $hn->tieu_de !!}</h6>
                                             </a>
                                             <ul class="meta">
-                                                <li><a href="#"><span class="lnr lnr-calendar-full"></span>{!! $tt->created_at !!}</a></li>
+                                                <li><a href="#"><span class="lnr lnr-calendar-full"></span>{!! date('d-m-Y', strtotime($hn->created_at)) !!}</a></li>
                                             </ul>
                                         </div>
                                     </div>

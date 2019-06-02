@@ -46,13 +46,20 @@ class DonXinNoiTruController extends Controller
         $ddk = $this->donDangKyService->getById($id);
         $sinhVien = $this->sinhVienService->getByMSV($ddk->ma_sinh_vien);
         $gioiTinh = $sinhVien->gioi_tinh;
-        $gt = 1;
+        $gt = 0;
         if(trim($gioiTinh) == "Nữ") {
-            $gt = 2;
+            $gt = 1;
         }
         $khuNha = $this->phongService->getPhongByCondition($gt, $ddk->ma_loai_phong);
 
         return view('admin/donxinnoitru/danh-sach-phong', ['khuNha' => $khuNha, 'maDon' => $id]);
+    }
+
+    public function guiMail(Request $request)
+    {
+        $this->donDangKyService->guiMail($request);
+
+        return redirect()->route('danhSachDonDangKy')->with('success', 'Gửi email thành công!');
     }
 
     public function tuChoiDon($maDon)

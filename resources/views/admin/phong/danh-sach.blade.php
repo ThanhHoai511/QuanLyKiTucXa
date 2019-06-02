@@ -2,6 +2,7 @@
 
 @section('content')
     <h3 style="text-align:center;">Danh sách các phòng</h3>
+    <p>Kết quả: {{ count($phong) }} phòng</p>
     @include('admin.layouts.flash-msg')
     <div class="row col-md-12 form-group" style="margin-top: 10px;">
         <div class="col-md-4">
@@ -33,11 +34,11 @@
                         <tr>
                             <th>ID</th>
                             <th>Tên</th>
-                            <th>Số lượng sinh viên hiện tại</th>
-                            <th>Khu nhà</th>
-                            <th>Loại phòng</th>
+                            <th style="width:30px;">Số SV hiện tại</th>
+                            <th style="width: 30px;">Khu nhà</th>
+                            <th style="width: 50px;">Loại phòng</th>
                             <th>In hóa đơn</th>
-                            <th>Hành động</th>
+                            <th style="width: 100px;">Hành động</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,17 +53,13 @@
                                     @php
                                         $dienNuoc = count($p->dien_nuoc);
                                         $mang = count($p->mang);
-                                        $csvc = count($p->csvc);
                                     @endphp
                                     @if($dienNuoc != 0)
-                                        <a href=""><button>Điện nước</button></a>
+                                        <a href="{{ route('inHDDienNuoc', $p->id) }}"><button>Điện nước</button></a>
                                     @endif
                                     @if($mang != 0)
-                                    <a href=""><button>Mạng</button></a>
+                                    <a href="{{ route('inHDMang', $p->id) }}"><button>Mạng</button></a>
                                     @endif
-                                    @if($csvc != 0)
-                                    <a href=""><button>Cơ sở vật chất</button></a>
-                                        @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('suaPhong', [$p->id]) }}">

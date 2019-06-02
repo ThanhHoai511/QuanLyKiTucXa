@@ -145,6 +145,7 @@
     <ul class="treeview-menu">
         <li><a href="{{ route('danhSachHDDV') }}"><i class="fa fa-circle-o"></i> Danh sách hóa đơn dịch vụ</a></li>
         <li><a href="{{ route('themHDDV') }}"><i class="fa fa-circle-o"></i> Thêm hóa đơn dịch vụ</a></li>
+        <li><a href="{{ route('themHDDVExcel') }}"><i class="fa fa-circle-o"></i> Thêm từ excel</a></li>
     </ul>
 </li>
 
@@ -209,4 +210,19 @@
         <li><a href="{{ route('danhSachDonXinHuy') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
     </ul>
 </li>
+@endif
+@if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+    <p style="color: white">---------- Thống kê ------------------</p>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-user"></i> <span>Thống kê</span>
+            <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{{ route('danhSachSVDangNoiTru') }}"><i class="fa fa-circle-o"></i>Sinh viên đang nội trú</a></li>
+            <li><a href="{{ route('danhSachHDChuaThanhToan') }}"><i class="fa fa-circle-o"></i>Danh sách hóa đơn chưa thanh toán</a></li>
+        </ul>
+    </li>
 @endif

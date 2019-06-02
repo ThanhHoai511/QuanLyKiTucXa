@@ -3,13 +3,13 @@
 @section('content')
     <div class="box box-info">
         <div class="box-header">
-            <h3 style="text-align: center; tab-size: 25px;">Thêm phòng từ file excel</h3>
+            <h3 style="text-align: center; tab-size: 25px;">Thêm hóa đơn dịch vụ từ file excel</h3>
         </div>
         <div class="box-body">
             <div class="col-md-12">
-                <label for="">Tải file mẫu dưới đây sau đó thêm các phòng bạn muốn tạo theo khu nhà và loại phòng bạn đã chọn sau đó chọn lại file bạn đã sửa!</label>
+                <label for="">Tải file mẫu dưới đây.</label>
                 <br>
-                <a href="{{ asset('Phòng.xlsx') }}"><button class="btn btn-file">Tải file mẫu</button></a>
+                <a href="{{ asset('Hóa đơn dịch vụ.xlsx') }}"><button class="btn btn-file">Tải file mẫu</button></a>
             </div>
             <form method="POST" enctype="multipart/form-data" id="form">
                 {{ csrf_field() }}
@@ -20,7 +20,7 @@
                 </div>
                 <div class="box-footer clearfix" style="margin:10px 300px;">
                     <button type="submit" class="btn btn-success" style="margin-left:50px;">Thêm</button>
-                    <a href="{{ route('danhSachPhong') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
+                    <a href="{{ route('danhSachHDDV') }}"><button type="button" class="btn btn-dropbox">Hủy</button></a>
                 </div>
             </form>
         </div>

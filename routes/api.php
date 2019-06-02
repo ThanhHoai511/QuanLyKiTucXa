@@ -19,7 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'namespace' => 'API',
     'prefix' => 'v1',
-    'middleware' => []
 ], function () {
     Route::group([
         'namespace' => 'Phong',
@@ -27,7 +26,6 @@ Route::group([
     ], function () {
         Route::get('get-by-khu-nha', 'GetPhongByKhuNhaController@main');
     });
-
     Route::group([
         'namespace' => 'HoaDonDichVu',
         'prefix' => 'hoa-don-dich-vu',
@@ -56,3 +54,9 @@ Route::group([
         Route::post('', 'ThemBinhLuanController@main');
     });
 });
+//Route::group([
+//    'namespace' => 'API',
+//    'prefix' => 'v2'
+//], function () {
+//
+//});

@@ -32,9 +32,9 @@ class HoaDonDichVuController extends Controller
      */
     public function index(Request $request)
     {
-        $hoaDon = $this->hoaDonDichVuService->index($request->thang, $request->nam);
+        $hoaDon = $this->hoaDonDichVuService->index($request);
 
-        return view('admin.hoadondichvu.danh-sach', ['hoaDon' => $hoaDon]);
+        return view('admin.hoadondichvu.danh-sach', ['hoaDon' => $hoaDon, 'request' => $request]);
     }
 
     /**
@@ -60,7 +60,12 @@ class HoaDonDichVuController extends Controller
     {
         $this->hoaDonDichVuService->store($request);
 
-        return redirect()->back()->with('success', 'Tao hoa don thanh cong!');
+        return redirect()->back()->with('success', 'Tạo hóa đơn dịch vụ thành công!');
+    }
+
+    public function createExcel()
+    {
+        return view('admin.hoadondichvu.excel');
     }
 
     /**
@@ -83,8 +88,10 @@ class HoaDonDichVuController extends Controller
     public function edit($id)
     {
         $hoaDonDV = $this->hoaDonDichVuService->getById($id);
+        $dichVu = $this->dichVuService->getAll();
+        $khuNha = $this->khuNhaService->getAll();
 
-        return view('admin.hoadondichvu.cap-nhat', ['hoaDonDV' => $hoaDonDV]);
+        return view('admin.hoadondichvu.cap-nhat', ['hoaDonDV' => $hoaDonDV, 'dichVu' => $dichVu, 'khuNha' => $khuNha]);
     }
 
     /**
@@ -96,7 +103,9 @@ class HoaDonDichVuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->hoaDonDichVuService->update($request, $id);
+
+        return redirect()->route('danhSachHDDV')->with('success', 'Sửa hóa đơn dịch vụ thành công!');
     }
 
     /**

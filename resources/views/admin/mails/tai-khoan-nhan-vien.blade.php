@@ -3,5 +3,5 @@
 <p>Tài khoản cho trang quản lý của bạn là :</p>
 <p>Tên đăng nhập : {{ $username }}</p>
 <p>Mật khẩu : {{ $password }}</p>
-<p>Ngay bây giờ bạn hãy đổi lại mật khẩu cho tài khoản của mình tại đường dẫn này.</p>
+<p>Ngay bây giờ bạn hãy đăng nhập và đổi lại mật khẩu.</p>
 <p>Xin cảm ơn!</p>

@@ -23,6 +23,16 @@ class PhongService
         $this->csvcService = $csvcService;
     }
 
+    public function getIDPhongByName($name)
+    {
+        $phong = $this->phong->where('ten', 'like', '%' . $name . '%')->get();
+        $idPhong = [];
+        foreach($phong as $p) {
+            $idPhong[] = $p->id;
+        }
+        return $idPhong;
+    }
+
     public function getAllWithPaginate($name = "", $khuNha = "")
     {
         $phong = $this->phong->query();
@@ -159,8 +169,28 @@ class PhongService
         return $khuNha;
     }
 
+    public function getChoTrongTheoLoaiPhong()
+    {
+        $loaiPhong = $this->loaiPhongService->getAll();
+        foreach ($loaiPhong as $lp) {
+            $soChoTrong = 0;
+            $phong = $this->getPhongTheoLoaiPhong($lp->id);
+            foreach($phong as $p) {
+                $soSVToiDa = $lp->so_luong_sv_toi_da;
+                $soChoTrong += $soSVToiDa - $p->so_luong_sv_hien_tai;
+            }
+            $lp->so_cho_trong = $soChoTrong;
+        }
+        return $loaiPhong;
+    }
+
     public function getPhongByKhuNha($maKhu)
     {
         return $this->phong->where('ma_khu', $maKhu)->get();
+    }
+
+    public function getPhongTheoLoaiPhong($lp)
+    {
+        return $this->phong->where('ma_loai_phong', $lp)->get();
     }
 }

@@ -36,7 +36,7 @@
                                 <tr class="{{ $key % 2 == 1 ? "success" : "info" }}">
                                     <td>{!! $sv->ma_sinh_vien !!}</td>
                                     <td>{!! $sv->ho_ten !!}</td>
-                                    <td>{!! $sv->ngay_sinh !!}</td>
+                                    <td>{{ date("d/m/Y", strtotime($sv->ngay_sinh)) }}</td>
                                     <td>{!! $sv->tinh !!}</td>
                                     <td>{!! $sv->gioi_tinh !!}</td>
                                     <td>{!! $sv->lop !!} - Khóa {!! $sv->khoa !!}</td>

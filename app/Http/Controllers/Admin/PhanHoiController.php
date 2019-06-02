@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\BinhLuanService;
 use App\Services\PhanHoiService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,10 +10,12 @@ use App\Http\Controllers\Controller;
 class PhanHoiController extends Controller
 {
     protected $phanHoiService;
+    protected $binhLuanService;
 
-    public function __construct(PhanHoiService $phanHoiService)
+    public function __construct(PhanHoiService $phanHoiService, BinhLuanService $binhLuanService)
     {
         $this->phanHoiService = $phanHoiService;
+        $this->binhLuanService = $binhLuanService;
     }
     /**
      * Display a listing of the resource.
@@ -22,8 +25,17 @@ class PhanHoiController extends Controller
     public function index()
     {
         $phanHoi = $this->phanHoiService->getAllWithPaginate();
-
+        foreach($phanHoi as $ph) {
+            $ph->binh_luan = $this->binhLuanService->getByMaPhanHoi($ph->id);
+        }
         return view('admin.phanhoi.danh-sach', ['phanHoi' => $phanHoi]);
+    }
+
+    public function themBinhLuan(Request $request)
+    {
+        $this->binhLuanService->store($request);
+
+        return redirect()->route('danhSachPhanHoi')->with('success', 'Thêm bình luận thành công!');
     }
 
     /**

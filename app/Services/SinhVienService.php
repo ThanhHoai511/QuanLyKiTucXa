@@ -37,7 +37,7 @@ class SinhVienService{
         }
         $insert = [];
 
-        foreach ($sinhVien[0] as $sinhVien) {
+        foreach ($sinhVien as $sinhVien) {
             if (trim($sinhVien['ma_sinh_vien'])== '') {
                 break;
             }

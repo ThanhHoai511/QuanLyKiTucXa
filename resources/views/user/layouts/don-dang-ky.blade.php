@@ -11,6 +11,12 @@
     </style>
     <div class="container col-md-8">
         @include('admin.layouts.flash-msg')
+{{--        <div class="col-md-12 text-center" style="margin-left: 10px;">--}}
+{{--            <h4 style="text-align:center; padding-bottom: 10px;">Tình trạng các loại phòng</h4>--}}
+{{--            @foreach($choTrong as $lp)--}}
+{{--                <p>Loại phòng {!! $lp->ten !!}: {!! $lp->so_cho_trong !!} chỗ trống.</p>--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
         <h3 style="text-align: center; margin:20px;">Đơn đăng ký nội trú</h3>
         <form class="col-md-12" enctype="multipart/form-data" method="post" id="form">
             {{ csrf_field() }}
@@ -34,8 +40,8 @@
                     <label for="ma_loai_phong">Loại phòng muốn ở</label>
                     <select name="ma_loai_phong" id="ma_loai_phong" class="form-control">
                         <option value="">-- Chọn loại phòng --</option>
-                        @foreach($loaiPhong as $lp)
-                            <option value="{{ $lp->id }}">{!! $lp->ten !!}</option>
+                        @foreach($choTrong as $lp)
+                            <option value="{{ $lp->id }}">{!! $lp->ten !!} - {!! $lp->so_cho_trong !!} chỗ trống</option>
                         @endforeach
                     </select>
                     <span class="error" id="errLP"></span>

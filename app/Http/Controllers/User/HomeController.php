@@ -13,7 +13,9 @@ use App\Services\HopDongService;
 use App\Services\KhuNhaServices;
 use App\Services\LoaiPhongService;
 use App\Services\PhanHoiService;
+use App\Services\PhongService;
 use App\Services\PhongSinhVienService;
+use App\Services\SinhVienService;
 use App\Services\TinTucService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,6 +34,8 @@ class HomeController extends Controller
     protected $phanHoiService;
     protected $hopDongService;
     protected $binhLuanService;
+    protected $sinhVienService;
+    protected $phongService;
 
     public function __construct(
         TinTucService $tinTucService,
@@ -44,7 +48,9 @@ class HomeController extends Controller
         PhongSinhVienService $phongSinhVienService,
         PhanHoiService $phanHoiService,
         HopDongService $hopDongService,
-        BinhLuanService $binhLuanService
+        BinhLuanService $binhLuanService,
+        SinhVienService $sinhVienService,
+        PhongService $phongService
     ) {
         $this->tinTucService = $tinTucService;
         $this->donDangKyService = $donDangKyService;
@@ -57,6 +63,8 @@ class HomeController extends Controller
         $this->phanHoiService = $phanHoiService;
         $this->hopDongService = $hopDongService;
         $this->binhLuanService = $binhLuanService;
+        $this->sinhVienService = $sinhVienService;
+        $this->phongService = $phongService;
     }
 
     public function index()
@@ -80,12 +88,17 @@ class HomeController extends Controller
 
     public function donDangKy()
     {
-        $loaiPhong = $this->loaiPhongService->getAll();
-        return view('user.layouts.don-dang-ky', ['loaiPhong' => $loaiPhong]);
+        $soChoTrong = $this->phongService->getChoTrongTheoLoaiPhong();
+        return view('user.layouts.don-dang-ky', ['choTrong' => $soChoTrong]);
     }
 
     public function guiDonDangKy(DonXinNoiTruRequest $request)
     {
+        $sinhVien = $this->sinhVienService->getByMSV($request->ma_sinh_vien);
+        $phongSV = $this->phongSVService->getBySVID($sinhVien->id);
+        if($phongSV != null) {
+            return redirect()->back()->with('warning', 'Sinh viên này hiện đang ở kí túc xá! Bạn không thể gửi đơn đăng kí nội trú!');
+        }
         $this->donDangKyService->store($request);
         return redirect()->back()->with('success', 'Gửi đơn đăng ký thành công!');
     }
@@ -122,11 +135,11 @@ class HomeController extends Controller
 
     public function chiTietHopDong()
     {
-        $hopDong = $this->hopDongService->getByMSV(Auth::id());
-        $hoaDonPhong = $this->hoaDonPhongService->getHoaDonChuaThanhToanTheoSV(Auth::id());
-        $phongSV = $this->phongSVService->getBySVID(Auth::id());
+        $hopDong = $this->hopDongService->getByMSV(Auth::user()->sinhvien->id);
+        $hoaDonPhong = $this->hoaDonPhongService->getHoaDonChuaThanhToanTheoSV(Auth::user()->sinhvien->id);
+        $phongSV = $this->phongSVService->getBySVID(Auth::user()->sinhvien->id);
         $hoaDonDichVu = [];
-        if(count($phongSV) != 0) {
+        if($phongSV) {
             $hoaDonDichVu = $this->hoaDonDVService->getHDChuaThanhToanByPhongID($phongSV->ma_phong);
         }
         return view('user.layouts.chi-tiet-hop-dong', ['hopDong' => $hopDong, 'hoaDonPhong' => $hoaDonPhong, 'hoaDonDichVu' => $hoaDonDichVu]);
